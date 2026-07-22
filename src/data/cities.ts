@@ -23,8 +23,8 @@ export const cities: City[] = [
     region: 'Bremen & Umland',
     intro: 'Als Hochzeits- und Event-DJ in Bremen bringe ich deine Feier zum Kochen — mit einem Gespür für den Moment und einer Musikauswahl, die vom ersten Tanz bis zur letzten Runde passt.',
     local: 'Bremen ist meine Heimat — ich kenne die Locations, die Wege und das, was hier für Stimmung sorgt. Ob stilvolle Feier im Bremer Umland, moderne Eventlocation an der Weser oder Scheunenhochzeit im Grünen: Ich bin regelmäßig in der Region unterwegs und passe Sound, Licht und Musik genau an deine Location an.',
-    // Echte Top-Locations aus djbruma.de
-    venues: ['Gasthaus Grothenns', 'Meierei am Bürgerpark', 'Lür-Kropp-Hof', "Seekamp's Gasthaus", 'Union-Brauerei', 'Gasthaus zum Kuhhirten', 'Bel-Etage Eventlocation', 'Schnoor-Eleven'],
+    // Echte Top-Locations (aus djbruma.de + Marvin, 2026-07)
+    venues: ['Atlantic Grand Hotel Bremen', 'Gasthaus Grothenns', 'Meierei am Bürgerpark', 'Lür-Kropp-Hof', "Seekamp's Gasthaus", 'Union-Brauerei', 'Gasthaus zum Kuhhirten', 'Bel-Etage Eventlocation', 'Schnoor-Eleven', 'Wardenburg Hof (bei Oldenburg)', 'Meyerei Rastede'],
   },
   {
     slug: 'frankfurt',
@@ -53,7 +53,7 @@ export const cities: City[] = [
     region: 'Wiesbaden & Taunus',
     intro: 'Dein Hochzeits- und Event-DJ in Wiesbaden: stilvoll, zuverlässig und mit dem richtigen Sound für die elegante Kurstadt.',
     local: 'Wiesbaden steht für Eleganz — und genau darauf stelle ich mich ein. Ob klassische Feier in einer der repräsentativen Locations der Stadt oder entspannte Party im Taunus-Grün: Ich bringe Technik und Musik mit, die zum Rahmen passen, und halte die Tanzfläche den ganzen Abend voll.',
-    // ⚠️ Noch keine echten benannten Locations — beschreibende Kategorien. Bei Bedarf durch echte Venues ersetzen.
-    venues: ['Repräsentative Säle im Stadtzentrum', 'Weingüter am Rheingau-Rand', 'Eventlocations im Taunus', 'Landhäuser rund um Wiesbaden'],
+    // Chausseehaus = echte Location (Marvin, 2026-07); Rest beschreibende Kategorien.
+    venues: ['Chausseehaus Wiesbaden', 'Repräsentative Säle im Stadtzentrum', 'Weingüter am Rheingau-Rand', 'Eventlocations im Taunus'],
   },
 ];

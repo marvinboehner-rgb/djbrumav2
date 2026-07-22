@@ -36,12 +36,12 @@ export const site = {
     count: 27, // ⚠️ echte Anzahl Google-Rezensionen
   },
 
-  // ⚠️ Echte Kennzahlen eintragen — Zahlen sind der stärkste Trust-Hebel (siehe Wettbewerbsanalyse)
+  // Echte Kennzahlen (von Marvin bestätigt, 2026-07)
   stats: [
-    { value: '150+', label: 'gespielte Events' },
-    { value: '10.000+', label: 'tanzende Gäste' },
+    { value: '200+', label: 'gespielte Gigs' },
+    { value: '20.000+', label: 'tanzende Gäste' },
     { value: '5,0★', label: 'bei Google' },
-    { value: 'seit 2018', label: 'als DJ aktiv' },
+    { value: '10+', label: 'Jahre als DJ' },
   ],
 
   nav: [
