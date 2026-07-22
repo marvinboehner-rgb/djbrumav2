@@ -28,6 +28,9 @@ export function localBusiness() {
       { '@type': 'City', name: 'Frankfurt am Main' },
       { '@type': 'City', name: 'Mainz' },
       { '@type': 'City', name: 'Wiesbaden' },
+      { '@type': 'Place', name: 'Bodensee-Region' },
+      { '@type': 'Place', name: 'Toskana, Italien' },
+      { '@type': 'Place', name: 'Mallorca, Spanien' },
     ],
     sameAs: [site.social.instagram, site.social.youtube],
     // Kein aggregateRating: ohne Bewertungsanzahl für Google ungültig (Marvin möchte

@@ -6,8 +6,11 @@ import Icon from '../Icon.astro';
 interface Props {
   /** Stadt-Kontext (Location-Pages): füllt das Ort-Feld vor, z. B. "Bremen" */
   city?: string;
+  /** Präpositional-Form für die Überschrift, z. B. "in Bremen", "in der Toskana" (Default: "in <city>") */
+  cityIn?: string;
 }
-const { city } = Astro.props;
+const { city, cityIn } = Astro.props;
+const headingIn = cityIn ?? (city ? `in ${city}` : '');
 
 const steps = [
   { n: '1', t: 'Anfrage schicken', d: 'Datum & Eckdaten über das Formular oder WhatsApp — dauert 2 Minuten.' },
@@ -19,7 +22,7 @@ const steps = [
   <div class="wrap anfrage__grid">
     <div class="anfrage__intro">
       <p class="eyebrow">Unverbindliche Anfrage</p>
-      <h2>Ist euer Termin{city ? ` in ${city}` : ''} noch <span class="gold-text">frei?</span></h2>
+      <h2>Ist euer Termin{headingIn ? ` ${headingIn}` : ''} noch <span class="gold-text">frei?</span></h2>
       <p class="lead">Nenn mir euer Datum — ich prüfe die Verfügbarkeit und melde mich innerhalb von 1–2 Tagen mit einer ehrlichen Antwort.</p>
 
       <ol class="steps">
