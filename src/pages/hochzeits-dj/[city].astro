@@ -25,7 +25,6 @@ const serviceSchema = {
   provider: { '@type': 'LocalBusiness', '@id': `${site.domain}/#business`, name: site.name, url: site.domain, telephone: site.contact.phoneIntl },
   areaServed: { '@type': 'City', name: city.name },
   url: `${site.domain}${path}`,
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: site.rating.value, reviewCount: site.rating.count, bestRating: 5 },
 };
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -54,7 +53,7 @@ const localFaqs = faqs.slice(0, 4);
         <div class="stars" aria-label={`${site.rating.value} von 5 Sternen`}>
           {Array.from({ length: 5 }).map(() => <Icon name="star" size={16} />)}
         </div>
-        <span><strong>{ratingLabel()}</strong> · {site.rating.count} Google-Bewertungen</span>
+        <span><strong>{ratingLabel()}</strong> bei Google</span>
       </div>
     </div>
   </section>

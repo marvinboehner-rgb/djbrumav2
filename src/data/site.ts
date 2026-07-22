@@ -30,10 +30,10 @@ export const site = {
     youtube: 'https://www.youtube.com/@djbrumamusic',
   },
 
-  // ⚠️ Echte Google-Bewertungen eintragen — Grundlage für aggregateRating-Schema (Stern-Snippets)
+  // Google-Rating ohne Anzahl (auf Wunsch von Marvin). Daher kein aggregateRating
+  // im Schema — Google verlangt dafür eine Anzahl; einzelne Reviews bleiben markiert.
   rating: {
     value: 5.0,
-    count: 27, // ⚠️ echte Anzahl Google-Rezensionen
   },
 
   // Echte Kennzahlen (von Marvin bestätigt, 2026-07)

@@ -30,13 +30,8 @@ export function localBusiness() {
       { '@type': 'City', name: 'Wiesbaden' },
     ],
     sameAs: [site.social.instagram, site.social.youtube],
-    // ⚠️ Nur mit echten, auf der Seite sichtbaren Bewertungen verwenden.
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: site.rating.value,
-      reviewCount: site.rating.count,
-      bestRating: 5,
-    },
+    // Kein aggregateRating: ohne Bewertungsanzahl für Google ungültig (Marvin möchte
+    // keine Anzahl nennen). Die echten Einzel-Reviews bleiben ausgezeichnet.
     review: testimonials.map((t) => ({
       '@type': 'Review',
       reviewRating: { '@type': 'Rating', ratingValue: t.rating, bestRating: 5 },
