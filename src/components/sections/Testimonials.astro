@@ -1,5 +1,6 @@
 ---
 import { testimonials } from '../../data/content';
+import { site } from '../../data/site';
 import Icon from '../Icon.astro';
 ---
 <section class="section testi-band" id="referenzen">
@@ -23,6 +24,12 @@ import Icon from '../Icon.astro';
         </figure>
       ))}
     </div>
+
+    <div class="testi-google center reveal">
+      <a class="btn btn--ghost" href={site.googleProfile} target="_blank" rel="noopener">
+        Alle Bewertungen auf Google ansehen <Icon name="arrow" size={16} />
+      </a>
+    </div>
   </div>
 </section>
 
@@ -35,4 +42,5 @@ import Icon from '../Icon.astro';
   .testi blockquote { margin: 0 0 1.2rem; font-size: 1.05rem; line-height: 1.6; flex: 1; }
   .testi figcaption { display: flex; flex-direction: column; border-top: 1px solid var(--line-soft); padding-top: .9rem; }
   .testi figcaption span { color: var(--muted); font-size: .9rem; }
+  .testi-google { margin-top: clamp(24px, 3vw, 36px); }
 </style>

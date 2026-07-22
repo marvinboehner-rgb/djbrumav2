@@ -21,8 +21,8 @@ export const cities: City[] = [
     name: 'Bremen',
     inCity: 'in Bremen',
     region: 'Bremen & Umland',
-    intro: 'Als Hochzeits- und Event-DJ in Bremen bringe ich deine Feier zum Kochen — mit einem Gespür für den Moment und einer Musikauswahl, die vom ersten Tanz bis zur letzten Runde passt.',
-    local: 'Bremen ist meine Heimat — ich kenne die Locations, die Wege und das, was hier für Stimmung sorgt. Ob stilvolle Feier im Bremer Umland, moderne Eventlocation an der Weser oder Scheunenhochzeit im Grünen: Ich bin regelmäßig in der Region unterwegs und passe Sound, Licht und Musik genau an deine Location an.',
+    intro: 'Als Hochzeits- und Event-DJ in Bremen bringe ich eure Feier zum Kochen — mit einem Gespür für den Moment und einer Musikauswahl, die vom ersten Tanz bis zur letzten Runde passt.',
+    local: 'In Bremen bin ich aufgewachsen und verwurzelt — heute lebe ich im Rhein-Main-Gebiet und spiele regelmäßig in beiden Regionen. Ich kenne die Bremer Locations, die Wege und das, was hier für Stimmung sorgt: ob stilvolle Feier im Umland, moderne Eventlocation an der Weser oder Scheunenhochzeit im Grünen. Sound, Licht und Musik passe ich genau an eure Location an.',
     // Echte Top-Locations (aus djbruma.de + Marvin, 2026-07)
     venues: ['Atlantic Grand Hotel Bremen', 'Gasthaus Grothenns', 'Meierei am Bürgerpark', 'Lür-Kropp-Hof', "Seekamp's Gasthaus", 'Union-Brauerei', 'Gasthaus zum Kuhhirten', 'Bel-Etage Eventlocation', 'Schnoor-Eleven', 'Wardenburg Hof (bei Oldenburg)', 'Meyerei Rastede'],
   },
@@ -31,7 +31,7 @@ export const cities: City[] = [
     name: 'Frankfurt',
     inCity: 'in Frankfurt am Main',
     region: 'Frankfurt & Rhein-Main',
-    intro: 'Dein Hochzeits- und Event-DJ in Frankfurt: professionelle Technik, feines Gespür fürs Publikum und eine volle Tanzfläche — vom Skyline-Event bis zur Feier im Grünen.',
+    intro: 'Euer Hochzeits- und Event-DJ in Frankfurt: professionelle Technik, feines Gespür fürs Publikum und eine volle Tanzfläche — vom Skyline-Event bis zur Feier im Grünen.',
     local: 'Im Rhein-Main-Gebiet bin ich regelmäßig im Einsatz. Frankfurt bietet von der eleganten Rooftop-Bar über der Skyline bis zur Eventlocation am Main alles — und für jede dieser Kulissen bringe ich das passende Setup mit. Kurze Wege, verlässliche Technik und eine Musikauswahl, die internationale Gäste genauso abholt wie die Familie aus der Region.',
     // Echte Top-Locations aus djbruma.de
     venues: ['Skybar Oben – Meliá Hotel', 'The Blasky Hotel & Rooftop Bar', 'Freigut Eventlocation auf dem Main'],
@@ -51,7 +51,7 @@ export const cities: City[] = [
     name: 'Wiesbaden',
     inCity: 'in Wiesbaden',
     region: 'Wiesbaden & Taunus',
-    intro: 'Dein Hochzeits- und Event-DJ in Wiesbaden: stilvoll, zuverlässig und mit dem richtigen Sound für die elegante Kurstadt.',
+    intro: 'Euer Hochzeits- und Event-DJ in Wiesbaden: stilvoll, zuverlässig und mit dem richtigen Sound für die elegante Kurstadt.',
     local: 'Wiesbaden steht für Eleganz — und genau darauf stelle ich mich ein. Ob klassische Feier in einer der repräsentativen Locations der Stadt oder entspannte Party im Taunus-Grün: Ich bringe Technik und Musik mit, die zum Rahmen passen, und halte die Tanzfläche den ganzen Abend voll.',
     // Chausseehaus = echte Location (Marvin, 2026-07); Rest beschreibende Kategorien.
     venues: ['Chausseehaus Wiesbaden', 'Repräsentative Säle im Stadtzentrum', 'Weingüter am Rheingau-Rand', 'Eventlocations im Taunus'],

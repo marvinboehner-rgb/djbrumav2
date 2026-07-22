@@ -30,6 +30,10 @@ export const site = {
     youtube: 'https://www.youtube.com/@djbrumamusic',
   },
 
+  // Google-Business-Profil (aus v1): macht "5,0 bei Google" verifizierbar
+  googleProfile: 'https://g.page/r/Cddp8huTiF65EBM',
+  googleReview: 'https://g.page/r/Cddp8huTiF65EBM/review',
+
   // Google-Rating ohne Anzahl (auf Wunsch von Marvin). Daher kein aggregateRating
   // im Schema — Google verlangt dafür eine Anzahl; einzelne Reviews bleiben markiert.
   rating: {

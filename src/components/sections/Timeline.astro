@@ -1,0 +1,73 @@
+---
+import { setPhases, journey } from '../../data/content';
+import Icon from '../Icon.astro';
+---
+<section class="section" id="ablauf">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">Der Ablauf</p>
+      <h2>Euer Abend als <span class="gold-text">Set.</span></h2>
+      <p class="lead center">Eine Hochzeit ist wie ein gutes DJ-Set: Es baut sich auf. So begleite ich euren Tag — von der Trauung bis zum letzten Song.</p>
+    </div>
+
+    <ol class="set">
+      {setPhases.map((s) => (
+        <li class="set__item reveal">
+          <span class="set__phase">{s.phase}</span>
+          <div class="set__body">
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <div class="journey reveal">
+      <p class="journey__label">Und vor dem großen Tag?</p>
+      <div class="journey__steps">
+        {journey.map((j, i) => (
+          <div class="journey__step">
+            <span class="journey__n">{i + 1}</span>
+            <div>
+              <strong>{j.title}</strong>
+              <p>{j.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .set { list-style: none; margin: clamp(32px, 5vw, 56px) 0 0; padding: 0; display: grid; gap: 0; }
+  .set__item {
+    display: grid; grid-template-columns: 120px 1fr; gap: clamp(16px, 3vw, 40px);
+    padding: clamp(20px, 3vw, 28px) 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .set__item:first-child { border-top: 1px solid var(--line-soft); }
+  .set__phase {
+    font-size: .74rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); padding-top: .45rem;
+  }
+  .set__body h3 { margin-bottom: .3rem; }
+  .set__body p { color: var(--muted); margin: 0; max-width: 62ch; }
+
+  .journey { margin-top: clamp(36px, 5vw, 56px); }
+  .journey__label { font-family: var(--ff-display); font-size: 1.25rem; margin-bottom: 1.2rem; }
+  .journey__steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.5vw, 28px); }
+  .journey__step { display: grid; grid-template-columns: auto 1fr; gap: .9rem; align-items: start; }
+  .journey__n {
+    width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+    font-family: var(--ff-display); font-weight: 600; color: var(--gold);
+    border: 1px solid var(--line); flex: none;
+  }
+  .journey__step strong { display: block; margin-bottom: .2rem; }
+  .journey__step p { color: var(--muted); margin: 0; font-size: .95rem; }
+
+  @media (max-width: 700px) {
+    .set__item { grid-template-columns: 1fr; gap: .3rem; }
+    .journey__steps { grid-template-columns: 1fr; }
+  }
+</style>
