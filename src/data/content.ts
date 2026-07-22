@@ -57,6 +57,14 @@ export const addons = [
   { name: 'Bierzeltgarnitur', image: '/images/addon-bierzelt.jpg', text: 'Praktische Ausstattung für Outdoor- & Zeltfeiern.' },
 ];
 
+// Preis-Klarheit: die Fragen, die Brautpaare sonst per Mail stellen (Stand 2026-07)
+export const priceNotes = [
+  { label: 'Anfahrt', text: 'Im Umkreis von 50 km um Frankfurt inklusive. Darüber hinaus 0,30 € pro Kilometer (einfache Strecke ab Frankfurt) — im Angebot klar ausgewiesen.' },
+  { label: 'Verlängerung', text: 'Soll es länger gehen? Jede weitere Stunde kostet 100 € — vorab eingeplant oder spontan am Abend entschieden.' },
+  { label: 'Auf- & Abbau', text: 'Aufbau (ca. 1,5–2 Std. vor Beginn) und Abbau sind im Paketpreis enthalten. Keine versteckten Zusatzkosten.' },
+  { label: 'Endpreise', text: 'Als Kleinunternehmer nach § 19 UStG weise ich keine Umsatzsteuer aus: Was im Angebot steht, ist der Endpreis.' },
+];
+
 // Echte Google-Rezensionen (aus djbruma.de übernommen).
 export const testimonials = [
   { name: 'MCllns', event: 'Hochzeit · Google-Rezension', rating: 5, text: 'Marvin hat unsere Hochzeit musikalisch begleitet und wirklich abgeliefert. Alle Gäste waren super zufrieden mit der Musikauswahl. Auch die Vorbereitung auf den Tag und der Austausch mit ihm bleibt für uns in super angenehmer Erinnerung.' },
@@ -66,6 +74,8 @@ export const testimonials = [
 
 export const faqs = [
   { q: 'Was kostet ein DJ für meine Feier?', a: 'Meine Pakete starten bei 1.000 €. Der genaue Preis hängt von Spielzeit, Location-Größe und gewünschter Technik/Add-ons ab. Im kostenlosen Vorgespräch bekommst du ein transparentes Festpreis-Angebot — ohne versteckte Kosten. Als Kleinunternehmer weise ich keine Umsatzsteuer aus: Meine Preise sind Endpreise.' },
+  { q: 'Was kostet die Anfahrt?', a: 'Im Umkreis von 50 km um Frankfurt ist die Anfahrt inklusive. Liegt eure Location weiter entfernt, berechne ich 0,30 € pro Kilometer für die einfache Strecke ab Frankfurt. Der Betrag steht als eigener Posten im Angebot — ihr wisst also vorher genau, woran ihr seid.' },
+  { q: 'Können wir den Abend spontan verlängern?', a: 'Klar — wenn die Tanzfläche noch voll ist, hört man nicht einfach auf. Jede weitere Stunde kostet 100 €. Ihr könnt sie vorab einplanen oder spontan am Abend entscheiden, solange die Location mitspielt.' },
   { q: 'Welche Musik spielst du — und was nicht?', a: 'Von aktuellen Charts über Classics und Latin bis Schlager — alles, was eure Tanzfläche füllt, abgestimmt auf euch und eure Gäste. Vorab legen wir Wunschlieder und No-Gos fest: Was auf eurer Verbotsliste steht, läuft nicht, egal wer danach fragt.' },
   { q: 'Kann ich mir Musik wünschen?', a: 'Unbedingt. Vorab stimmen wir Wunschlieder, No-Gos und den groben Ablauf ab. Am Abend nehme ich auch spontane Wünsche der Gäste entgegen — mit Fingerspitzengefühl: Der Flow auf der Tanzfläche hat immer Priorität.' },
   { q: 'Was passiert, wenn du krank wirst?', a: 'Dafür gibt es meine Ausfall-Garantie: Über mein DJ-Netzwerk sorge ich für gleichwertigen Ersatz. Das steht schriftlich im Vertrag — eure Feier läuft auf jeden Fall.' },

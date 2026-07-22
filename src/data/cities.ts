@@ -122,10 +122,10 @@ export const cities: City[] = [
     logistics: [
       { title: 'Kurze Anreise, volles Setup', text: 'Aus dem Rhein-Main-Gebiet bin ich mit Van und komplettem Equipment schnell am See — Sound, Licht und Backup inklusive.' },
       { title: 'Grenznah flexibel', text: 'Auch Vorarlberg, St. Gallen oder Thurgau: Grenznahe Locations in Österreich und der Schweiz begleite ich gerne.' },
-      { title: 'Transparente Reisepauschale', text: 'Anreise und ggf. Übernachtung stehen als klar ausgewiesene Pauschale im Festpreis-Angebot — keine Überraschungen.' },
+      { title: 'Anfahrt nach Kilometern', text: 'Kein Pauschal-Aufschlag: Ich rechne 0,30 € pro Kilometer für die einfache Strecke ab Frankfurt — an den Bodensee sind das rund 105 €, transparent im Angebot ausgewiesen.' },
     ],
     destFaqs: [
-      { q: 'Was kostet ein DJ aus dem Rhein-Main-Gebiet am Bodensee?', a: 'Ihr bucht eines meiner regulären Pakete (ab 1.000 €) plus eine transparente Reisepauschale für Anreise und ggf. Übernachtung. Jeder Posten steht einzeln im Festpreis-Angebot.' },
+      { q: 'Was kostet ein DJ aus dem Rhein-Main-Gebiet am Bodensee?', a: 'Ihr bucht eines meiner regulären Pakete (ab 1.000 €) plus die Anfahrt: 0,30 € pro Kilometer für die einfache Strecke ab Frankfurt — an den Bodensee sind das rund 105 €. Kommt eine Übernachtung dazu, weise ich sie separat aus. Jeder Posten steht einzeln im Angebot.' },
       { q: 'Spielst du auch in Österreich oder der Schweiz?', a: 'Ja — grenznahe Feiern rund um den See, etwa in Bregenz oder im Thurgau, begleite ich gerne. Die Anreise ist dieselbe, die Pauschale bleibt transparent.' },
       { q: 'Wie früh sollten wir buchen?', a: 'Die schönsten Termine am See sind in der Sommersaison schnell vergeben — 9–12 Monate Vorlauf sind ideal, kurzfristiger geht es nach Verfügbarkeit.' },
       { q: 'Bringst du dein komplettes Equipment mit?', a: 'Ja, alles kommt im Van mit: Sound, Licht, Funkmikrofone und Backup-Technik. Eure Location braucht nur Strom — den Rest kläre ich vorab direkt mit dem Location-Team.' },
