@@ -1,19 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
+import { datenschutz } from '../data/legal';
 ---
 <Base title="Datenschutz – DJ Bruma" description="Datenschutzerklärung von DJ Bruma." path="/datenschutz">
   <section class="section legal">
     <div class="wrap">
       <h1>Datenschutzerklärung</h1>
-      <!-- ⚠️ TODO(Marvin): Bestehende Datenschutzerklärung von djbruma.de übernehmen bzw. an
-           Netlify Forms, Google Fonts (ggf. self-hosten) & YouTube-Einbettung anpassen. -->
-      <p class="legal__todo">Platzhalter — vor dem Livegang durch die vollständige Datenschutzerklärung ersetzen. Zu berücksichtigen: Anfrageformular (Netlify Forms), Schriftarten und die click-to-load YouTube-Einbettung.</p>
+      {datenschutz.map((b) => b.tag === 'h2' ? <h2>{b.text}</h2> : <p>{b.text}</p>)}
     </div>
   </section>
 </Base>
 
 <style>
   .legal .wrap { max-width: 760px; }
+  .legal h2 { margin-top: 2rem; }
   .legal p { color: var(--muted); }
-  .legal__todo { color: var(--gold-deep); font-size: .95rem; }
 </style>

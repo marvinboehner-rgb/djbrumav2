@@ -57,11 +57,11 @@ export const addons = [
   { name: 'Bierzeltgarnitur', image: '/images/addon-bierzelt.jpg', text: 'Praktische Ausstattung für Outdoor- & Zeltfeiern.' },
 ];
 
-// ⚠️ Echte Referenzen eintragen. Nur echte, verifizierbare Stimmen verwenden.
+// Echte Google-Rezensionen (aus djbruma.de übernommen).
 export const testimonials = [
-  { name: 'Lena & Tobias', event: 'Hochzeit in Bremen', rating: 5, text: 'Marvin hat unsere Tanzfläche den ganzen Abend voll gehalten. Er hat genau gespürt, was die Gäste hören wollten — von Oma bis Trauzeuge. Absolute Empfehlung!' },
-  { name: 'Sarah K.', event: 'Geburtstagsfeier Frankfurt', rating: 5, text: 'Super Vorbereitung, mega Stimmung, total unkompliziert. Das Vorgespräch hat uns viel Sicherheit gegeben.' },
-  { name: 'Firmenfeier — Team M.', event: 'Firmenevent Wiesbaden', rating: 5, text: 'Professionell von der ersten Minute. Technik top, Musik perfekt auf unser Publikum abgestimmt. Sehr gerne wieder.' },
+  { name: 'MCllns', event: 'Hochzeit · Google-Rezension', rating: 5, text: 'Marvin hat unsere Hochzeit musikalisch begleitet und wirklich abgeliefert. Alle Gäste waren super zufrieden mit der Musikauswahl. Auch die Vorbereitung auf den Tag und der Austausch mit ihm bleibt für uns in super angenehmer Erinnerung.' },
+  { name: 'Hendrik Lintz', event: 'Hochzeit · Google-Rezension', rating: 5, text: 'Vielen, vielen Dank für die unvergessliche musikalische Begleitung auf unserer Hochzeitsfeier! Du hast einen riesigen Beitrag dazu geleistet, dass unser großer Tag so besonders wurde.' },
+  { name: 'P. T.', event: 'Hochzeit · Google-Rezension', rating: 5, text: 'Das Buchen und die Planung war total unkompliziert und vor allem sehr zuverlässig. Allein sein Equipment macht schon was her. Er hat alle unsere Extrawünsche super umgesetzt.' },
 ];
 
 export const faqs = [

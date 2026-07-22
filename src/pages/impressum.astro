@@ -1,31 +1,41 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site';
 ---
-<Base title="Impressum – DJ Bruma" description="Impressum von DJ Bruma." path="/impressum">
+<Base title="Impressum – DJ Bruma" description="Impressum von DJ Bruma – Marvin Böhner." path="/impressum">
   <section class="section legal">
     <div class="wrap">
       <h1>Impressum</h1>
-      <!-- ⚠️ TODO(Marvin): Bestehendes Impressum von djbruma.de 1:1 übernehmen (Pflichtangaben §5 TMG). -->
-      <p>Angaben gemäß § 5 TMG</p>
+      <p>Angaben gemäß § 5 DDG</p>
       <p>
-        {site.legalName}<br />
-        {site.address.street}<br />
-        {site.address.postalCode} {site.address.city}
+        Marvin Böhner<br />
+        Dieselstr. 1<br />
+        61118 Bad Vilbel
       </p>
+      <h2>Kontakt</h2>
       <p>
-        <strong>Kontakt</strong><br />
-        Telefon: {site.contact.phone}<br />
-        E-Mail: {site.contact.email}
+        Telefon: +49 (0)151 17236712<br />
+        E-Mail: bruma.dj.anfrage@gmail.com<br />
+        WhatsApp: +49 151 17236712
       </p>
-      <p class="legal__todo">Hinweis: Diesen Platzhalter vor dem Livegang durch das vollständige, rechtssichere Impressum ersetzen.</p>
+      <h2>Umsatzsteuer</h2>
+      <p>Gemäß § 19 UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer ausgewiesen.</p>
+      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <p>Marvin Böhner<br />Dieselstr. 1<br />61118 Bad Vilbel</p>
+
+      <h2>Haftung für Inhalte</h2>
+      <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+
+      <h2>Haftung für Links</h2>
+      <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+
+      <h2>Urheberrecht</h2>
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
     </div>
   </section>
 </Base>
 
 <style>
-  .legal { max-width: 760px; }
   .legal .wrap { max-width: 760px; }
+  .legal h2 { margin-top: 2rem; }
   .legal p { color: var(--muted); }
-  .legal__todo { color: var(--gold-deep); font-size: .9rem; margin-top: 2rem; }
 </style>
