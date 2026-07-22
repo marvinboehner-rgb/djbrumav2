@@ -1,0 +1,58 @@
+---
+import { site, whatsappUrl, ratingLabel } from '../../data/site';
+import Icon from '../Icon.astro';
+---
+<section class="hero">
+  <!-- LCP-Bild: eager + fetchpriority high (behebt LCP-Finding aus dem Audit) -->
+  <img class="hero__bg" src="/images/hero.jpg" alt="" width="1920" height="1280" loading="eager" fetchpriority="high" aria-hidden="true" />
+  <div class="hero__scrim"></div>
+
+  <div class="wrap hero__inner">
+    <p class="eyebrow reveal">{site.tagline}</p>
+    <h1 class="hero__title reveal">
+      Für eine <span class="gold-text">unvergessliche</span><br />Party.
+    </h1>
+    <p class="hero__sub lead reveal">
+      Dein Event- & Hochzeits-DJ für Bremen, Frankfurt & das Rhein-Main-Gebiet.
+      Volle Tanzfläche, feines Gespür für den Moment — und transparente Festpreise.
+    </p>
+
+    <div class="hero__cta reveal">
+      <a class="btn btn--gold btn--lg" href="/#anfrage">Verfügbarkeit prüfen <Icon name="arrow" size={18} /></a>
+      <a class="btn btn--ghost btn--lg" href={whatsappUrl()} target="_blank" rel="noopener">
+        <Icon name="whatsapp" size={18} /> WhatsApp
+      </a>
+    </div>
+
+    <div class="hero__trust reveal">
+      <div class="stars" aria-label={`${site.rating.value} von 5 Sternen`}>
+        {Array.from({ length: 5 }).map(() => <Icon name="star" size={18} />)}
+      </div>
+      <span><strong>{ratingLabel()}</strong> · {site.rating.count} Google-Bewertungen</span>
+    </div>
+  </div>
+
+  <a href="/#leistungen" class="hero__scroll" aria-label="Weiter">↓</a>
+</section>
+
+<style>
+  .hero { position: relative; min-height: min(92vh, 820px); display: flex; align-items: center; isolation: isolate; overflow: hidden; }
+  .hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .hero__scrim {
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(120% 80% at 20% 20%, rgba(12,10,8,.35), transparent 60%),
+      linear-gradient(180deg, rgba(12,10,8,.55) 0%, rgba(12,10,8,.55) 40%, rgba(12,10,8,.94) 100%);
+  }
+  .hero__inner { padding-block: clamp(80px, 12vh, 140px); }
+  .hero__title { font-size: clamp(2.8rem, 8vw, 5.4rem); margin-bottom: 1.2rem; }
+  .hero__sub { color: var(--text); opacity: .92; max-width: 54ch; font-size: 1.18rem; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2rem; }
+  .hero__trust { display: flex; align-items: center; gap: .7rem; margin-top: 2rem; color: var(--muted); font-size: .96rem; }
+  .hero__trust strong { color: var(--text); }
+  .stars { display: inline-flex; color: var(--gold); }
+  .stars :global(svg) { fill: var(--gold); }
+  .hero__scroll { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 1.4rem; animation: bob 2s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,8px); } }
+  @media (prefers-reduced-motion: reduce) { .hero__scroll { animation: none; } }
+</style>

@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/sections/Hero.astro';
+import Stats from '../components/sections/Stats.astro';
+import About from '../components/sections/About.astro';
+import Services from '../components/sections/Services.astro';
+import Packages from '../components/sections/Packages.astro';
+import Gallery from '../components/sections/Gallery.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Faq from '../components/sections/Faq.astro';
+import Contact from '../components/sections/Contact.astro';
+import { localBusiness, faqPage } from '../data/schema';
+
+const title = 'DJ Bruma – Event- & Hochzeits-DJ · Bremen & Frankfurt';
+const description = 'DJ Bruma – dein Event- & Hochzeits-DJ für Hochzeiten, Geburtstage, Weihnachts- und Firmenfeiern in Bremen, Frankfurt und Umgebung. Pakete, Preise & echte Kundenstimmen. Jetzt unverbindlich anfragen.';
+---
+<Base title={title} description={description} path="/" jsonLd={[localBusiness(), faqPage()]}>
+  <Hero />
+  <Stats />
+  <About />
+  <Services />
+  <Packages />
+  <Gallery />
+  <Testimonials />
+  <Faq />
+  <Contact />
+</Base>

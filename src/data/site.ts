@@ -1,0 +1,64 @@
+// Zentrale Seiten-/Business-Daten. Hier pflegst du Kontakt, Zahlen & Navigation.
+// TODO(Marvin): Alle mit ⚠️ markierten Zahlen durch echte Werte ersetzen.
+
+export const site = {
+  name: 'DJ Bruma',
+  legalName: 'Marvin Böhner',
+  tagline: 'Event- & Hochzeits-DJ · Bremen & Frankfurt',
+  domain: 'https://djbruma.de',
+
+  contact: {
+    phone: '0151 172 36712',
+    phoneIntl: '+4915117236712',
+    email: 'bruma.dj.anfrage@gmail.com',
+    whatsappText: 'Hi Marvin! Ich interessiere mich für dich als DJ und würde gern die Verfügbarkeit prüfen.',
+  },
+
+  // Schema-Adresse (Standort) — muss identisch zum Google-Business-Profil sein (NAP-Konsistenz)
+  address: {
+    street: 'Dieselstr. 1',
+    postalCode: '61118',
+    city: 'Bad Vilbel',
+    country: 'DE',
+    // ⚠️ Für vollständiges LocalBusiness-Schema echte Koordinaten eintragen:
+    lat: 50.1782,
+    lng: 8.7377,
+  },
+
+  social: {
+    instagram: 'https://www.instagram.com/dj.bruma',
+    youtube: 'https://www.youtube.com/@djbrumamusic',
+  },
+
+  // ⚠️ Echte Google-Bewertungen eintragen — Grundlage für aggregateRating-Schema (Stern-Snippets)
+  rating: {
+    value: 5.0,
+    count: 27, // ⚠️ echte Anzahl Google-Rezensionen
+  },
+
+  // ⚠️ Echte Kennzahlen eintragen — Zahlen sind der stärkste Trust-Hebel (siehe Wettbewerbsanalyse)
+  stats: [
+    { value: '150+', label: 'gespielte Events' },
+    { value: '10.000+', label: 'tanzende Gäste' },
+    { value: '5,0★', label: 'bei Google' },
+    { value: 'seit 2018', label: 'als DJ aktiv' },
+  ],
+
+  nav: [
+    { label: 'Über mich', href: '/#ueber-mich' },
+    { label: 'Leistungen', href: '/#leistungen' },
+    { label: 'Preise', href: '/#preise' },
+    { label: 'Eindrücke', href: '/#eindruecke' },
+    { label: 'Referenzen', href: '/#referenzen' },
+    { label: 'FAQ', href: '/#faq' },
+  ],
+} as const;
+
+export function whatsappUrl() {
+  return `https://wa.me/${site.contact.phoneIntl.replace('+', '')}?text=${encodeURIComponent(site.contact.whatsappText)}`;
+}
+
+// "5,0" statt "5" — deutsche Dezimal-Darstellung für Anzeige (Schema bleibt numerisch)
+export function ratingLabel() {
+  return site.rating.value.toFixed(1).replace('.', ',');
+}

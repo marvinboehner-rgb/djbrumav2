@@ -1,0 +1,56 @@
+---
+import { gallery, videos } from '../../data/content';
+import Icon from '../Icon.astro';
+---
+<section class="section" id="eindruecke">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">Eindrücke</p>
+      <h2>Momente von <span class="gold-text">echten Events.</span></h2>
+    </div>
+
+    <!-- Video-Vorschau (echte YouTube-Videos, click-to-load = performant) -->
+    <div class="videos reveal">
+      {videos.map((id) => (
+        <button class="video" data-yt={id} aria-label="Video abspielen">
+          <img src={`/images/yt/${id}.jpg`} alt="Video-Vorschau von einem Event" width="480" height="270" loading="lazy" />
+          <span class="video__play"><Icon name="play" size={40} /></span>
+        </button>
+      ))}
+    </div>
+
+    <div class="masonry">
+      {gallery.map((src, i) => (
+        <img class="reveal" src={src} alt={`Eindruck von einem DJ-Bruma-Event ${i + 1}`} width="800" height="600" loading="lazy" />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .videos { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vw, 20px); margin: clamp(28px, 4vw, 48px) 0; }
+  .video { position: relative; border: 0; padding: 0; cursor: pointer; border-radius: var(--r); overflow: hidden; aspect-ratio: 16/9; background: var(--surface); }
+  .video img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  .video:hover img { transform: scale(1.06); }
+  .video__play { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; background: rgba(12,10,8,.25); }
+  .video__play :global(svg) { filter: drop-shadow(0 4px 12px rgba(0,0,0,.6)); }
+  .masonry { columns: 3; column-gap: clamp(12px, 2vw, 20px); }
+  .masonry img { width: 100%; border-radius: var(--r); margin-bottom: clamp(12px, 2vw, 20px); border: 1px solid var(--line-soft); }
+  @media (max-width: 760px) { .videos { grid-template-columns: 1fr; } .masonry { columns: 2; } }
+  @media (max-width: 460px) { .masonry { columns: 1; } }
+</style>
+
+<script>
+  // YouTube erst bei Klick laden (kein Third-Party-Ballast beim ersten Render)
+  document.querySelectorAll('.video').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-yt');
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
+      btn.replaceChildren(iframe);
+    }, { once: true });
+  });
+</script>

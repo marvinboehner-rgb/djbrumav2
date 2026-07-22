@@ -1,0 +1,38 @@
+---
+import Icon from '../Icon.astro';
+---
+<section class="section" id="ueber-mich">
+  <div class="wrap about">
+    <div class="about__media reveal">
+      <img src="/images/portrait.jpg" alt="DJ Bruma — Marvin am DJ-Pult" width="720" height="900" loading="lazy" />
+    </div>
+    <div class="about__text reveal">
+      <p class="eyebrow">Das bin ich, Marvin</p>
+      <h2>Ich lebe für den Moment, in dem die <span class="gold-text">Tanzfläche kippt.</span></h2>
+      <p class="lead">
+        Seit Jahren lege ich auf Hochzeiten, Geburtstagen und Firmenfeiern auf — und habe dabei ein
+        Gespür dafür entwickelt, wann welcher Song genau richtig ist. Ich lese die Menschen im Raum,
+        nicht nur die Playlist.
+      </p>
+      <p>
+        Was mich antreibt: der Blick, wenn Oma neben dem Trauzeugen tanzt und niemand mehr sitzen
+        bleiben will. Dafür bereite ich jeden Abend akribisch vor — persönlich, verlässlich und mit
+        Technik, auf die Verlass ist.
+      </p>
+      <ul class="about__points">
+        <li><Icon name="check" size={18} /> Persönliches Vorgespräch vor jedem Event</li>
+        <li><Icon name="check" size={18} /> Musik individuell auf euch abgestimmt</li>
+        <li><Icon name="check" size={18} /> Transparente Festpreise, keine Überraschungen</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+  .about__media img { border-radius: var(--r-lg); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .about__points { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: .8rem; }
+  .about__points li { display: flex; align-items: center; gap: .7rem; }
+  .about__points :global(svg) { color: var(--gold); flex: none; }
+  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } .about__media { max-width: 380px; } }
+</style>

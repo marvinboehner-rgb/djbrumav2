@@ -1,0 +1,50 @@
+---
+import { services, guarantee } from '../../data/content';
+import Icon from '../Icon.astro';
+---
+<section class="section" id="leistungen">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">Leistungen & Ausstattung</p>
+      <h2>Mit Qualität, die sich <span class="gold-text">bezahlt macht.</span></h2>
+      <p class="lead center">Alles, was deinen Abend trägt — aus einer Hand, ohne dass du dich um Technik kümmern musst.</p>
+    </div>
+
+    <div class="grid grid-3 svc-grid">
+      {services.map((s) => (
+        <article class="card svc reveal">
+          <div class="svc__icon"><Icon name={s.icon} size={26} /></div>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <!-- Ausfall-Garantie: stärkster Angst-Abbau (aus Wettbewerbsanalyse) -->
+    <div class="card card--gold guarantee reveal">
+      <div class="guarantee__badge"><Icon name="shield" size={30} /></div>
+      <div>
+        <h3>{guarantee.title}</h3>
+        <p>{guarantee.text}</p>
+        <ul class="guarantee__points">
+          {guarantee.points.map((p) => <li><Icon name="check" size={16} /> {p}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .svc-grid { margin-top: clamp(32px, 5vw, 56px); }
+  .svc__icon { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; color: var(--gold); background: rgba(201,163,90,.12); border: 1px solid var(--line); margin-bottom: 1rem; }
+  .svc h3 { margin-bottom: .4rem; }
+  .svc p { color: var(--muted); margin: 0; }
+  .guarantee { margin-top: clamp(24px, 3vw, 36px); display: grid; grid-template-columns: auto 1fr; gap: clamp(18px, 3vw, 32px); align-items: center; background: linear-gradient(135deg, rgba(201,163,90,.10), var(--surface)); }
+  .guarantee__badge { width: 66px; height: 66px; border-radius: 50%; display: grid; place-items: center; color: #1a1208; background: var(--gold-grad); flex: none; }
+  .guarantee h3 { margin-bottom: .4rem; }
+  .guarantee p { color: var(--muted); margin-bottom: .8rem; }
+  .guarantee__points { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; }
+  .guarantee__points li { display: flex; align-items: center; gap: .5rem; font-size: .95rem; }
+  .guarantee__points :global(svg) { color: var(--gold); }
+  @media (max-width: 560px) { .guarantee { grid-template-columns: 1fr; text-align: left; } }
+</style>

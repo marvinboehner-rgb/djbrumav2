@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Impressum – DJ Bruma" description="Impressum von DJ Bruma." path="/impressum">
+  <section class="section legal">
+    <div class="wrap">
+      <h1>Impressum</h1>
+      <!-- ⚠️ TODO(Marvin): Bestehendes Impressum von djbruma.de 1:1 übernehmen (Pflichtangaben §5 TMG). -->
+      <p>Angaben gemäß § 5 TMG</p>
+      <p>
+        {site.legalName}<br />
+        {site.address.street}<br />
+        {site.address.postalCode} {site.address.city}
+      </p>
+      <p>
+        <strong>Kontakt</strong><br />
+        Telefon: {site.contact.phone}<br />
+        E-Mail: {site.contact.email}
+      </p>
+      <p class="legal__todo">Hinweis: Diesen Platzhalter vor dem Livegang durch das vollständige, rechtssichere Impressum ersetzen.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal { max-width: 760px; }
+  .legal .wrap { max-width: 760px; }
+  .legal p { color: var(--muted); }
+  .legal__todo { color: var(--gold-deep); font-size: .9rem; margin-top: 2rem; }
+</style>

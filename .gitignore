@@ -1,0 +1,17 @@
+# build output
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# env & secrets — NIE committen
+.env
+.env.*
+*.pem
+credentials.json
+
+# os / editor
+.DS_Store
+*.log
+npm-debug.log*

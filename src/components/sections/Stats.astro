@@ -1,0 +1,23 @@
+---
+import { site } from '../../data/site';
+---
+<section class="section--tight stats-band">
+  <div class="wrap">
+    <div class="stats reveal">
+      {site.stats.map((s) => (
+        <div class="stat">
+          <div class="stat__value gold-text">{s.value}</div>
+          <div class="stat__label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-band { padding-block: clamp(28px, 4vw, 44px); border-block: 1px solid var(--line-soft); background: var(--bg-2); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; }
+  .stat__value { font-family: var(--ff-display); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 600; line-height: 1; }
+  .stat__label { color: var(--muted); font-size: .92rem; margin-top: .4rem; }
+  @media (max-width: 560px) { .stats { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; } }
+</style>

@@ -1,0 +1,189 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { site, whatsappUrl, ratingLabel } from '../../data/site';
+import { cities } from '../../data/cities';
+import { packages, faqs } from '../../data/content';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({ params: { city: city.slug }, props: { city } }));
+}
+
+const { city } = Astro.props;
+const others = cities.filter((c) => c.slug !== city.slug);
+const path = `/hochzeits-dj/${city.slug}`;
+
+const title = `Hochzeits-DJ ${city.name} – DJ Bruma | ${ratingLabel()} ★ bei Google`;
+const description = `Hochzeits- & Event-DJ ${city.inCity}: volle Tanzfläche, hochwertige Technik & transparente Preise. Kostenloses Vorgespräch. Jetzt Verfügbarkeit für ${city.name} prüfen.`;
+
+// Service-Schema pro Stadt + Bezug zum LocalBusiness
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Hochzeits-DJ',
+  name: `Hochzeits-DJ ${city.name}`,
+  provider: { '@type': 'LocalBusiness', '@id': `${site.domain}/#business`, name: site.name, url: site.domain, telephone: site.contact.phoneIntl },
+  areaServed: { '@type': 'City', name: city.name },
+  url: `${site.domain}${path}`,
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: site.rating.value, reviewCount: site.rating.count, bestRating: 5 },
+};
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: site.domain },
+    { '@type': 'ListItem', position: 2, name: `Hochzeits-DJ ${city.name}`, item: `${site.domain}${path}` },
+  ],
+};
+const localFaqs = faqs.slice(0, 4);
+---
+<Base title={title} description={description} path={path} jsonLd={[serviceSchema, breadcrumb]}>
+  <section class="loc-hero">
+    <img class="loc-hero__bg" src="/images/hero.jpg" alt="" width="1920" height="1280" loading="eager" fetchpriority="high" aria-hidden="true" />
+    <div class="loc-hero__scrim"></div>
+    <div class="wrap loc-hero__inner">
+      <nav class="crumbs" aria-label="Brotkrümel"><a href="/">Start</a> <span>/</span> Hochzeits-DJ {city.name}</nav>
+      <p class="eyebrow">{city.region}</p>
+      <h1>Euer Hochzeits-DJ <span class="gold-text">{city.inCity}</span></h1>
+      <p class="lead">{city.intro}</p>
+      <div class="loc-hero__cta">
+        <a class="btn btn--gold btn--lg" href="/#anfrage">Verfügbarkeit für {city.name} prüfen <Icon name="arrow" size={18} /></a>
+        <a class="btn btn--ghost btn--lg" href={whatsappUrl()} target="_blank" rel="noopener"><Icon name="whatsapp" size={18} /> WhatsApp</a>
+      </div>
+      <div class="loc-hero__trust">
+        <div class="stars" aria-label={`${site.rating.value} von 5 Sternen`}>
+          {Array.from({ length: 5 }).map(() => <Icon name="star" size={16} />)}
+        </div>
+        <span><strong>{ratingLabel()}</strong> · {site.rating.count} Google-Bewertungen</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap loc-body">
+      <div>
+        <h2>Dein DJ für Hochzeiten & Events {city.inCity}</h2>
+        <p>{city.local}</p>
+        <p>
+          Ob freie Trauung, Sektempfang, Dinner oder Party bis in die Nacht — ich begleite deinen
+          kompletten Tag musikalisch und sorge dafür, dass jeder Programmpunkt sitzt. Alles aus einer
+          Hand, mit persönlichem Vorgespräch und transparenten Festpreisen.
+        </p>
+
+        <h3 class="loc-venues-h">Beliebte Hochzeits-Locations {city.inCity} & Umgebung</h3>
+        <ul class="loc-venues">
+          {city.venues.map((v) => <li><Icon name="check" size={16} /> {v}</li>)}
+        </ul>
+        <p class="loc-venues-note">Deine Location ist nicht dabei? Kein Problem — ich bin flexibel und bringe das passende Setup mit.</p>
+      </div>
+
+      <aside class="loc-aside card card--gold">
+        <h3>Kurz & knapp</h3>
+        <ul class="loc-facts">
+          <li><span>Einsatzgebiet</span><strong>{city.region}</strong></li>
+          <li><span>Ab-Preis</span><strong>{packages[0].price}</strong></li>
+          <li><span>Antwortzeit</span><strong>1–2 Tage</strong></li>
+          <li><span>Vorgespräch</span><strong>kostenlos</strong></li>
+          <li><span>Ausfall-Garantie</span><strong>inklusive</strong></li>
+        </ul>
+        <a class="btn btn--gold" href="/#anfrage">Jetzt anfragen</a>
+        <a class="btn btn--ghost" href={`tel:${site.contact.phoneIntl}`}><Icon name="phone" size={16} /> {site.contact.phone}</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Lokale FAQ (Unique Content + AI-Zitierbarkeit) -->
+  <section class="section--tight">
+    <div class="wrap loc-faq">
+      <h2>Häufige Fragen zum Hochzeits-DJ {city.inCity}</h2>
+      <div class="faq-list">
+        {localFaqs.map((f, i) => (
+          <details class="faq" name="locfaq" open={i === 0}>
+            <summary>{f.q}<span class="faq__icon" aria-hidden="true">+</span></summary>
+            <div class="faq__body"><p>{f.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Interne Verlinkung: behebt das Orphan-Page-Problem aus dem Audit -->
+  <section class="section--tight loc-other-band">
+    <div class="wrap">
+      <h2 class="center">Auch als Hochzeits-DJ in eurer Stadt</h2>
+      <div class="loc-others">
+        {others.map((c) => (
+          <a class="loc-other" href={`/hochzeits-dj/${c.slug}`}>
+            <span>Hochzeits-DJ</span>
+            <strong>{c.name}</strong>
+            <Icon name="arrow" size={18} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section center loc-cta">
+    <div class="wrap">
+      <h2>Ist euer Termin {city.inCity} noch frei?</h2>
+      <p class="lead center">Sag mir euer Datum — ich melde mich innerhalb von 1–2 Tagen mit einem transparenten Festpreis-Angebot.</p>
+      <a class="btn btn--gold btn--lg" href="/#anfrage">Verfügbarkeit prüfen <Icon name="arrow" size={18} /></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .loc-hero { position: relative; isolation: isolate; overflow: hidden; }
+  .loc-hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .loc-hero__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(12,10,8,.55), rgba(12,10,8,.92)); }
+  .loc-hero__inner { padding-block: clamp(64px, 11vh, 130px); }
+  .crumbs { font-size: .85rem; color: var(--muted); margin-bottom: 1.2rem; }
+  .crumbs a:hover { color: var(--gold-soft); }
+  .crumbs span { margin-inline: .4rem; }
+  .loc-hero h1 { font-size: clamp(2.4rem, 6.5vw, 4.4rem); }
+  .loc-hero .lead { color: var(--text); opacity: .92; }
+  .loc-hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+  .loc-hero__trust { display: flex; align-items: center; gap: .6rem; margin-top: 1.6rem; color: var(--muted); font-size: .92rem; }
+  .loc-hero__trust strong { color: var(--text); }
+  .stars { display: inline-flex; color: var(--gold); }
+  .stars :global(svg) { fill: var(--gold); }
+
+  .loc-body { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
+  .loc-body p { color: var(--muted); }
+  .loc-venues-h { margin-top: 1.8rem; }
+  .loc-venues { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: .7rem; }
+  .loc-venues li { display: flex; align-items: center; gap: .6rem; }
+  .loc-venues :global(svg) { color: var(--gold); flex: none; }
+  .loc-venues-note { font-size: .95rem; }
+  .loc-aside { position: sticky; top: 88px; display: grid; gap: .7rem; }
+  .loc-facts { list-style: none; padding: 0; margin: 0 0 .6rem; display: grid; gap: .7rem; }
+  .loc-facts li { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: .7rem; border-bottom: 1px solid var(--line-soft); }
+  .loc-facts span { color: var(--muted); }
+
+  .loc-faq { max-width: 820px; }
+  .faq-list { margin-top: 1.6rem; display: grid; gap: .8rem; }
+  .faq { background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--r); overflow: hidden; }
+  .faq summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; padding: 1.1rem 1.3rem; font-family: var(--ff-display); font-size: 1.08rem; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq__icon { color: var(--gold); font-size: 1.4rem; transition: transform .25s; flex: none; }
+  .faq[open] .faq__icon { transform: rotate(45deg); }
+  .faq__body { padding: 0 1.3rem 1.2rem; color: var(--muted); }
+  .faq__body p { margin: 0; }
+
+  .loc-other-band { background: var(--bg-2); border-block: 1px solid var(--line-soft); }
+  .loc-others { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.6rem; }
+  .loc-other { display: flex; flex-direction: column; gap: .1rem; padding: 1.1rem 1.3rem; background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--r); transition: border-color .2s, transform .2s; }
+  .loc-other:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .loc-other span { color: var(--muted); font-size: .85rem; }
+  .loc-other strong { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 600; }
+  .loc-other :global(svg) { color: var(--gold); margin-top: .3rem; }
+
+  .loc-cta .lead { margin-inline: auto; }
+  .loc-cta .btn { margin-top: 1.4rem; }
+
+  @media (max-width: 820px) {
+    .loc-body { grid-template-columns: 1fr; }
+    .loc-aside { position: static; }
+    .loc-others { grid-template-columns: 1fr; }
+  }
+</style>

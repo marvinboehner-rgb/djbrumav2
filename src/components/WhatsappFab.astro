@@ -1,0 +1,18 @@
+---
+import { whatsappUrl } from '../data/site';
+import Icon from './Icon.astro';
+---
+<a class="wa-fab" href={whatsappUrl()} target="_blank" rel="noopener" aria-label="Auf WhatsApp anfragen">
+  <Icon name="whatsapp" size={28} />
+</a>
+<style>
+  .wa-fab {
+    position: fixed; right: clamp(16px, 3vw, 28px); bottom: clamp(16px, 3vw, 28px);
+    z-index: 60; width: 56px; height: 56px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--whatsapp); color: #06331a;
+    box-shadow: 0 12px 30px -8px rgba(37, 211, 102, .6);
+    transition: transform .2s ease;
+  }
+  .wa-fab:hover { transform: scale(1.08); }
+</style>
