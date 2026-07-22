@@ -22,6 +22,8 @@ const ogImageAbs = new URL(ogImage, site.domain).href;
 <html lang="de">
   <head>
     <meta charset="utf-8" />
+    <!-- Reveal-Animationen nur mit JS aktivieren (ohne JS bleibt alles sichtbar) -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -66,11 +68,18 @@ const ogImageAbs = new URL(ogImage, site.domain).href;
     <WhatsappFab />
 
     <script>
-      // Reveal-on-scroll
-      const io = new IntersectionObserver((entries) => {
-        for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      // Reveal-on-scroll — mit Fallback, falls IntersectionObserver fehlt
+      const els = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        els.forEach((el) => io.observe(el));
+        // Sicherheitsnetz: nach 4s alles einblenden, egal was passiert
+        setTimeout(() => els.forEach((el) => el.classList.add('is-in')), 4000);
+      } else {
+        els.forEach((el) => el.classList.add('is-in'));
+      }
     </script>
   </body>
 </html>

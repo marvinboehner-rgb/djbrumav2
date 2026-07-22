@@ -117,11 +117,14 @@ p { margin: 0 0 1rem; }
 }
 .card--gold { border-color: var(--line); }
 
-/* -------- Reveal-on-scroll -------- */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.is-in { opacity: 1; transform: none; }
+/* -------- Reveal-on-scroll (progressive enhancement) --------
+   Ohne JS (kein .js am <html>) ist alles sofort sichtbar — Inhalt geht nie verloren.
+   Erst mit JS wird versteckt & beim Scrollen eingeblendet. */
+.reveal { transition: opacity .7s ease, transform .7s ease; }
+.js .reveal { opacity: 0; transform: translateY(24px); }
+.js .reveal.is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
 
