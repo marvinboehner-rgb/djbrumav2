@@ -53,8 +53,9 @@ import Icon from './Icon.astro';
   .footer-tag { color: var(--muted); margin-top: .6rem; max-width: 28ch; }
   .footer-social { display: flex; gap: .8rem; margin-top: 1rem; color: var(--gold); }
   .footer-h { font-family: var(--ff-body); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-  .footer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
-  .footer-list a { color: var(--muted); transition: color .2s; }
+  .footer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .2rem; }
+  /* Padding statt gap: größere Klickfläche auf Mobile */
+  .footer-list a { color: var(--muted); transition: color .2s; display: inline-block; padding-block: .35rem; }
   .footer-list a:hover { color: var(--gold-soft); }
   .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-top: 24px; color: var(--muted-2); font-size: .9rem; }
   .footer-legal a:hover { color: var(--gold-soft); }

@@ -8,9 +8,12 @@ import Icon from '../Icon.astro';
   <div class="hero__scrim"></div>
 
   <div class="wrap hero__inner">
-    <p class="eyebrow reveal">{site.tagline}</p>
+    <p class="eyebrow reveal hero__eyebrow">
+      <span class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+      {site.tagline}
+    </p>
     <h1 class="hero__title reveal">
-      Für eine <span class="gold-text">unvergessliche</span><br />Party.
+      Für eine <em class="hero__em gold-text">unvergessliche</em><br />Party.
     </h1>
     <p class="hero__sub lead reveal">
       Dein Event- & Hochzeits-DJ für Bremen, Frankfurt & das Rhein-Main-Gebiet.
@@ -45,14 +48,21 @@ import Icon from '../Icon.astro';
       linear-gradient(180deg, rgba(12,10,8,.55) 0%, rgba(12,10,8,.55) 40%, rgba(12,10,8,.94) 100%);
   }
   .hero__inner { padding-block: clamp(80px, 12vh, 140px); }
+  .hero__eyebrow { display: inline-flex; align-items: center; gap: .7rem; }
   .hero__title { font-size: clamp(2.8rem, 8vw, 5.4rem); margin-bottom: 1.2rem; }
+  .hero__em { font-style: italic; font-weight: 500; }
+  /* Orchestrierter Aufbau: Zeilen erscheinen nacheinander */
+  .hero__inner > .reveal:nth-child(2) { transition-delay: .08s; }
+  .hero__inner > .reveal:nth-child(3) { transition-delay: .16s; }
+  .hero__inner > .reveal:nth-child(4) { transition-delay: .24s; }
+  .hero__inner > .reveal:nth-child(5) { transition-delay: .32s; }
   .hero__sub { color: var(--text); opacity: .92; max-width: 54ch; font-size: 1.18rem; }
   .hero__cta { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2rem; }
   .hero__trust { display: flex; align-items: center; gap: .7rem; margin-top: 2rem; color: var(--muted); font-size: .96rem; }
   .hero__trust strong { color: var(--text); }
   .stars { display: inline-flex; color: var(--gold); }
   .stars :global(svg) { fill: var(--gold); }
-  .hero__scroll { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 1.4rem; animation: bob 2s ease-in-out infinite; }
+  .hero__scroll { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 1.4rem; padding: 12px 16px; animation: bob 2s ease-in-out infinite; }
   @keyframes bob { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,8px); } }
   @media (prefers-reduced-motion: reduce) { .hero__scroll { animation: none; } }
 </style>

@@ -46,6 +46,7 @@ import Icon from '../Icon.astro';
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-yt');
       const iframe = document.createElement('iframe');
+      iframe.title = 'YouTube-Video: Eindrücke von einem DJ-Bruma-Event';
       iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.allowFullscreen = true;

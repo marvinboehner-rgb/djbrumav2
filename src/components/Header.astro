@@ -38,11 +38,12 @@ import { site, whatsappUrl } from '../data/site';
   .site-header__inner { display: flex; align-items: center; gap: 1.5rem; height: 68px; }
   .brand { display: flex; align-items: center; }
   .brand__logo { height: 44px; width: auto; }
-  .nav { display: flex; gap: 1.4rem; margin-inline: auto; font-size: .95rem; }
-  .nav a { color: var(--muted); transition: color .2s; }
+  .nav { display: flex; gap: .4rem; margin-inline: auto; font-size: .95rem; }
+  /* Padding statt gap: vergrößert die Klickfläche (Touch-Target ≥44px hoch) */
+  .nav a { color: var(--muted); transition: color .2s; padding: .75rem .5rem; }
   .nav a:hover { color: var(--gold-soft); }
   .site-header__cta { display: flex; }
-  .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; }
+  .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: 0; cursor: pointer; padding: 10px; min-width: 44px; min-height: 44px; }
   .nav-toggle span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: .25s; }
   .mobile-nav { display: none; flex-direction: column; gap: .6rem; padding: 1rem var(--pad) 1.5rem; border-bottom: 1px solid var(--line-soft); }
   .mobile-nav a:not(.btn) { padding: .6rem 0; color: var(--muted); border-bottom: 1px solid var(--line-soft); }

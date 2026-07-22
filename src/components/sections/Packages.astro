@@ -11,10 +11,11 @@ import Icon from '../Icon.astro';
     </div>
 
     <div class="grid grid-3 pkg-grid">
-      {packages.map((p) => (
+      {packages.map((p, i) => (
         <article class={`card pkg reveal${p.highlighted ? ' pkg--hot' : ''}`}>
           {p.highlighted && <span class="pkg__flag">Beliebteste Wahl</span>}
           <div class="pkg__img" style={`background-image:url(${p.image})`}></div>
+          <span class="pkg__track">Track {String(i + 1).padStart(2, '0')}</span>
           <h3>{p.name}</h3>
           <div class="pkg__price gold-text">{p.price}</div>
           <p class="pkg__tag">{p.tagline}</p>
@@ -49,6 +50,8 @@ import Icon from '../Icon.astro';
   .pkg--hot { border-color: var(--gold); box-shadow: 0 20px 50px -24px rgba(201,163,90,.5); }
   .pkg__flag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold-grad); color: #1a1208; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 100px; }
   .pkg__img { aspect-ratio: 16/10; border-radius: var(--r); background-size: cover; background-position: center; margin-bottom: 1.1rem; }
+  /* Setlist-Metapher: Paketnamen sind Songs → Track-Nummern tragen echte Bedeutung */
+  .pkg__track { font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
   .pkg__price { font-family: var(--ff-display); font-size: 1.9rem; font-weight: 600; }
   .pkg__tag { color: var(--muted); margin: .2rem 0 1rem; }
   .pkg__features { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: .6rem; flex: 1; }
