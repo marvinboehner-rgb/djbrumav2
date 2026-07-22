@@ -5,6 +5,17 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# ═══════════════════════════════════════════════════════════════════════
+# ⚠️ STAGING-SCHUTZ — VOR DEM LIVEGANG AUF djbruma.de ENTFERNEN! ⚠️
+# Verhindert, dass die Vorschau-Domain (djbruma-v2.netlify.app) von Google
+# indexiert wird und als Duplicate Content mit djbruma.de konkurriert.
+# Bleibt dieser Block beim Prod-Deploy bestehen, wird die Seite DEINDEXIERT.
+# ═══════════════════════════════════════════════════════════════════════
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 # Alte Location-URLs (.html) → neue Struktur, damit bestehendes Ranking erhalten bleibt
 [[redirects]]
   from = "/hochzeits-dj-bremen.html"
