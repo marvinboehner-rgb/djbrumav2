@@ -16,6 +16,14 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
 # Alte Location-URLs (.html) → neue Struktur, damit bestehendes Ranking erhalten bleibt
 [[redirects]]
   from = "/hochzeits-dj-bremen.html"

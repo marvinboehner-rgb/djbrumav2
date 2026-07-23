@@ -2,9 +2,14 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import Contact from '../../components/sections/Contact.astro';
+import Testimonials from '../../components/sections/Testimonials.astro';
+import Stats from '../../components/sections/Stats.astro';
 import { site, whatsappUrl, ratingLabel } from '../../data/site';
 import { cities } from '../../data/cities';
 import { packages, faqs } from '../../data/content';
+import { faqPage, localBusiness } from '../../data/schema';
+import { Image } from 'astro:assets';
+import heroImage from '../../assets/images/hero.jpg';
 
 export function getStaticPaths() {
   return cities.map((city) => ({ params: { city: city.slug }, props: { city } }));
@@ -16,7 +21,7 @@ const path = `/hochzeits-dj/${city.slug}`;
 
 const forName = city.forName ?? city.name;
 const title = `Hochzeits-DJ ${city.name} – DJ Bruma | ${ratingLabel()} ★ bei Google`;
-const description = `Hochzeits- & Event-DJ ${city.inCity}: volle Tanzfläche, hochwertige Technik & transparente Preise. Kostenloses Vorgespräch. Jetzt Verfügbarkeit für ${forName} prüfen.`;
+const description = `Hochzeits- & Event-DJ ${city.inCity}: volle Tanzfläche, starke Technik und transparente Preise ab 1.000 €. Jetzt kostenlos Verfügbarkeit prüfen.`;
 
 // Service-Schema pro Stadt + Bezug zum LocalBusiness
 const serviceSchema = {
@@ -37,11 +42,11 @@ const breadcrumb = {
   ],
 };
 // Destinations bringen eigene FAQ mit (Reisepauschale, Logistik, Lärmschutz …)
-const localFaqs = city.destFaqs ?? faqs.slice(0, 4);
+const localFaqs = city.destFaqs ?? city.cityFaqs ?? faqs.slice(0, 4);
 ---
-<Base title={title} description={description} path={path} jsonLd={[serviceSchema, breadcrumb]}>
+<Base title={title} description={description} path={path} jsonLd={[serviceSchema, breadcrumb, faqPage(localFaqs), localBusiness()]}>
   <section class="loc-hero">
-    <img class="loc-hero__bg" src="/images/hero.jpg" alt="" width="1920" height="1280" loading="eager" fetchpriority="high" aria-hidden="true" />
+    <Image class="loc-hero__bg" src={heroImage} alt="" widths={[480, 768, 1024, 1440, 1920]} sizes="100vw" format="avif" quality={70} loading="eager" fetchpriority="high" aria-hidden="true" />
     <div class="loc-hero__scrim"></div>
     <div class="wrap loc-hero__inner">
       <nav class="crumbs" aria-label="Brotkrümel"><a href="/">Start</a> <span>/</span> Hochzeits-DJ {city.name}</nav>
@@ -141,6 +146,9 @@ const localFaqs = city.destFaqs ?? faqs.slice(0, 4);
       </div>
     </div>
   </section>
+
+  <Testimonials />
+  <Stats />
 
   <!-- Formular direkt auf der Stadtseite: Lead bleibt im Kontext, Stadt ist vorausgefüllt -->
   <Contact city={city.name} cityIn={city.inCity} />

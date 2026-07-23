@@ -1,6 +1,7 @@
 ---
 import { packages, addons, priceNotes } from '../../data/content';
 import Icon from '../Icon.astro';
+import { Image } from 'astro:assets';
 ---
 <section class="section" id="preise">
   <div class="wrap">
@@ -14,7 +15,7 @@ import Icon from '../Icon.astro';
       {packages.map((p, i) => (
         <article class={`card pkg reveal${p.highlighted ? ' pkg--hot' : ''}`}>
           {p.highlighted && <span class="pkg__flag">Beliebteste Wahl</span>}
-          <div class="pkg__img" style={`background-image:url(${p.image})`}></div>
+          <Image class="pkg__img" src={p.image} alt="" widths={[320, 480, 720]} sizes="(max-width: 760px) 100vw, 33vw" format="webp" quality={76} loading="lazy" />
           <span class="pkg__track">Track {String(i + 1).padStart(2, '0')}</span>
           <h3>{p.name}</h3>
           <div class="pkg__price gold-text">{p.price}</div>
@@ -45,7 +46,7 @@ import Icon from '../Icon.astro';
       <div class="grid grid-4 addon-grid">
         {addons.map((a) => (
           <article class="addon reveal">
-            <div class="addon__img" style={`background-image:url(${a.image})`}></div>
+            <Image class="addon__img" src={a.image} alt="" widths={[240, 360, 520]} sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 25vw" format="webp" quality={74} loading="lazy" />
             <div class="addon__body">
               <h4>{a.name}</h4>
               <p>{a.text}</p>
@@ -62,7 +63,7 @@ import Icon from '../Icon.astro';
   .pkg { position: relative; display: flex; flex-direction: column; }
   .pkg--hot { border-color: var(--gold); box-shadow: 0 20px 50px -24px rgba(201,163,90,.5); }
   .pkg__flag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold-grad); color: #1a1208; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 100px; }
-  .pkg__img { aspect-ratio: 16/10; border-radius: var(--r); background-size: cover; background-position: center; margin-bottom: 1.1rem; }
+  .pkg__img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: var(--r); margin-bottom: 1.1rem; }
   /* Setlist-Metapher: Paketnamen sind Songs → Track-Nummern tragen echte Bedeutung */
   .pkg__track { font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
   .pkg__price { font-family: var(--ff-display); font-size: 1.9rem; font-weight: 600; }
@@ -80,7 +81,7 @@ import Icon from '../Icon.astro';
   .addons { margin-top: clamp(48px, 6vw, 72px); }
   .addon-grid { margin-top: 1.6rem; }
   .addon { background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--r); overflow: hidden; }
-  .addon__img { aspect-ratio: 4/3; background-size: cover; background-position: center; }
+  .addon__img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
   .addon__body { padding: 1rem 1.1rem 1.2rem; }
   .addon__body h4 { font-family: var(--ff-body); font-weight: 700; margin-bottom: .3rem; }
   .addon__body p { color: var(--muted); font-size: .9rem; margin: 0; }

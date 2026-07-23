@@ -8,7 +8,7 @@ export function localBusiness() {
     '@type': 'LocalBusiness',
     '@id': `${site.domain}/#business`,
     name: site.name,
-    image: `${site.domain}/images/hero.jpg`,
+    image: `${site.domain}/images/og.jpg`,
     logo: `${site.domain}/images/icon-512.png`,
     url: site.domain,
     telephone: site.contact.phoneIntl,
@@ -46,11 +46,11 @@ export function localBusiness() {
 
 // FAQPage: seit Mai 2026 keine Google-Rich-Results mehr, aber weiterhin wertvoll für
 // AI/LLM-Zitierbarkeit (ChatGPT, Perplexity, AI Overviews).
-export function faqPage() {
+export function faqPage(items = faqs) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
+    mainEntity: items.map((f) => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a },

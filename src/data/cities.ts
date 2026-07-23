@@ -19,6 +19,7 @@ export interface City {
   destination?: boolean;
   logistics?: { title: string; text: string }[];
   destFaqs?: { q: string; a: string }[];
+  cityFaqs?: { q: string; a: string }[];
 }
 
 export const cities: City[] = [
@@ -31,6 +32,12 @@ export const cities: City[] = [
     local: 'In Bremen bin ich aufgewachsen und verwurzelt — heute lebe ich im Rhein-Main-Gebiet und spiele regelmäßig in beiden Regionen. Ich kenne die Bremer Locations, die Wege und das, was hier für Stimmung sorgt: ob stilvolle Feier im Umland, moderne Eventlocation an der Weser oder Scheunenhochzeit im Grünen. Sound, Licht und Musik passe ich genau an eure Location an.',
     // Echte Top-Locations (aus djbruma.de + Marvin, 2026-07)
     venues: ['Atlantic Grand Hotel Bremen', 'Gasthaus Grothenns', 'Meierei am Bürgerpark', 'Lür-Kropp-Hof', "Seekamp's Gasthaus", 'Union-Brauerei', 'Gasthaus zum Kuhhirten', 'Bel-Etage Eventlocation', 'Schnoor-Eleven', 'Wardenburg Hof (bei Oldenburg)', 'Meyerei Rastede'],
+    cityFaqs: [
+      { q: 'Kennst du dich als DJ in Bremen und im Umland aus?', a: 'Ja. Ich bin in Bremen aufgewachsen und hier verwurzelt. Deshalb kenne ich die Wege und viele unterschiedliche Feier-Kulissen — von der Eventlocation an der Weser über den Bürgerpark bis zur Scheunenhochzeit im Bremer Umland.' },
+      { q: 'Wie werden Anfahrt und Übernachtung für Bremen berechnet?', a: 'Heute lebe ich im Rhein-Main-Gebiet und spiele regelmäßig in beiden Regionen. Die Anfahrt berechne ich transparent mit 0,30 € pro Kilometer für die einfache Strecke ab Frankfurt. Falls eine Übernachtung sinnvoll ist, steht sie separat im Angebot. So sind alle Reisekosten vor der Buchung klar ausgewiesen.' },
+      { q: 'Passt du die Technik an unsere Bremer Location an?', a: 'Ja. Ob moderner Saal an der Weser, Gasthaus, Hotel oder Scheune im Grünen: Ich stimme Sound, Licht und Aufbau vorab auf Raumgröße, Akustik und die Vorgaben eurer Location ab.' },
+      { q: 'Begleitest du auch freie Trauungen rund um Bremen?', a: 'Sehr gerne. Für freie Trauungen und Sektempfänge in Bremen und im Umland bringe ich passende Beschallung und Funkmikrofone mit. Danach zieht sich eure abgestimmte Musik bis zur Party als roter Faden durch den Tag.' },
+    ],
   },
   {
     slug: 'frankfurt',
@@ -41,6 +48,12 @@ export const cities: City[] = [
     local: 'Im Rhein-Main-Gebiet bin ich regelmäßig im Einsatz. Frankfurt bietet von der eleganten Rooftop-Bar über der Skyline bis zur Eventlocation am Main alles — und für jede dieser Kulissen bringe ich das passende Setup mit. Kurze Wege, verlässliche Technik und eine Musikauswahl, die internationale Gäste genauso abholt wie die Familie aus der Region.',
     // Echte Top-Locations aus djbruma.de
     venues: ['Skybar Oben – Meliá Hotel', 'The Blasky Hotel & Rooftop Bar', 'Freigut Eventlocation auf dem Main'],
+    cityFaqs: [
+      { q: 'Was kostet ein Hochzeits-DJ in Frankfurt?', a: 'Meine Pakete für Hochzeiten und Events starten bei 1.000 €. Spielzeit, Gästezahl, Location und gewünschte Zusatztechnik bestimmen das passende Paket. Nach dem kostenlosen Vorgespräch bekommt ihr ein transparentes Festpreis-Angebot.' },
+      { q: 'Ist die Anfahrt innerhalb Frankfurts inklusive?', a: 'Ja. Frankfurt liegt im direkten Einsatzgebiet rund um meinen Standort in Bad Vilbel und damit innerhalb des inkludierten 50-km-Radius. Die genaue Anfahrt und alle weiteren Posten stehen transparent in eurem Angebot.' },
+      { q: 'Kannst du internationale Gäste musikalisch abholen?', a: 'Ja. Gerade in Frankfurt treffen oft Gäste aus verschiedenen Ländern und Generationen zusammen. Wir stimmen eure Wünsche und No-Gos vorab ab; am Abend verbinde ich internationale Partytracks, Classics und eure persönlichen Favoriten zu einem stimmigen Set.' },
+      { q: 'Welche Technik eignet sich für Rooftops und Locations am Main?', a: 'Das Setup richte ich nach Raumgröße, Akustik und Location-Vorgaben aus. Für Rooftops, Hotels und Feiern auf dem Main kläre ich Strom, Aufbauzeiten und Lautstärke vorab und bringe passende Sound-, Licht- und Backup-Technik mit.' },
+    ],
   },
   {
     slug: 'mainz',
@@ -51,6 +64,12 @@ export const cities: City[] = [
     local: 'Mainz und Rheinhessen sind Weinland — und viele der schönsten Feiern finden hier auf Weingütern und in historischen Höfen statt. Ich kenne die besondere Akustik solcher Räume und sorge dafür, dass der Sound draußen wie drinnen sitzt. Von der freien Trauung im Weinberg bis zur Party bis in die Nacht.',
     // ⚠️ Noch keine echten benannten Locations — beschreibende Kategorien. Bei Bedarf durch echte Venues ersetzen.
     venues: ['Weingüter in Rheinhessen', 'Historische Höfe in der Altstadt', 'Eventlocations am Rheinufer', 'Landgüter rund um Mainz'],
+    cityFaqs: [
+      { q: 'Passt dein DJ-Setup zu Weingütern und historischen Höfen in Mainz?', a: 'Ja. Gerade in Rheinhessen unterscheiden sich Innenhöfe, Gewölbe und Festsäle akustisch stark. Ich stimme Sound und Licht auf eure Räume ab und kläre den Aufbau vorab mit der Location.' },
+      { q: 'Begleitest du freie Trauungen im Weinberg?', a: 'Sehr gerne. Für die Trauung und den Sektempfang bringe ich dezente Beschallung und Funkmikrofone mit. Anschließend wechselt das Setup passend zu Dinner und Party, sodass der ganze Tag musikalisch zusammengehört.' },
+      { q: 'Wie wird die Anfahrt nach Mainz berechnet?', a: 'Mainz gehört zu meinem regelmäßigen Einsatzgebiet im Rhein-Main-Gebiet und liegt nah an meinem Standort in Bad Vilbel. Die Anfahrt ist im Umkreis von 50 km um Frankfurt inklusive; sollte eure Location außerhalb liegen, wird sie mit 0,30 € pro Kilometer für die einfache Strecke transparent ausgewiesen.' },
+      { q: 'Kann die Party drinnen und draußen stattfinden?', a: 'Ja, wenn eure Location das erlaubt. Ich plane die Beschallung passend für Weinberg, Hof oder Rheinufer und berücksichtige beim Wechsel nach drinnen die Akustik sowie mögliche Lautstärke- und Zeitvorgaben.' },
+    ],
   },
   {
     slug: 'wiesbaden',
@@ -61,6 +80,12 @@ export const cities: City[] = [
     local: 'Wiesbaden steht für Eleganz — und genau darauf stelle ich mich ein. Ob klassische Feier in einer der repräsentativen Locations der Stadt oder entspannte Party im Taunus-Grün: Ich bringe Technik und Musik mit, die zum Rahmen passen, und halte die Tanzfläche den ganzen Abend voll.',
     // Chausseehaus = echte Location (Marvin, 2026-07); Rest beschreibende Kategorien.
     venues: ['Chausseehaus Wiesbaden', 'Repräsentative Säle im Stadtzentrum', 'Weingüter am Rheingau-Rand', 'Eventlocations im Taunus'],
+    cityFaqs: [
+      { q: 'Welche Musik passt zu einer Hochzeit in Wiesbaden?', a: 'Das richtet sich ganz nach euch und euren Gästen. Für eine elegante Feier in der Kurstadt kann der Abend stilvoll beginnen und später in eine volle Tanzfläche übergehen. Wunschlieder, No-Gos und internationale Gäste berücksichtigen wir im Vorgespräch.' },
+      { q: 'Bringst du Technik für Säle, Weingüter und Feiern im Taunus mit?', a: 'Ja. Ich passe Sound und Licht an den Rahmen an — vom repräsentativen Saal im Stadtzentrum bis zum Weingut am Rheingau-Rand oder einer Location im Taunus. Aufbau und Vorgaben kläre ich vorab direkt mit der Location.' },
+      { q: 'Wie wird die Anfahrt nach Wiesbaden berechnet?', a: 'Wiesbaden liegt in meinem regelmäßigen Einsatzgebiet im Rhein-Main-Gebiet und nah an meinem Standort in Bad Vilbel. Bis 50 km um Frankfurt ist die Anfahrt inklusive; darüber hinaus weise ich 0,30 € pro Kilometer für die einfache Strecke klar im Angebot aus.' },
+      { q: 'Begleitest du neben der Party auch Trauung und Empfang?', a: 'Sehr gerne. Mit passender Beschallung und Funkmikrofon begleite ich auf Wunsch die freie Trauung und den Empfang. Für Dinner und Party passe ich Musik und Technik anschließend an den jeweiligen Bereich eurer Location an.' },
+    ],
   },
 
   // ---- Destination Weddings (neues Angebot 2026 — ehrlich formuliert, keine erfundenen Referenzen) ----

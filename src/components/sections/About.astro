@@ -1,10 +1,12 @@
 ---
 import Icon from '../Icon.astro';
+import { Image } from 'astro:assets';
+import portraitImage from '../../assets/images/portrait.jpg';
 ---
 <section class="section" id="ueber-mich">
   <div class="wrap about">
     <div class="about__media reveal">
-      <img src="/images/portrait.jpg" alt="DJ Bruma — Marvin am DJ-Pult" width="720" height="900" loading="lazy" />
+      <Image src={portraitImage} alt="DJ Bruma — Marvin am DJ-Pult" widths={[320, 480, 720]} sizes="(max-width: 760px) min(100vw - 40px, 380px), 38vw" format="webp" quality={78} loading="lazy" />
     </div>
     <div class="about__text reveal">
       <p class="eyebrow">Das bin ich, Marvin</p>

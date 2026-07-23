@@ -3,7 +3,7 @@ import { site } from '../data/site';
 import { cities } from '../data/cities';
 
 // Eigener Sitemap-Endpoint (statt @astrojs/sitemap — kompatibel mit build.format:'file').
-const lastmod = '2026-07-22'; // beim Deploy ggf. aktualisieren
+const lastmod = new Date().toISOString().split('T')[0];
 
 const urls = [
   { loc: '/', priority: '1.0', changefreq: 'monthly' },

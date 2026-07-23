@@ -1,10 +1,12 @@
 ---
 import { site, whatsappUrl, ratingLabel } from '../../data/site';
 import Icon from '../Icon.astro';
+import { Image } from 'astro:assets';
+import heroImage from '../../assets/images/hero.jpg';
 ---
 <section class="hero">
   <!-- LCP-Bild: eager + fetchpriority high (behebt LCP-Finding aus dem Audit) -->
-  <img class="hero__bg" src="/images/hero.jpg" alt="" width="1920" height="1280" loading="eager" fetchpriority="high" aria-hidden="true" />
+  <Image class="hero__bg" src={heroImage} alt="" widths={[480, 768, 1024, 1440, 1920]} sizes="100vw" format="avif" quality={70} loading="eager" fetchpriority="high" aria-hidden="true" />
   <div class="hero__scrim"></div>
 
   <div class="wrap hero__inner">

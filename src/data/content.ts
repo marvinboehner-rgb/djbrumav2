@@ -1,4 +1,17 @@
 // Inhalts-Bausteine: Leistungen, Pakete, Add-ons, Referenzen, FAQ, Galerie.
+import priceBarn from '../assets/images/price-barn.jpg';
+import priceLoud from '../assets/images/price-loud.jpg';
+import priceSky from '../assets/images/price-sky.jpg';
+import addonFotobox from '../assets/images/addon-fotobox.jpg';
+import addonTrauung from '../assets/images/addon-trauung.jpg';
+import addonAmbiente from '../assets/images/addon-ambiente.jpg';
+import addonBierzelt from '../assets/images/addon-bierzelt.jpg';
+import gallery1 from '../assets/images/gal-1.jpg';
+import gallery2 from '../assets/images/gal-2.jpg';
+import gallery3 from '../assets/images/gal-3.jpg';
+import gallery4 from '../assets/images/gal-4.jpg';
+import gallery5 from '../assets/images/gal-5.jpg';
+import gallery6 from '../assets/images/gal-6.jpg';
 
 export const services = [
   { icon: 'shield', title: 'Zuverlässig & professionell', text: 'Pünktlich, vorbereitet, mit Backup-Technik im Kofferraum. Dein Abend läuft — versprochen.' },
@@ -25,7 +38,7 @@ export const packages = [
     id: 'jagger',
     name: 'Moves Like Jagger',
     price: 'ab 1.000 €',
-    image: '/images/price-barn.jpg',
+    image: priceBarn,
     tagline: 'Der solide Einstieg für kleinere Feiern',
     features: ['Bis 6 Std. Spielzeit', 'Sound für bis ~80 Gäste', 'Party- & Ambientelicht', 'Funk-Mikrofon', 'Vorgespräch inklusive'],
     highlighted: false,
@@ -34,7 +47,7 @@ export const packages = [
     id: 'loud',
     name: "Let's get loud",
     price: 'ab 1.400 €',
-    image: '/images/price-loud.jpg',
+    image: priceLoud,
     tagline: 'Der Allrounder für die klassische Hochzeit',
     features: ['Bis 8 Std. Spielzeit', 'Sound für bis ~150 Gäste', 'Erweiterte Lichtshow', '2× Funk-Mikrofon', 'Persönliche Musikabstimmung', 'Auf- & Abbau inklusive'],
     highlighted: true,
@@ -43,7 +56,7 @@ export const packages = [
     id: 'sky',
     name: 'A Sky Full Of Stars',
     price: 'ab 1.800 €',
-    image: '/images/price-sky.jpg',
+    image: priceSky,
     tagline: 'Das Rundum-Sorglos-Paket für den großen Abend',
     features: ['Ganze Nacht Spielzeit', 'Sound für große Locations', 'Premium-Licht & Effekte', 'Komplette Moderation', 'Persönliche Playlist-Planung', 'Ambientebeleuchtung inklusive'],
     highlighted: false,
@@ -51,10 +64,10 @@ export const packages = [
 ];
 
 export const addons = [
-  { name: 'Fotobox', image: '/images/addon-fotobox.jpg', text: 'Mit Sofortdruck & Requisiten — der Hit auf jeder Feier.' },
-  { name: 'Freie Trauung', image: '/images/addon-trauung.jpg', text: 'Sound & Technik für eure Zeremonie im Freien.' },
-  { name: 'Ambientebeleuchtung', image: '/images/addon-ambiente.jpg', text: 'Warmes Uplighting, das die Location in Szene setzt.' },
-  { name: 'Bierzeltgarnitur', image: '/images/addon-bierzelt.jpg', text: 'Praktische Ausstattung für Outdoor- & Zeltfeiern.' },
+  { name: 'Fotobox', image: addonFotobox, text: 'Mit Sofortdruck & Requisiten — der Hit auf jeder Feier.' },
+  { name: 'Freie Trauung', image: addonTrauung, text: 'Sound & Technik für eure Zeremonie im Freien.' },
+  { name: 'Ambientebeleuchtung', image: addonAmbiente, text: 'Warmes Uplighting, das die Location in Szene setzt.' },
+  { name: 'Bierzeltgarnitur', image: addonBierzelt, text: 'Praktische Ausstattung für Outdoor- & Zeltfeiern.' },
 ];
 
 // Preis-Klarheit: die Fragen, die Brautpaare sonst per Mail stellen (Stand 2026-07)
@@ -105,8 +118,8 @@ export const journey = [
 ];
 
 export const gallery = [
-  '/images/gal-1.jpg', '/images/gal-2.jpg', '/images/gal-3.jpg',
-  '/images/gal-4.jpg', '/images/gal-5.jpg', '/images/gal-6.jpg',
+  gallery1, gallery2, gallery3,
+  gallery4, gallery5, gallery6,
 ];
 
 // YouTube-Videos (echte IDs aus der bestehenden Site)

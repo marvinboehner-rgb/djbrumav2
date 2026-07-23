@@ -1,6 +1,7 @@
 ---
 import { gallery, videos } from '../../data/content';
 import Icon from '../Icon.astro';
+import { Image } from 'astro:assets';
 ---
 <section class="section" id="eindruecke">
   <div class="wrap">
@@ -21,7 +22,7 @@ import Icon from '../Icon.astro';
 
     <div class="masonry">
       {gallery.map((src, i) => (
-        <img class="reveal" src={src} alt={`Eindruck von einem DJ-Bruma-Event ${i + 1}`} width="800" height="600" loading="lazy" />
+        <Image class="reveal" src={src} alt={`Eindruck von einem DJ-Bruma-Event ${i + 1}`} widths={[320, 480, 720]} sizes="(max-width: 460px) 100vw, (max-width: 760px) 50vw, 33vw" format="webp" quality={76} loading="lazy" />
       ))}
     </div>
   </div>
