@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { site } from '../data/site';
 import { cities } from '../data/cities';
 
-// Eigener Sitemap-Endpoint (statt @astrojs/sitemap — kompatibel mit build.format:'file').
+// Eigener Sitemap-Endpoint (statt @astrojs/sitemap, kompatibel mit build.format:'file').
 const lastmod = new Date().toISOString().split('T')[0];
 
 const urls = [

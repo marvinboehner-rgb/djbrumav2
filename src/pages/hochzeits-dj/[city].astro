@@ -61,7 +61,7 @@ const localFaqs = city.destFaqs ?? city.cityFaqs ?? faqs.slice(0, 4);
         <div class="stars" aria-label={`${site.rating.value} von 5 Sternen`}>
           {Array.from({ length: 5 }).map(() => <Icon name="star" size={16} />)}
         </div>
-        <span><strong>{ratingLabel()}</strong> bei Google — Bewertungen ansehen</span>
+        <span><strong>{ratingLabel()}</strong> bei Google · Bewertungen ansehen</span>
       </a>
     </div>
   </section>
@@ -72,7 +72,7 @@ const localFaqs = city.destFaqs ?? city.cityFaqs ?? faqs.slice(0, 4);
         <h2>Euer DJ für Hochzeiten & Events {city.inCity}</h2>
         <p>{city.local}</p>
         <p>
-          Ob freie Trauung, Sektempfang, Dinner oder Party bis in die Nacht — ich begleite euren
+          Ob freie Trauung, Sektempfang, Dinner oder Party bis in die Nacht, ich begleite euren
           kompletten Tag musikalisch und sorge dafür, dass jeder Programmpunkt sitzt. Alles aus einer
           Hand, mit persönlichem Vorgespräch und transparenten Festpreisen.
         </p>
@@ -81,7 +81,7 @@ const localFaqs = city.destFaqs ?? city.cityFaqs ?? faqs.slice(0, 4);
         <ul class="loc-venues">
           {city.venues.map((v) => <li><Icon name="check" size={16} /> {v}</li>)}
         </ul>
-        <p class="loc-venues-note">Eure Location ist nicht dabei? Kein Problem — ich bin flexibel und bringe das passende Setup mit.</p>
+        <p class="loc-venues-note">Eure Location ist nicht dabei? Kein Problem, ich bin flexibel und bringe das passende Setup mit.</p>
       </div>
 
       <aside class="loc-aside card card--gold">
@@ -103,7 +103,7 @@ const localFaqs = city.destFaqs ?? city.cityFaqs ?? faqs.slice(0, 4);
     <!-- Logistik-Block: DIE Lücke der Destination-Konkurrenz (4 von 5 sagen nichts dazu) -->
     <section class="section--tight logi-band">
       <div class="wrap">
-        <h2 class="center">So funktioniert's — eure Hochzeit {city.inCity}</h2>
+        <h2 class="center">So funktioniert's: Eure Hochzeit {city.inCity}</h2>
         <div class="logi-grid">
           {city.logistics.map((l) => (
             <div class="card logi reveal">

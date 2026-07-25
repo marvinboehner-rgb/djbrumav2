@@ -13,9 +13,9 @@ const { city, cityIn } = Astro.props;
 const headingIn = cityIn ?? (city ? `in ${city}` : '');
 
 const steps = [
-  { n: '1', t: 'Anfrage schicken', d: 'Datum & Eckdaten über das Formular oder WhatsApp — dauert 2 Minuten.' },
+  { n: '1', t: 'Anfrage schicken', d: 'Datum & Eckdaten über das Formular oder WhatsApp, dauert 2 Minuten.' },
   { n: '2', t: 'Kostenloses Vorgespräch', d: 'Ich melde mich in 1–2 Tagen. Wir klären Ablauf, Musik & Wünsche per Video-Call.' },
-  { n: '3', t: 'Festpreis & Termin sichern', d: 'Du bekommst dein transparentes Angebot. Erst dann entscheidest du — ganz unverbindlich.' },
+  { n: '3', t: 'Festpreis & Termin sichern', d: 'Du bekommst dein transparentes Angebot. Erst dann entscheidest du, ganz unverbindlich.' },
 ];
 ---
 <section class="section anfrage" id="anfrage">
@@ -23,7 +23,7 @@ const steps = [
     <div class="anfrage__intro">
       <p class="eyebrow">Unverbindliche Anfrage</p>
       <h2>Ist euer Termin{headingIn ? ` ${headingIn}` : ''} noch <span class="gold-text">frei?</span></h2>
-      <p class="lead">Nenn mir euer Datum — ich prüfe die Verfügbarkeit und melde mich innerhalb von 1–2 Tagen mit einer ehrlichen Antwort.</p>
+      <p class="lead">Nenn mir euer Datum, ich prüfe die Verfügbarkeit und melde mich innerhalb von 1–2 Tagen mit einer ehrlichen Antwort.</p>
 
       <ol class="steps">
         {steps.map((s) => (

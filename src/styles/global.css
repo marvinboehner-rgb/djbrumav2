@@ -1,5 +1,5 @@
 /* ============================================================
-   DJ Bruma v2 — Design-System
+   DJ Bruma v2: Design-System
    Farbschema & Fonts übernommen aus der bestehenden Site (dunkel + Gold)
    ============================================================ */
 :root {
@@ -48,7 +48,7 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; }
 
-/* Sichtbarer Tastatur-Fokus (WCAG) — Gold-Ring statt Browser-Default */
+/* Sichtbarer Tastatur-Fokus (WCAG), Gold-Ring statt Browser-Default */
 :focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
@@ -126,7 +126,7 @@ p { margin: 0 0 1rem; }
 .card--gold { border-color: var(--line); }
 
 /* -------- Reveal-on-scroll (progressive enhancement) --------
-   Ohne JS (kein .js am <html>) ist alles sofort sichtbar — Inhalt geht nie verloren.
+   Ohne JS (kein .js am <html>) ist alles sofort sichtbar, Inhalt geht nie verloren.
    Erst mit JS wird versteckt & beim Scrollen eingeblendet. */
 .reveal { transition: opacity .7s ease, transform .7s ease; }
 .js .reveal { opacity: 0; transform: translateY(24px); }

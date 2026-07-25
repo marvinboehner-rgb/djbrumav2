@@ -48,7 +48,7 @@ const ogImageAbs = new URL(ogImage, site.domain).href;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Fonts: Fraunces (Display) + Hanken Grotesk (Body) — selbst gehostet (kein Google-CDN,
+    <!-- Fonts: Fraunces (Display) + Hanken Grotesk (Body), selbst gehostet (kein Google-CDN,
          DSGVO-konform & schneller; deckt sich mit §8 der Datenschutzerklärung) -->
     <link rel="stylesheet" href="/fonts/fonts.css" />
 
@@ -64,7 +64,7 @@ const ogImageAbs = new URL(ogImage, site.domain).href;
     <WhatsappFab />
 
     <script>
-      // Reveal-on-scroll — mit Fallback, falls IntersectionObserver fehlt
+      // Reveal-on-scroll, mit Fallback, falls IntersectionObserver fehlt
       const els = document.querySelectorAll('.reveal');
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {

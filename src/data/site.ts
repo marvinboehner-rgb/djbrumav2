@@ -14,7 +14,7 @@ export const site = {
     whatsappText: 'Hi Marvin! Ich interessiere mich für dich als DJ und würde gern die Verfügbarkeit prüfen.',
   },
 
-  // Schema-Adresse (Standort) — muss identisch zum Google-Business-Profil sein (NAP-Konsistenz)
+  // Schema-Adresse (Standort), muss identisch zum Google-Business-Profil sein (NAP-Konsistenz)
   address: {
     street: 'Dieselstr. 1',
     postalCode: '61118',
@@ -35,7 +35,7 @@ export const site = {
   googleReview: 'https://g.page/r/Cddp8huTiF65EBM/review',
 
   // Google-Rating ohne Anzahl (auf Wunsch von Marvin). Daher kein aggregateRating
-  // im Schema — Google verlangt dafür eine Anzahl; einzelne Reviews bleiben markiert.
+  // im Schema, Google verlangt dafür eine Anzahl; einzelne Reviews bleiben markiert.
   rating: {
     value: 5.0,
   },
@@ -62,7 +62,7 @@ export function whatsappUrl() {
   return `https://wa.me/${site.contact.phoneIntl.replace('+', '')}?text=${encodeURIComponent(site.contact.whatsappText)}`;
 }
 
-// "5,0" statt "5" — deutsche Dezimal-Darstellung für Anzeige (Schema bleibt numerisch)
+// "5,0" statt "5", deutsche Dezimal-Darstellung für Anzeige (Schema bleibt numerisch)
 export function ratingLabel() {
   return site.rating.value.toFixed(1).replace('.', ',');
 }
