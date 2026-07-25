@@ -1,11 +1,9 @@
 // Datenschutz-Text 1:1 aus der bestehenden djbruma.de übernommen (Marvins eigener,
 // bereits auf diesen Stack zugeschnittener Text: Netlify, Netlify Forms, YouTube-nocookie,
 // self-hosted Fonts).
-// HINWEIS: §7 "Google Ads Conversion-Tracking" der v1 wurde bewusst WEGGELASSEN, weil v2
-// kein Ads-Tracking enthält. Falls Google Ads dazukommt, müssen Tag + Consent-Banner
-// UND dieser Abschnitt wieder aufgenommen werden.
-// §8 (Reichweitenmessung) beschreibt Umami: cookielos, ohne Personenbezug, deshalb
-// bewusst ohne Consent-Banner auf Grundlage des berechtigten Interesses.
+// Zwei getrennte Messungen, bewusst mit unterschiedlicher Rechtsgrundlage:
+// §8 Umami (cookielos, berechtigtes Interesse, kein Banner) und §9 Google Ads
+// (Cookie, deshalb Einwilligung per Banner, Art. 6 Abs. 1 lit. a + § 25 TDDDG).
 
 export interface LegalBlock { tag: 'h2' | 'p'; text: string; }
 
@@ -28,11 +26,14 @@ export const datenschutz: LegalBlock[] = [
   { tag: 'h2', text: '8. Reichweitenmessung' },
   { tag: 'p', text: 'Um zu verstehen, welche Inhalte meiner Website gefragt sind, nutze ich die Analyse-Software Umami (Umami Software, Inc.). Die Auswertung erfolgt bewusst datensparsam: Es werden keine Cookies gesetzt, keine IP-Adressen gespeichert und keine geräteübergreifenden Profile gebildet. Ein Wiedererkennen einzelner Besucherinnen und Besucher ist damit nicht möglich. Erfasst werden ausschließlich anonyme Kennzahlen wie aufgerufene Seiten, ungefähre Herkunftsregion, Gerätetyp, verweisende Website sowie Klicks auf zentrale Schaltflächen (z. B. Anfrageformular, WhatsApp, Telefon).' },
   { tag: 'p', text: 'Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer bedarfsgerechten Gestaltung meiner Website). Da keine Informationen auf deinem Endgerät gespeichert oder ausgelesen werden, ist eine Einwilligung nach § 25 TDDDG nicht erforderlich. Die Daten werden auf Servern innerhalb der EU verarbeitet.' },
-  { tag: 'h2', text: '9. Externe Links & Profile' },
+  { tag: 'h2', text: '9. Google Ads Conversion-Tracking' },
+  { tag: 'p', text: 'Ich bewerbe meine Leistungen über Google Ads (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Um auswerten zu können, ob eine Anzeige tatsächlich zu einer Anfrage geführt hat, setze ich das Conversion-Tracking von Google ein. Dabei wird beim Absenden des Anfrageformulars ein Cookie gesetzt und an Google übermittelt, dass eine Anfrage zustande gekommen ist. Inhalte des Formulars, also Name, E-Mail-Adresse, Telefonnummer oder Veranstaltungsdetails, werden dabei nicht an Google übertragen.' },
+  { tag: 'p', text: 'Dieses Tracking findet ausschließlich mit deiner Einwilligung statt (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Vor deiner Zustimmung wird kein Google-Skript geladen und kein Cookie gesetzt. Die Personalisierung von Werbung bleibt auch nach einer Zustimmung deaktiviert. Du kannst deine Entscheidung jederzeit über die Schaltfläche „Cookie-Einstellungen" am unteren Bildschirmrand ändern; ein Widerruf wirkt für die Zukunft. Eine Datenübermittlung in die USA erfolgt auf Basis der EU-Standardvertragsklauseln.' },
+  { tag: 'h2', text: '10. Externe Links & Profile' },
   { tag: 'p', text: 'Diese Website enthält Links zu externen Diensten (u. a. Instagram, WhatsApp sowie den Websites befreundeter Ersatz-DJs). Beim Anklicken dieser Links verlässt du meine Website; auf die Datenverarbeitung der jeweiligen Anbieter habe ich keinen Einfluss. Es gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Eine Datenübertragung an diese Dienste findet erst beim Anklicken statt.' },
-  { tag: 'h2', text: '10. Deine Rechte' },
+  { tag: 'h2', text: '11. Deine Rechte' },
   { tag: 'p', text: 'Dir stehen grundsätzlich die Rechte auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO) zu. Eine erteilte Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen. Zudem hast du das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren – in Hessen ist das der Hessische Beauftragte für Datenschutz und Informationsfreiheit.' },
-  { tag: 'h2', text: '11. Aktualität' },
+  { tag: 'h2', text: '12. Aktualität' },
   { tag: 'p', text: 'Diese Datenschutzerklärung wird bei Bedarf an geänderte Rechtslagen oder Funktionen der Website angepasst.' },
   { tag: 'p', text: 'Hinweis: Diese Datenschutzerklärung wurde sorgfältig erstellt, ersetzt aber keine Rechtsberatung. Bitte lass sie vor der Veröffentlichung im Zweifel rechtlich prüfen.' },
 ];

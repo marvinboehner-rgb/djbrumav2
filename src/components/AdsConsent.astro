@@ -1,0 +1,166 @@
+---
+import { ads, conversionDestination } from '../data/ads';
+import { packages } from '../data/content';
+
+// Paket-ID -> Conversion-Wert, damit Google auf den Anfragewert optimieren kann
+// statt jede Anfrage gleich zu gewichten.
+const packageValues = Object.fromEntries(packages.map((p) => [p.id, p.value]));
+---
+<section class="consent" role="region" aria-label="Datenschutzeinstellungen" hidden>
+  <div class="consent__inner">
+    <div>
+      <strong>Darf ich messen, ob eine Anzeige zu deiner Anfrage geführt hat?</strong>
+      <p>
+        Ich schalte Google-Anzeigen und würde gern sehen, welche davon tatsächlich Anfragen bringen.
+        Dafür setzt Google ein Cookie. Deine Formulardaten bekommt Google nicht.
+        <a href="/datenschutz">Mehr dazu</a>
+      </p>
+    </div>
+    <div class="consent__actions">
+      <button type="button" class="btn btn--ghost" data-consent="denied">Ablehnen</button>
+      <button type="button" class="btn btn--gold" data-consent="granted">Einverstanden</button>
+    </div>
+  </div>
+</section>
+
+<button type="button" class="consent-reopen" hidden>Cookie-Einstellungen</button>
+
+<style>
+  .consent {
+    position: fixed; inset-inline: 0; bottom: 0; z-index: 200;
+    background: var(--surface); border-top: 1px solid var(--line);
+    box-shadow: 0 -20px 50px -20px rgba(0, 0, 0, .9);
+    padding: clamp(16px, 3vw, 24px) var(--pad);
+  }
+  .consent__inner {
+    max-width: var(--maxw); margin-inline: auto;
+    display: flex; align-items: center; gap: clamp(16px, 3vw, 40px); flex-wrap: wrap;
+  }
+  .consent__inner > div:first-child { flex: 1 1 420px; }
+  .consent strong { display: block; margin-bottom: .3rem; }
+  .consent p { color: var(--muted); font-size: .92rem; margin: 0; }
+  .consent a { color: var(--gold-soft); text-decoration: underline; }
+  .consent__actions { display: flex; gap: .7rem; flex: 0 0 auto; }
+  .consent__actions .btn { white-space: nowrap; }
+
+  .consent-reopen {
+    position: fixed; left: clamp(16px, 3vw, 28px); bottom: clamp(16px, 3vw, 28px); z-index: 60;
+    background: var(--surface); color: var(--muted-2); border: 1px solid var(--line-soft);
+    border-radius: 999px; padding: .5rem .9rem; font: inherit; font-size: .78rem; cursor: pointer;
+  }
+  .consent-reopen:hover { color: var(--text); border-color: var(--line); }
+
+  /* Solange das Banner steht, den WhatsApp-Button daruebersetzen statt verdecken */
+  :global(body[data-consent-open] .wa-fab) { bottom: calc(clamp(16px, 3vw, 28px) + 128px); }
+  @media (max-width: 560px) {
+    .consent__actions { width: 100%; }
+    .consent__actions .btn { flex: 1; justify-content: center; }
+  }
+</style>
+
+<script define:vars={{ adsId: ads.conversionId, destination: conversionDestination(), defaultValue: ads.defaultValue, currency: ads.currency, packageValues }}>
+  (function () {
+    const CONSENT_KEY = 'djbruma_google_ads_consent_v1';
+    // Schluessel aus der v1 uebernommen: wer dort schon zugestimmt hat, sieht das
+    // Banner nach dem Relaunch nicht erneut.
+    const PENDING_KEY = 'djbruma_pending_form_conversion_v1';
+
+    const store = (name) => { try { return window[name]; } catch { return null; } };
+    const read = (s, k) => { try { return s?.getItem(k) ?? null; } catch { return null; } };
+    const write = (s, k, v) => { try { s?.setItem(k, v); } catch { /* Storage gesperrt: Tracking bleibt aus */ } };
+    const drop = (s, k) => { try { s?.removeItem(k); } catch { /* egal */ } };
+
+    const local = store('localStorage');
+    const session = store('sessionStorage');
+    let consent = read(local, CONSENT_KEY);
+    let tagLoaded = false;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+
+    const DENIED = {
+      ad_storage: 'denied', ad_user_data: 'denied',
+      ad_personalization: 'denied', analytics_storage: 'denied',
+    };
+    // Vor jeder Zustimmung alles auf denied. Personalisierung bleibt auch danach
+    // aus, und Analytics laeuft ueber Umami, nicht ueber Google.
+    window.gtag('consent', 'default', DENIED);
+
+    function loadTag() {
+      window.gtag('consent', 'update', { ...DENIED, ad_storage: 'granted', ad_user_data: 'granted' });
+      if (tagLoaded) return;
+      tagLoaded = true;
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = `https://www.googletagmanager.com/gtag/js?id=${adsId}`;
+      document.head.appendChild(s);
+      window.gtag('js', new Date());
+      window.gtag('config', adsId, { allow_ad_personalization_signals: false });
+    }
+
+    function newTransactionId() {
+      return window.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    }
+
+    // Beim Absenden Wert und Vorgangsnummer merken. Die Conversion selbst wird
+    // erst auf /danke gemeldet, denn nur dort ist die Anfrage wirklich durch.
+    document.querySelectorAll('form[name="anfrage"]').forEach((form) => {
+      form.addEventListener('submit', () => {
+        const paket = form.querySelector('[name="paket"]')?.value;
+        write(session, PENDING_KEY, JSON.stringify({
+          id: newTransactionId(),
+          value: packageValues[paket] ?? defaultValue,
+        }));
+      });
+    });
+
+    function sendConversion() {
+      if (consent !== 'granted') return;
+      if (!/\/danke\/?$/.test(location.pathname)) return;
+      const raw = read(session, PENDING_KEY);
+      if (!raw) return;
+
+      let pending;
+      try { pending = JSON.parse(raw); } catch { return; }
+
+      loadTag();
+      window.gtag('event', 'conversion', {
+        send_to: destination,
+        value: pending.value,
+        currency: currency,
+        transaction_id: pending.id, // verhindert Doppelzaehlung beim Neuladen
+      });
+      drop(session, PENDING_KEY);
+    }
+
+    const banner = document.querySelector('.consent');
+    const reopen = document.querySelector('.consent-reopen');
+
+    const openBanner = () => {
+      banner.hidden = false;
+      reopen.hidden = true;
+      document.body.setAttribute('data-consent-open', '');
+      banner.querySelector('[data-consent="granted"]').focus();
+    };
+    const closeBanner = () => {
+      banner.hidden = true;
+      reopen.hidden = false;
+      document.body.removeAttribute('data-consent-open');
+    };
+
+    banner.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-consent]');
+      if (!btn) return;
+      consent = btn.dataset.consent;
+      write(local, CONSENT_KEY, consent);
+      if (consent === 'granted') { loadTag(); sendConversion(); }
+      else window.gtag('consent', 'update', DENIED);
+      closeBanner();
+    });
+    reopen.addEventListener('click', openBanner);
+
+    if (consent === 'granted') { closeBanner(); loadTag(); sendConversion(); }
+    else if (consent === 'denied') closeBanner();
+    else openBanner();
+  })();
+</script>

@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsappFab from '../components/WhatsappFab.astro';
 import Analytics from '../components/Analytics.astro';
+import AdsConsent from '../components/AdsConsent.astro';
 import { site } from '../data/site';
 
 interface Props {
@@ -65,6 +66,7 @@ const ogImageAbs = new URL(ogImage, site.domain).href;
     </main>
     <Footer />
     <WhatsappFab />
+    <AdsConsent />
 
     <script>
       // Reveal-on-scroll, mit Fallback, falls IntersectionObserver fehlt

@@ -38,6 +38,8 @@ export const packages = [
     id: 'jagger',
     name: 'Moves Like Jagger',
     price: 'ab 1.000 €',
+    value: 1000, // Conversion-Wert fuer Google Ads
+
     image: priceBarn,
     tagline: 'Der solide Einstieg für kleinere Feiern',
     features: ['Bis 6 Std. Spielzeit', 'Sound für bis ~80 Gäste', 'Party- & Ambientelicht', 'Funk-Mikrofon', 'Vorgespräch inklusive'],
@@ -47,6 +49,8 @@ export const packages = [
     id: 'loud',
     name: "Let's get loud",
     price: 'ab 1.400 €',
+    value: 1400,
+
     image: priceLoud,
     tagline: 'Der Allrounder für die klassische Hochzeit',
     features: ['Bis 8 Std. Spielzeit', 'Sound für bis ~150 Gäste', 'Erweiterte Lichtshow', '2× Funk-Mikrofon', 'Persönliche Musikabstimmung', 'Auf- & Abbau inklusive'],
@@ -56,6 +60,8 @@ export const packages = [
     id: 'sky',
     name: 'A Sky Full Of Stars',
     price: 'ab 1.800 €',
+    value: 1800,
+
     image: priceSky,
     tagline: 'Das Rundum-Sorglos-Paket für den großen Abend',
     features: ['Ganze Nacht Spielzeit', 'Sound für große Locations', 'Premium-Licht & Effekte', 'Komplette Moderation', 'Persönliche Playlist-Planung', 'Ambientebeleuchtung inklusive'],
