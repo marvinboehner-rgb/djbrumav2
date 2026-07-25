@@ -40,7 +40,9 @@ const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
 <style>
   .verfuegbarkeit { background: var(--bg-2); }
-  .cal { max-width: 620px; margin: clamp(28px, 5vw, 48px) auto 0; }
+  /* Quadratische Zellen: die Kartenbreite bestimmt direkt die Höhe des Kalenders.
+     Über ~480px wird das Raster unnötig wuchtig. */
+  .cal { max-width: 480px; margin: clamp(28px, 5vw, 48px) auto 0; }
   .cal__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
   .cal__title { font-family: var(--ff-display); font-size: 1.25rem; }
   .cal__nav {
@@ -55,16 +57,22 @@ const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
   .cal__weekdays { margin-bottom: 6px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-2); }
   .cal__weekdays span { text-align: center; }
 
-  .cal__day {
+  /* Die Tageszellen entstehen erst im Browser per JS und tragen deshalb Astros
+     Scoped-Attribut nicht. Ohne :global() greift hier kein einziger Style und die
+     freien Tage erscheinen als graue Standard-Buttons. */
+  .cal__grid :global(.cal__day) {
     aspect-ratio: 1; display: grid; place-items: center; border-radius: 10px;
-    font-size: .95rem; font-variant-numeric: tabular-nums; border: 1px solid transparent;
+    font: inherit; font-size: .95rem; font-variant-numeric: tabular-nums;
+    -webkit-appearance: none; appearance: none;
+    background: transparent; color: var(--text); border: 1px solid transparent;
   }
-  .cal__day--empty { border: 0; }
-  .cal__day--past { color: var(--muted-2); opacity: .35; }
-  .cal__day--busy { background: var(--surface-2); color: var(--muted-2); text-decoration: line-through; }
-  .cal__day--free { background: transparent; border-color: var(--line-soft); color: var(--text); cursor: pointer; transition: border-color .18s, background .18s; }
-  .cal__day--free:hover, .cal__day--free:focus-visible { border-color: var(--gold); background: rgba(201, 163, 90, .1); }
-  .cal__day--today { box-shadow: inset 0 0 0 1px var(--gold); }
+  .cal__grid :global(.cal__day--empty) { border: 0; }
+  .cal__grid :global(.cal__day--past) { color: var(--muted-2); opacity: .35; }
+  .cal__grid :global(.cal__day--busy) { background: var(--surface-2); color: var(--muted-2); text-decoration: line-through; }
+  .cal__grid :global(.cal__day--free) { border-color: var(--line-soft); cursor: pointer; transition: border-color .18s, background .18s; }
+  .cal__grid :global(.cal__day--free:hover),
+  .cal__grid :global(.cal__day--free:focus-visible) { border-color: var(--gold); background: rgba(201, 163, 90, .1); }
+  .cal__grid :global(.cal__day--today) { box-shadow: inset 0 0 0 1px var(--gold); }
 
   .cal__legend { display: flex; justify-content: center; gap: 1.4rem; margin-top: 1.2rem; font-size: .85rem; color: var(--muted); }
   .cal__sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: .4rem; }
