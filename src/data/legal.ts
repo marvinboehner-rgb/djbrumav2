@@ -2,8 +2,10 @@
 // bereits auf diesen Stack zugeschnittener Text: Netlify, Netlify Forms, YouTube-nocookie,
 // self-hosted Fonts).
 // HINWEIS: §7 "Google Ads Conversion-Tracking" der v1 wurde bewusst WEGGELASSEN, weil v2
-// aktuell kein Ads-Tracking/Consent-Banner enthält. Falls Tracking ergänzt wird, müssen
-// Tag + Consent-Banner UND dieser Abschnitt wieder aufgenommen werden.
+// kein Ads-Tracking enthält. Falls Google Ads dazukommt, müssen Tag + Consent-Banner
+// UND dieser Abschnitt wieder aufgenommen werden.
+// §8 (Reichweitenmessung) beschreibt Umami: cookielos, ohne Personenbezug, deshalb
+// bewusst ohne Consent-Banner auf Grundlage des berechtigten Interesses.
 
 export interface LegalBlock { tag: 'h2' | 'p'; text: string; }
 
@@ -23,11 +25,14 @@ export const datenschutz: LegalBlock[] = [
   { tag: 'p', text: 'Auf dieser Website binde ich Videos von YouTube (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) ein. Die Einbindung erfolgt im erweiterten Datenschutzmodus (youtube-nocookie.com) und mit einer „Klick-zum-Abspielen"-Lösung: Erst wenn du ein Video aktiv startest, wird eine Verbindung zu den Servern von YouTube hergestellt und es können Daten (u. a. deine IP-Adresse) an Google übertragen werden. Vorher wird lediglich ein lokal gespeichertes Vorschaubild geladen. Rechtsgrundlage für das Abspielen ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch Klick). Weitere Informationen findest du in der Datenschutzerklärung von Google.' },
   { tag: 'h2', text: '7. Schriftarten' },
   { tag: 'p', text: 'Zur einheitlichen Darstellung verwende ich Web Fonts (Schriftfamilien „Fraunces" und „Hanken Grotesk"). Diese werden lokal von meinem eigenen Server ausgeliefert; dabei findet keine Verbindung zu Servern Dritter (z. B. Google Fonts) und keine Übertragung deiner IP-Adresse an externe Anbieter statt.' },
-  { tag: 'h2', text: '8. Externe Links & Profile' },
+  { tag: 'h2', text: '8. Reichweitenmessung' },
+  { tag: 'p', text: 'Um zu verstehen, welche Inhalte meiner Website gefragt sind, nutze ich die Analyse-Software Umami (Umami Software, Inc.). Die Auswertung erfolgt bewusst datensparsam: Es werden keine Cookies gesetzt, keine IP-Adressen gespeichert und keine geräteübergreifenden Profile gebildet. Ein Wiedererkennen einzelner Besucherinnen und Besucher ist damit nicht möglich. Erfasst werden ausschließlich anonyme Kennzahlen wie aufgerufene Seiten, ungefähre Herkunftsregion, Gerätetyp, verweisende Website sowie Klicks auf zentrale Schaltflächen (z. B. Anfrageformular, WhatsApp, Telefon).' },
+  { tag: 'p', text: 'Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer bedarfsgerechten Gestaltung meiner Website). Da keine Informationen auf deinem Endgerät gespeichert oder ausgelesen werden, ist eine Einwilligung nach § 25 TDDDG nicht erforderlich. Die Daten werden auf Servern innerhalb der EU verarbeitet.' },
+  { tag: 'h2', text: '9. Externe Links & Profile' },
   { tag: 'p', text: 'Diese Website enthält Links zu externen Diensten (u. a. Instagram, WhatsApp sowie den Websites befreundeter Ersatz-DJs). Beim Anklicken dieser Links verlässt du meine Website; auf die Datenverarbeitung der jeweiligen Anbieter habe ich keinen Einfluss. Es gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Eine Datenübertragung an diese Dienste findet erst beim Anklicken statt.' },
-  { tag: 'h2', text: '9. Deine Rechte' },
+  { tag: 'h2', text: '10. Deine Rechte' },
   { tag: 'p', text: 'Dir stehen grundsätzlich die Rechte auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO) zu. Eine erteilte Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen. Zudem hast du das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren – in Hessen ist das der Hessische Beauftragte für Datenschutz und Informationsfreiheit.' },
-  { tag: 'h2', text: '10. Aktualität' },
+  { tag: 'h2', text: '11. Aktualität' },
   { tag: 'p', text: 'Diese Datenschutzerklärung wird bei Bedarf an geänderte Rechtslagen oder Funktionen der Website angepasst.' },
   { tag: 'p', text: 'Hinweis: Diese Datenschutzerklärung wurde sorgfältig erstellt, ersetzt aber keine Rechtsberatung. Bitte lass sie vor der Veröffentlichung im Zweifel rechtlich prüfen.' },
 ];

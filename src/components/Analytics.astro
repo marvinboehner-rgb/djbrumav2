@@ -1,0 +1,103 @@
+---
+import { analytics, analyticsEnabled } from '../data/analytics';
+
+const enabled = analyticsEnabled();
+---
+{enabled && (
+  <>
+    {analytics.provider === 'umami' ? (
+      <script is:inline defer src={analytics.scriptUrl} data-website-id={analytics.websiteId}></script>
+    ) : (
+      <script is:inline defer src={analytics.scriptUrl} data-domain={analytics.domain}></script>
+    )}
+
+    <script is:inline define:vars={{ provider: analytics.provider }}>
+      // Ereignisse puffern, bis das Analytics-Skript geladen ist. Ohne Puffer gehen
+      // Klicks verloren, die direkt nach dem Seitenaufbau passieren.
+      (function () {
+        var queue = [];
+        var timer = null;
+        var gaveUpAt = Date.now() + 15000;
+
+        function send(name, props) {
+          if (provider === 'umami') {
+            if (!window.umami) return false;
+            window.umami.track(name, props);
+            return true;
+          }
+          if (typeof window.plausible !== 'function') return false;
+          window.plausible(name, { props: props });
+          return true;
+        }
+
+        function flush() {
+          while (queue.length) {
+            if (!send(queue[0][0], queue[0][1])) return false;
+            queue.shift();
+          }
+          return true;
+        }
+
+        window.djTrack = function (name, props) {
+          queue.push([name, props || {}]);
+          if (flush() || timer) return;
+          timer = setInterval(function () {
+            if (flush() || Date.now() > gaveUpAt) {
+              clearInterval(timer);
+              timer = null;
+            }
+          }, 300);
+        };
+      })();
+    </script>
+  </>
+)}
+
+{!enabled && (
+  <script is:inline>
+    // Analytics nicht konfiguriert: track() ins Leere laufen lassen, damit die
+    // Event-Verdrahtung auf den Seiten trotzdem fehlerfrei durchläuft.
+    window.djTrack = function () {};
+  </script>
+)}
+
+<script>
+  // Zentrale Event-Verdrahtung. Elemente markieren sich selbst per data-track,
+  // optionale Zusatzinfos als JSON in data-track-props.
+  const track = (name: string, props?: Record<string, string>) =>
+    (window as any).djTrack?.(name, props);
+
+  document.addEventListener('click', (e) => {
+    const el = (e.target as HTMLElement)?.closest?.('[data-track]');
+    if (!el) return;
+    let props = {};
+    const raw = el.getAttribute('data-track-props');
+    if (raw) {
+      try { props = JSON.parse(raw); } catch { /* kaputtes JSON darf den Klick nicht stören */ }
+    }
+    track(el.getAttribute('data-track')!, props);
+  });
+
+  // Formular-Funnel: Wie viele fangen an zu tippen, wie viele schicken wirklich ab?
+  const form = document.querySelector<HTMLFormElement>('form[name="anfrage"]');
+  if (form) {
+    let started = false;
+    form.addEventListener('input', () => {
+      if (started) return;
+      started = true;
+      track('formular_gestartet', { seite: form.querySelector<HTMLInputElement>('[name="seite"]')?.value ?? '' });
+    }, { once: false });
+
+    // Beim Absenden verliert die Seite den Kontext (Redirect auf /danke).
+    // Deshalb die Eckdaten zwischenspeichern und dort als Conversion melden.
+    form.addEventListener('submit', () => {
+      const val = (n: string) => form.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${n}"]`)?.value ?? '';
+      try {
+        sessionStorage.setItem('dj_anfrage', JSON.stringify({
+          seite: val('seite'), art: val('type'), paket: val('paket') || 'unentschieden', quelle: val('quelle') || 'keine Angabe',
+        }));
+      } catch { /* Private Mode ohne sessionStorage: Conversion wird ohne Details gezählt */ }
+      track('formular_abgeschickt', { seite: val('seite') });
+    });
+  }
+</script>

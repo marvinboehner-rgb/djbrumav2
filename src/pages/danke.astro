@@ -10,13 +10,26 @@ import { site, whatsappUrl } from '../data/site';
       <h1>Danke, <span class="gold-text">deine Anfrage ist da!</span></h1>
       <p class="lead center">Ich melde mich innerhalb von 1–2 Tagen bei dir. Wenn's schneller gehen soll, schreib mir direkt.</p>
       <div class="danke__cta">
-        <a class="btn btn--wa btn--lg" href={whatsappUrl()} target="_blank" rel="noopener"><Icon name="whatsapp" size={18} /> WhatsApp schreiben</a>
+        <a class="btn btn--wa btn--lg" href={whatsappUrl()} target="_blank" rel="noopener" data-track="whatsapp_klick" data-track-props={JSON.stringify({ ort: 'danke' })}><Icon name="whatsapp" size={18} /> WhatsApp schreiben</a>
         <a class="btn btn--ghost btn--lg" href="/">Zurück zur Startseite</a>
       </div>
-      <p class="danke__contact">Oder ruf an: <a href={`tel:${site.contact.phoneIntl}`}>{site.contact.phone}</a></p>
+      <p class="danke__contact">Oder ruf an: <a href={`tel:${site.contact.phoneIntl}`} data-track="telefon_klick" data-track-props={JSON.stringify({ ort: 'danke' })}>{site.contact.phone}</a></p>
     </div>
   </section>
 </Base>
+
+<script>
+  // Die eigentliche Conversion. Diese Seite sieht nur, wer das Formular wirklich
+  // abgeschickt hat, deshalb wird hier gezählt und nicht schon beim Klick.
+  // Die Eckdaten hat das Formular vor dem Redirect im sessionStorage hinterlegt.
+  let details: Record<string, string> = {};
+  try {
+    details = JSON.parse(sessionStorage.getItem('dj_anfrage') ?? '{}');
+    sessionStorage.removeItem('dj_anfrage');
+  } catch { /* ohne Details zählen wir die Anfrage trotzdem */ }
+
+  (window as any).djTrack?.('anfrage_gesendet', details);
+</script>
 
 <style>
   .danke { padding-block: clamp(80px, 14vh, 160px); }
