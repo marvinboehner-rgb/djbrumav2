@@ -13,9 +13,9 @@ const { city, cityIn } = Astro.props;
 const headingIn = cityIn ?? (city ? `in ${city}` : '');
 
 const steps = [
-  { n: '1', t: 'Anfrage schicken', d: 'Datum & Eckdaten über das Formular oder WhatsApp, dauert 2 Minuten.' },
+  { n: '1', t: 'Anfrage schicken', d: 'Datum und Eckdaten über das Formular oder per WhatsApp. Dauert zwei Minuten.' },
   { n: '2', t: 'Kostenloses Vorgespräch', d: 'Ich melde mich in 1–2 Tagen. Wir klären Ablauf, Musik & Wünsche per Video-Call.' },
-  { n: '3', t: 'Festpreis & Termin sichern', d: 'Du bekommst dein transparentes Angebot. Erst dann entscheidest du, ganz unverbindlich.' },
+  { n: '3', t: 'Festpreis & Termin sichern', d: 'Du bekommst dein Angebot mit allen Posten einzeln. Erst dann entscheidest du.' },
 ];
 ---
 <section class="section anfrage" id="anfrage">
@@ -23,7 +23,7 @@ const steps = [
     <div class="anfrage__intro">
       <p class="eyebrow">Unverbindliche Anfrage</p>
       <h2>Ist euer Termin{headingIn ? ` ${headingIn}` : ''} noch <span class="gold-text">frei?</span></h2>
-      <p class="lead">Nenn mir euer Datum, ich prüfe die Verfügbarkeit und melde mich innerhalb von 1–2 Tagen mit einer ehrlichen Antwort.</p>
+      <p class="lead">Schickt mir euer Datum. Ich schaue in den Kalender und melde mich innerhalb von 1 bis 2 Tagen, auch wenn der Termin schon weg ist.</p>
 
       <ol class="steps">
         {steps.map((s) => (
@@ -116,7 +116,7 @@ const steps = [
         <textarea id="message" name="message" rows="3" placeholder="Erzählt mir kurz von eurer Feier …"></textarea>
       </div>
       <button class="btn btn--gold btn--lg" type="submit">Verfügbarkeit prüfen <Icon name="arrow" size={18} /></button>
-      <p class="anfrage__note">Kein Spam, keine Weitergabe eurer Daten. Versprochen.</p>
+      <p class="anfrage__note">Eure Daten bleiben bei mir. Keine Newsletter, keine Weitergabe.</p>
     </form>
   </div>
 </section>

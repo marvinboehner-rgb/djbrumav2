@@ -14,12 +14,12 @@ import gallery5 from '../assets/images/gal-5.jpg';
 import gallery6 from '../assets/images/gal-6.jpg';
 
 export const services = [
-  { icon: 'shield', title: 'Zuverlässig & professionell', text: 'Pünktlich, vorbereitet, mit Backup-Technik im Kofferraum. Dein Abend läuft, versprochen.' },
-  { icon: 'speaker', title: 'Hochwertiger Sound', text: 'Sattes, klares Klangbild für jede Raumgröße, von der Scheune bis zum Ballsaal.' },
-  { icon: 'light', title: 'Erstklassige Lichttechnik', text: 'Stimmungsvolles Ambiente- und Partylicht, das den Raum verwandelt.' },
-  { icon: 'mic', title: 'Funk-Mikrofon für Ansprachen', text: 'Für Reden, Spiele und Moderation, jederzeit griffbereit.' },
-  { icon: 'music', title: 'Große Musikauswahl', text: 'Von Charts über Classics bis Schlager & Latin. Deine Wünsche vorab abgestimmt.' },
-  { icon: 'chat', title: 'Kostenloses Vorgespräch', text: 'Wir planen deinen Ablauf gemeinsam, persönlich per Video-Call, unverbindlich.' },
+  { icon: 'shield', title: 'Zuverlässig & professionell', text: 'Pünktlich da, vorbereitet und mit Ersatz für alles im Kofferraum. Dein Abend läuft.' },
+  { icon: 'speaker', title: 'Hochwertiger Sound', text: 'Sattes, klares Klangbild. Für die Scheune genauso wie für den Ballsaal.' },
+  { icon: 'light', title: 'Erstklassige Lichttechnik', text: 'Warmes Licht zum Dinner, richtige Show, sobald getanzt wird.' },
+  { icon: 'mic', title: 'Funk-Mikrofon für Ansprachen', text: 'Liegt bereit für Reden, Spiele und alles Spontane.' },
+  { icon: 'music', title: 'Große Musikauswahl', text: 'Charts, Classics, Schlager, Latin. Deine Wunschlieder klären wir vorher.' },
+  { icon: 'chat', title: 'Kostenloses Vorgespräch', text: 'Wir gehen deinen Ablauf per Video-Call durch. Kostet nichts, verpflichtet zu nichts.' },
 ];
 
 // Backup-Garantie, direkt aus der Wettbewerbsanalyse (größter Angst-Abbau)
@@ -64,7 +64,7 @@ export const packages = [
 ];
 
 export const addons = [
-  { name: 'Fotobox', image: addonFotobox, text: 'Mit Sofortdruck & Requisiten, der Hit auf jeder Feier.' },
+  { name: 'Fotobox', image: addonFotobox, text: 'Mit Sofortdruck und Requisiten. Läuft erfahrungsgemäß den ganzen Abend.' },
   { name: 'Freie Trauung', image: addonTrauung, text: 'Sound & Technik für eure Zeremonie im Freien.' },
   { name: 'Ambientebeleuchtung', image: addonAmbiente, text: 'Warmes Uplighting, das die Location in Szene setzt.' },
   { name: 'Bierzeltgarnitur', image: addonBierzelt, text: 'Praktische Ausstattung für Outdoor- & Zeltfeiern.' },
@@ -73,7 +73,7 @@ export const addons = [
 // Preis-Klarheit: die Fragen, die Brautpaare sonst per Mail stellen (Stand 2026-07)
 export const priceNotes = [
   { label: 'Anfahrt', text: 'Im Umkreis von 50 km um Frankfurt inklusive. Darüber hinaus 0,30 € pro Kilometer (einfache Strecke ab Frankfurt), im Angebot klar ausgewiesen.' },
-  { label: 'Verlängerung', text: 'Soll es länger gehen? Jede weitere Stunde kostet 100 €, vorab eingeplant oder spontan am Abend entschieden.' },
+  { label: 'Verlängerung', text: 'Soll es länger gehen? Jede weitere Stunde kostet 100 €. Das könnt ihr vorher einplanen oder am Abend spontan entscheiden.' },
   { label: 'Auf- & Abbau', text: 'Aufbau (ca. 1,5–2 Std. vor Beginn) und Abbau sind im Paketpreis enthalten. Keine versteckten Zusatzkosten.' },
   { label: 'Endpreise', text: 'Als Kleinunternehmer nach § 19 UStG weise ich keine Umsatzsteuer aus: Was im Angebot steht, ist der Endpreis.' },
 ];
@@ -86,35 +86,35 @@ export const testimonials = [
 ];
 
 export const faqs = [
-  { q: 'Was kostet ein DJ für meine Feier?', a: 'Meine Pakete starten bei 1.000 €. Der genaue Preis hängt von Spielzeit, Location-Größe und gewünschter Technik/Add-ons ab. Im kostenlosen Vorgespräch bekommst du ein transparentes Festpreis-Angebot, ohne versteckte Kosten. Als Kleinunternehmer weise ich keine Umsatzsteuer aus: Meine Preise sind Endpreise.' },
-  { q: 'Was kostet die Anfahrt?', a: 'Im Umkreis von 50 km um Frankfurt ist die Anfahrt inklusive. Liegt eure Location weiter entfernt, berechne ich 0,30 € pro Kilometer für die einfache Strecke ab Frankfurt. Der Betrag steht als eigener Posten im Angebot, ihr wisst also vorher genau, woran ihr seid.' },
-  { q: 'Können wir den Abend spontan verlängern?', a: 'Klar, wenn die Tanzfläche noch voll ist, hört man nicht einfach auf. Jede weitere Stunde kostet 100 €. Ihr könnt sie vorab einplanen oder spontan am Abend entscheiden, solange die Location mitspielt.' },
-  { q: 'Welche Musik spielst du und was nicht?', a: 'Von aktuellen Charts über Classics und Latin bis Schlager: alles, was eure Tanzfläche füllt, abgestimmt auf euch und eure Gäste. Vorab legen wir Wunschlieder und No-Gos fest: Was auf eurer Verbotsliste steht, läuft nicht, egal wer danach fragt.' },
+  { q: 'Was kostet ein DJ für meine Feier?', a: 'Meine Pakete starten bei 1.000 €. Der genaue Preis hängt von Spielzeit, Location-Größe und gewünschter Technik/Add-ons ab. Nach dem kostenlosen Vorgespräch bekommst du einen Festpreis, in dem jeder Posten einzeln steht. Als Kleinunternehmer weise ich keine Umsatzsteuer aus: Meine Preise sind Endpreise.' },
+  { q: 'Was kostet die Anfahrt?', a: 'Im Umkreis von 50 km um Frankfurt ist die Anfahrt inklusive. Liegt eure Location weiter entfernt, berechne ich 0,30 € pro Kilometer für die einfache Strecke ab Frankfurt. Der Betrag steht als eigener Posten im Angebot, ihr wisst also vorher, woran ihr seid.' },
+  { q: 'Können wir den Abend spontan verlängern?', a: 'Klar. Wenn die Tanzfläche noch voll ist, hört man nicht einfach auf. Jede weitere Stunde kostet 100 €. Ihr könnt sie vorab einplanen oder spontan am Abend entscheiden, solange die Location mitspielt.' },
+  { q: 'Welche Musik spielst du und was nicht?', a: 'Charts, Classics, Latin, Schlager, im Grunde alles, was bei euch funktioniert. Vorab legen wir Wunschlieder und No-Gos fest: Was auf eurer Verbotsliste steht, läuft nicht, egal wer danach fragt.' },
   { q: 'Kann ich mir Musik wünschen?', a: 'Unbedingt. Vorab stimmen wir Wunschlieder, No-Gos und den groben Ablauf ab. Am Abend nehme ich auch spontane Wünsche der Gäste entgegen, mit Fingerspitzengefühl: Der Flow auf der Tanzfläche hat immer Priorität.' },
   { q: 'Was passiert, wenn du krank wirst?', a: 'Dafür gibt es meine Ausfall-Garantie: Über mein DJ-Netzwerk sorge ich für gleichwertigen Ersatz. Das steht schriftlich im Vertrag, eure Feier läuft auf jeden Fall.' },
-  { q: 'Und wenn die Technik ausfällt?', a: 'Ich habe die kritischen Komponenten doppelt dabei, Ersatz-Player, Kabel und Mikrofon liegen griffbereit im Auto. Ein Technik-Ausfall bedeutet bei mir eine kurze Unterbrechung, kein Ende der Party.' },
+  { q: 'Und wenn die Technik ausfällt?', a: 'Die kritischen Teile habe ich doppelt dabei: Ersatz-Player, Kabel und Mikrofon liegen griffbereit im Auto. Ein Technik-Ausfall bedeutet bei mir eine kurze Unterbrechung, kein Ende der Party.' },
   { q: 'Begleitest du auch Trauung und Sektempfang?', a: 'Sehr gerne. Für freie Trauungen bringe ich dezente Beschallung und Funkmikrofone mit, beim Sektempfang sorge ich für entspannte Hintergrundmusik, so zieht sich die Musik wie ein roter Faden durch euren ganzen Tag.' },
   { q: 'Moderierst du auch?', a: 'So viel oder so wenig ihr möchtet: Ich kündige Programmpunkte wie Eröffnungstanz oder Reden charmant an, dränge mich aber nie in den Vordergrund. Euer Tag, eure Bühne: Ich halte den Rahmen.' },
-  { q: 'Was ist mit Lautstärke-Auflagen der Location?', a: 'Kein Problem, ich kenne die üblichen Auflagen und stimme mich vorab mit eurer Location ab. Mit sauber eingestelltem Sound wird es stimmungsvoll laut auf der Tanzfläche und bleibt trotzdem im Rahmen.' },
+  { q: 'Was ist mit Lautstärke-Auflagen der Location?', a: 'Kein Problem, die üblichen Auflagen kenne ich und kläre sie vorab mit eurer Location. Mit sauber eingestelltem Sound wird es stimmungsvoll laut auf der Tanzfläche und bleibt trotzdem im Rahmen.' },
   { q: 'Fällt für unsere private Feier GEMA an?', a: 'Für private, geschlossene Feiern wie Hochzeiten oder Geburtstage fällt in der Regel keine GEMA-Gebühr an. Bei öffentlichen oder betrieblichen Veranstaltungen kläre ich das gerne gemeinsam mit euch.' },
   { q: 'Wie lange dauert Auf- und Abbau?', a: 'Ich plane in der Regel rund 1,5–2 Stunden vor Beginn für den Aufbau ein und baue nach dem Ende leise ab, ohne die Stimmung zu stören. Auf- & Abbau sind im Paketpreis enthalten.' },
-  { q: 'In welchen Städten legst du auf?', a: 'Mein Schwerpunkt liegt in Bremen, Frankfurt und dem Rhein-Main-Gebiet (u. a. Mainz & Wiesbaden). Weitere Orte auf Anfrage, ich bin gerne mobil unterwegs.' },
+  { q: 'In welchen Städten legst du auf?', a: 'Mein Schwerpunkt liegt in Bremen, Frankfurt und dem Rhein-Main-Gebiet (u. a. Mainz & Wiesbaden). Andere Orte gerne auf Anfrage, ich fahre auch weiter.' },
   { q: 'Wie läuft die Buchung ab?', a: 'Du schickst mir über das Formular oder WhatsApp deinen Termin. Ich melde mich innerhalb von 1–2 Tagen, wir machen ein unverbindliches Video-Vorgespräch, und danach bekommst du dein Festpreis-Angebot. Erst dann entscheidest du.' },
 ];
 
 // "Euer Abend als Set", der Hochzeitstag in DJ-Set-Phasen (Signature-Metapher)
 export const setPhases = [
-  { phase: 'Intro', title: 'Freie Trauung & Sektempfang', text: 'Dezente Klänge zur Zeremonie, Funkmikrofon für die Traurede, entspannte Musik zum Anstoßen, der rote Faden beginnt.' },
+  { phase: 'Intro', title: 'Freie Trauung & Sektempfang', text: 'Leise Musik zur Zeremonie, Funkmikrofon für die Traurede, und zum Anstoßen etwas, das die Gespräche nicht übertönt.' },
   { phase: 'Warm-up', title: 'Dinner & Programmpunkte', text: 'Stimmige Hintergrundmusik, die Gespräche zulässt. Reden, Spiele und Überraschungen kündige ich charmant an.' },
-  { phase: 'Peak', title: 'Eröffnungstanz & Party', text: 'Euer erster Tanz, dann übernehme ich: Ich lese die Tanzfläche und halte sie voll, von Oma bis Trauzeugin.' },
+  { phase: 'Peak', title: 'Eröffnungstanz & Party', text: 'Euer erster Tanz, danach übernehme ich. Ab hier entscheidet die Tanzfläche, was als Nächstes läuft, von Oma bis Trauzeugin.' },
   { phase: 'Encore', title: 'Der letzte Song', text: 'Ein Finale, das in Erinnerung bleibt. Danach baue ich leise ab, ihr verabschiedet eure Gäste in Ruhe.' },
 ];
 
 // Die Reise vor dem großen Tag (nach der Buchung)
 export const journey = [
-  { title: 'Kennenlernen', text: 'Unverbindliches Video-Gespräch: Wir schauen, ob es passt, menschlich und musikalisch.' },
+  { title: 'Kennenlernen', text: 'Ein Video-Call ohne Verpflichtung. Wir schauen, ob es menschlich und musikalisch passt.' },
   { title: 'Musikplanung', text: 'Wunschlieder, No-Gos, Ablauf: Wir bauen gemeinsam den Soundtrack für euren Tag.' },
-  { title: 'Euer großer Tag', text: 'Ich bin rechtzeitig da, aufgebaut und vorbereitet, ihr müsst an nichts mehr denken.' },
+  { title: 'Euer großer Tag', text: 'Ich stehe rechtzeitig aufgebaut da. Ihr müsst an nichts mehr denken.' },
 ];
 
 export const gallery = [

@@ -21,7 +21,7 @@ const path = `/hochzeits-dj/${city.slug}`;
 
 const forName = city.forName ?? city.name;
 const title = `Hochzeits-DJ ${city.name} – DJ Bruma | ${ratingLabel()} ★ bei Google`;
-const description = `Hochzeits- & Event-DJ ${city.inCity}: volle Tanzfläche, starke Technik und transparente Preise ab 1.000 €. Jetzt kostenlos Verfügbarkeit prüfen.`;
+const description = `Hochzeits- & Event-DJ ${city.inCity}. Eigene Technik, Festpreise ab 1.000 €, Ausfall-Garantie im Vertrag. Verfügbarkeit kostenlos prüfen.`;
 
 // Service-Schema pro Stadt + Bezug zum LocalBusiness
 const serviceSchema = {
@@ -72,16 +72,16 @@ const localFaqs = city.destFaqs ?? city.cityFaqs ?? faqs.slice(0, 4);
         <h2>Euer DJ für Hochzeiten & Events {city.inCity}</h2>
         <p>{city.local}</p>
         <p>
-          Ob freie Trauung, Sektempfang, Dinner oder Party bis in die Nacht, ich begleite euren
-          kompletten Tag musikalisch und sorge dafür, dass jeder Programmpunkt sitzt. Alles aus einer
-          Hand, mit persönlichem Vorgespräch und transparenten Festpreisen.
+          Freie Trauung, Sektempfang, Dinner, Party bis in die Nacht: Ihr braucht dafür keine drei
+          Dienstleister. Ich übernehme den ganzen Tag, kenne euren Ablauf vorher und weiß, an welcher
+          Stelle die Musik leiser werden muss, damit die Rede ankommt.
         </p>
 
         <h3 class="loc-venues-h">{city.destination ? `Typische Hochzeits-Locations ${city.inCity}` : `Beliebte Hochzeits-Locations ${city.inCity} & Umgebung`}</h3>
         <ul class="loc-venues">
           {city.venues.map((v) => <li><Icon name="check" size={16} /> {v}</li>)}
         </ul>
-        <p class="loc-venues-note">Eure Location ist nicht dabei? Kein Problem, ich bin flexibel und bringe das passende Setup mit.</p>
+        <p class="loc-venues-note">Eure Location ist nicht dabei? Kein Problem. Ich rufe vorher dort an und kläre Strom, Aufbauzeiten und Lautstärke-Vorgaben.</p>
       </div>
 
       <aside class="loc-aside card card--gold">
