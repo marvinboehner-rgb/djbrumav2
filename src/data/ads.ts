@@ -4,9 +4,9 @@
 // nach dem Relaunch weiter misst. IDs bewusst identisch: sonst reisst die
 // Conversion-Historie in Google Ads ab und die Gebotsstrategie lernt neu.
 //
-// Anders als Umami braucht das hier eine Einwilligung, weil Google Informationen
-// auf dem Endgerät ablegt (§ 25 TDDDG). Vor dem Opt-in wird deshalb kein
-// einziges Google-Skript geladen, nicht nur kein Cookie gesetzt.
+// Braucht eine Einwilligung, weil Google Informationen auf dem Endgerät ablegt
+// (§ 25 TDDDG). Vor dem Opt-in wird deshalb kein einziges Google-Skript geladen,
+// nicht nur kein Cookie gesetzt.
 
 export const ads = {
   conversionId: 'AW-16678643134',

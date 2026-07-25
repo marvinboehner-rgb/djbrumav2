@@ -23,7 +23,7 @@ import { Image } from 'astro:assets';
           <ul class="pkg__features">
             {p.features.map((f) => <li><Icon name="check" size={16} /> {f}</li>)}
           </ul>
-          <a class={`btn ${p.highlighted ? 'btn--gold' : 'btn--ghost'}`} href={`/?paket=${p.id}#anfrage`} data-paket={p.id} data-track="paket_cta" data-track-props={JSON.stringify({ paket: p.name })}>Dieses Paket anfragen</a>
+          <a class={`btn ${p.highlighted ? 'btn--gold' : 'btn--ghost'}`} href={`/?paket=${p.id}#anfrage`} data-paket={p.id}>Dieses Paket anfragen</a>
         </article>
       ))}
     </div>

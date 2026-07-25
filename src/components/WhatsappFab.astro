@@ -2,7 +2,7 @@
 import { whatsappUrl } from '../data/site';
 import Icon from './Icon.astro';
 ---
-<a class="wa-fab" href={whatsappUrl()} target="_blank" rel="noopener" aria-label="Auf WhatsApp anfragen" data-track="whatsapp_klick" data-track-props={JSON.stringify({ ort: "fab" })}>
+<a class="wa-fab" href={whatsappUrl()} target="_blank" rel="noopener" aria-label="Auf WhatsApp anfragen">
   <Icon name="whatsapp" size={28} />
 </a>
 <style>

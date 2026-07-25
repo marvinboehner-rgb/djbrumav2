@@ -82,8 +82,8 @@ const packageValues = Object.fromEntries(packages.map((p) => [p.id, p.value]));
       ad_storage: 'denied', ad_user_data: 'denied',
       ad_personalization: 'denied', analytics_storage: 'denied',
     };
-    // Vor jeder Zustimmung alles auf denied. Personalisierung bleibt auch danach
-    // aus, und Analytics laeuft ueber Umami, nicht ueber Google.
+    // Vor jeder Zustimmung alles auf denied. Personalisierung und analytics_storage
+    // bleiben auch danach aus: gemessen wird ausschliesslich die Conversion.
     window.gtag('consent', 'default', DENIED);
 
     function loadTag() {
