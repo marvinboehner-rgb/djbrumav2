@@ -12,6 +12,9 @@ import portraitImage from '../../assets/images/portrait.jpg';
       <p class="eyebrow">Das bin ich, Marvin</p>
       <h2>Ich lebe für den Moment, in dem die <span class="gold-text">Sitzordnung egal wird.</span></h2>
       <p class="lead">
+        Dafür braucht es kein Animationsprogramm, sondern den richtigen Song in der richtigen Minute.
+      </p>
+      <p>
         Seit über zehn Jahren lege ich auf Hochzeiten, Geburtstagen und Firmenfeiern auf. Dabei habe
         ich vor allem eins gelernt: Welcher Song jetzt der richtige ist, entscheidet nicht mein
         Geschmack. Das entscheiden die Leute, die vor mir stehen.
@@ -33,6 +36,9 @@ import portraitImage from '../../assets/images/portrait.jpg';
 <style>
   .about { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
   .about__media img { border-radius: var(--r-lg); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  /* Untertitel: eigene Stufe zwischen Ueberschrift und Fliesstext, sonst liest
+     er sich wie ein weiterer Absatz */
+  .about__text .lead { font-size: clamp(1.16rem, 1.5vw, 1.3rem); color: var(--text); opacity: .9; margin-top: .8rem; line-height: 1.45; }
   .about__points { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: .8rem; }
   .about__points li { display: flex; align-items: center; gap: .7rem; }
   .about__points :global(svg) { color: var(--gold); flex: none; }
