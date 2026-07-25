@@ -4,6 +4,7 @@ import Hero from '../components/sections/Hero.astro';
 import Stats from '../components/sections/Stats.astro';
 import About from '../components/sections/About.astro';
 import Timeline from '../components/sections/Timeline.astro';
+import Playlists from '../components/sections/Playlists.astro';
 import Services from '../components/sections/Services.astro';
 import Packages from '../components/sections/Packages.astro';
 import Gallery from '../components/sections/Gallery.astro';
@@ -12,6 +13,7 @@ import Testimonials from '../components/sections/Testimonials.astro';
 import Faq from '../components/sections/Faq.astro';
 import Contact from '../components/sections/Contact.astro';
 import { localBusiness, faqPage } from '../data/schema';
+import { hasPlaylists } from '../data/playlists';
 
 const title = 'DJ Bruma – Event- & Hochzeits-DJ · Bremen & Frankfurt';
 const description = 'DJ Bruma: Event- & Hochzeits-DJ für Bremen, Frankfurt und Rhein-Main. Pakete ab 1.000 €, professionelle Technik und echte Kundenstimmen.';
@@ -21,6 +23,7 @@ const description = 'DJ Bruma: Event- & Hochzeits-DJ für Bremen, Frankfurt und 
   <Stats />
   <About />
   <Timeline />
+  {hasPlaylists() && <Playlists />}
   <Services />
   <Testimonials />
   <Packages />
