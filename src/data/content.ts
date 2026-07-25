@@ -33,47 +33,68 @@ export const guarantee = {
   ],
 };
 
+// Pakete. Die Zielgruppen-Zuordnung (audience) stammt aus der v1: nicht nur
+// Hochzeiten, sondern auch private Feiern und Firmen-/Outdoor-Events.
+// "tech" ist die konkrete Technik aus der v1: der Nutzen steht in features,
+// die Marken darunter im Kleingedruckten. Das ist der Glaubwürdigkeits-Beweis,
+// besonders wenn Locations oder Techniker nachfragen.
 export const packages = [
   {
     id: 'jagger',
     name: 'Moves Like Jagger',
+    audience: 'Private Events',
     price: 'ab 1.000 €',
     value: 1000, // Conversion-Wert fuer Google Ads
 
     image: priceBarn,
-    tagline: 'Der solide Einstieg für kleinere Feiern',
+    tagline: 'Für Geburtstage, House-Partys und kleinere Feiern',
     features: ['Bis 6 Std. Spielzeit', 'Sound für bis ~80 Gäste', 'Party- & Ambientelicht', 'Funk-Mikrofon', 'Vorgespräch inklusive'],
+    tech: ['LD Maui 28 G3 (4000 W), weiß', 'DJ-Tisch', 'Lichtpaket „Klein" (Ape Labs)'],
     highlighted: false,
   },
   {
     id: 'loud',
     name: "Let's get loud",
+    audience: 'Hochzeit',
     price: 'ab 1.400 €',
     value: 1400,
 
     image: priceLoud,
     tagline: 'Der Allrounder für die klassische Hochzeit',
     features: ['Bis 8 Std. Spielzeit', 'Sound für bis ~150 Gäste', 'Erweiterte Lichtshow', '2× Funk-Mikrofon', 'Persönliche Musikabstimmung', 'Auf- & Abbau inklusive'],
+    tech: ['LD Maui 28 G3 (4000 W, bei Bedarf mehr)', 'DJ-Tisch mit indirekter Beleuchtung', 'Lichtpaket „Mittel" (Ape Labs)'],
     highlighted: true,
   },
   {
     id: 'sky',
     name: 'A Sky Full Of Stars',
+    audience: 'Firmen & Outdoor',
     price: 'ab 1.800 €',
     value: 1800,
 
     image: priceSky,
-    tagline: 'Das Rundum-Sorglos-Paket für den großen Abend',
-    features: ['Ganze Nacht Spielzeit', 'Sound für große Locations', 'Premium-Licht & Effekte', 'Komplette Moderation', 'Persönliche Playlist-Planung', 'Ambientebeleuchtung inklusive'],
+    tagline: 'Für Firmenevents, große Säle und Feiern unter freiem Himmel',
+    features: ['Ganze Nacht Spielzeit', 'Sound ab 150 Gästen', 'Premium-Licht & Effekte', 'Komplette Moderation', 'Persönliche Playlist-Planung', 'Ambientebeleuchtung inklusive'],
+    tech: ['Electro-Voice-PA ab 150 Personen (> 6000 W)', 'DJ-Tisch mit indirekter Beleuchtung', 'Lichtpaket „Groß" (4× ADJ Hex, 2× Moving Heads) + Ambiente', 'Nebelmaschine'],
     highlighted: false,
   },
 ];
 
+// In jedem Paket enthalten, unabhängig von der Größe (aus der v1 übernommen).
+export const packagesInclude = [
+  'DJ-Controller & MacBook',
+  'Sennheiser Funkmikrofon',
+  'Auf- & Abbau (ca. 1,5–2 Std. vorher)',
+  'Kostenloses Vorgespräch per Video-Call',
+  'Ersatz-Technik für alles Kritische',
+];
+
+// Preise aus der v1 übernommen (Stand 2026-07).
 export const addons = [
-  { name: 'Fotobox', image: addonFotobox, text: 'Mit Sofortdruck und Requisiten. Läuft erfahrungsgemäß den ganzen Abend.' },
-  { name: 'Freie Trauung', image: addonTrauung, text: 'Sound & Technik für eure Zeremonie im Freien.' },
-  { name: 'Ambientebeleuchtung', image: addonAmbiente, text: 'Warmes Uplighting, das die Location in Szene setzt.' },
-  { name: 'Bierzeltgarnitur', image: addonBierzelt, text: 'Praktische Ausstattung für Outdoor- & Zeltfeiern.' },
+  { name: 'Fotobox', price: 'ab 259 €', image: addonFotobox, text: 'Großer 21-Zoll-Screen, kinderleichte Bedienung, unbegrenzt Fotos. Alle Bilder per USB-Stick und passwortgeschützter Online-Galerie.' },
+  { name: 'Freie Trauung', price: 'ab 100 €', image: addonTrauung, text: 'Zusatz-Lautsprecher und Funkmikro für die Zeremonie, inklusive technischer Begleitung von Live-Gesang und Musik. Auf- und Abbau übernehme ich.' },
+  { name: 'Ambientebeleuchtung', price: 'ab 150 €', image: addonAmbiente, text: '8 LED-Akku-Spots setzen Wände und Elemente warm in Szene, ganz ohne Kabelsalat. Farbe nach Wunsch. Im großen Paket bereits enthalten.' },
+  { name: 'Bierzeltgarnitur', price: 'auf Anfrage', image: addonBierzelt, text: 'Klassische Garnituren mit Tischen und Bänken plus elegante Stehtische. Wetterfeste Sitz- und Stehmöglichkeiten für drinnen und draußen.' },
 ];
 
 // Preis-Klarheit: die Fragen, die Brautpaare sonst per Mail stellen (Stand 2026-07)

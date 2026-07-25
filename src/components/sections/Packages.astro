@@ -1,5 +1,5 @@
 ---
-import { packages, addons, priceNotes } from '../../data/content';
+import { packages, packagesInclude, addons, priceNotes } from '../../data/content';
 import Icon from '../Icon.astro';
 import { Image } from 'astro:assets';
 ---
@@ -8,7 +8,7 @@ import { Image } from 'astro:assets';
     <div class="center">
       <p class="eyebrow">Pakete & Preise</p>
       <h2>Was es kostet, <span class="gold-text">steht hier.</span></h2>
-      <p class="lead center">Feste Startpreise statt "Preis auf Anfrage". Den finalen Festpreis bekommst du nach dem kostenlosen Vorgespräch.</p>
+      <p class="lead center">Drei Pakete für Hochzeit, private Feier und Firmenevent. Feste Startpreise statt "Preis auf Anfrage", den finalen Festpreis bekommst du nach dem kostenlosen Vorgespräch.</p>
     </div>
 
     <div class="grid grid-3 pkg-grid">
@@ -16,17 +16,27 @@ import { Image } from 'astro:assets';
         <article class={`card pkg reveal${p.highlighted ? ' pkg--hot' : ''}`}>
           {p.highlighted && <span class="pkg__flag">Beliebteste Wahl</span>}
           <Image class="pkg__img" src={p.image} alt="" widths={[320, 480, 720]} sizes="(max-width: 760px) 100vw, 33vw" format="webp" quality={76} loading="lazy" />
-          <span class="pkg__track">Track {String(i + 1).padStart(2, '0')}</span>
+          <span class="pkg__track">Track {String(i + 1).padStart(2, '0')} · {p.audience}</span>
           <h3>{p.name}</h3>
           <div class="pkg__price gold-text">{p.price}</div>
           <p class="pkg__tag">{p.tagline}</p>
           <ul class="pkg__features">
             {p.features.map((f) => <li><Icon name="check" size={16} /> {f}</li>)}
           </ul>
+          <!-- Konkrete Technik: kein Verkaufsargument fuer Brautpaare, aber der Beleg
+               fuer alle, die nachfragen (Locations, Techniker, Vergleichsangebote). -->
+          <details class="pkg__tech">
+            <summary>Welche Technik steckt drin?</summary>
+            <ul>{p.tech.map((t) => <li>{t}</li>)}</ul>
+          </details>
           <a class={`btn ${p.highlighted ? 'btn--gold' : 'btn--ghost'}`} href={`/?paket=${p.id}#anfrage`} data-paket={p.id}>Dieses Paket anfragen</a>
         </article>
       ))}
     </div>
+
+    <p class="pkg__include reveal">
+      <strong>In allen Paketen enthalten:</strong> {packagesInclude.join(' · ')}
+    </p>
 
     <!-- Preis-Klarheit: beantwortet Anfahrt/Verlängerung/MwSt vor der Anfrage -->
     <div class="pricenotes reveal">
@@ -48,7 +58,10 @@ import { Image } from 'astro:assets';
           <article class="addon reveal">
             <Image class="addon__img" src={a.image} alt="" widths={[240, 360, 520]} sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 25vw" format="webp" quality={74} loading="lazy" />
             <div class="addon__body">
-              <h4>{a.name}</h4>
+              <div class="addon__head">
+                <h4>{a.name}</h4>
+                <span class="addon__price">{a.price}</span>
+              </div>
               <p>{a.text}</p>
             </div>
           </article>
@@ -71,6 +84,15 @@ import { Image } from 'astro:assets';
   .pkg__features { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: .6rem; flex: 1; }
   .pkg__features li { display: flex; align-items: center; gap: .55rem; font-size: .96rem; }
   .pkg__features :global(svg) { color: var(--gold); flex: none; }
+  .pkg__tech { margin: 0 0 1.2rem; border-top: 1px solid var(--line-soft); padding-top: .9rem; }
+  .pkg__tech summary { cursor: pointer; font-size: .85rem; color: var(--muted); list-style: none; display: flex; align-items: center; gap: .4rem; }
+  .pkg__tech summary::-webkit-details-marker { display: none; }
+  .pkg__tech summary::before { content: '+'; color: var(--gold); font-weight: 700; }
+  .pkg__tech[open] summary::before { content: '–'; }
+  .pkg__tech summary:hover { color: var(--text); }
+  .pkg__tech ul { list-style: none; padding: 0; margin: .7rem 0 0; display: grid; gap: .4rem; font-size: .85rem; color: var(--muted-2); }
+  .pkg__include { margin-top: clamp(24px, 3vw, 36px); text-align: center; color: var(--muted); font-size: .93rem; }
+  .pkg__include strong { color: var(--text); }
   .pricenotes { margin-top: clamp(32px, 4vw, 48px); padding: clamp(20px, 3vw, 32px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); }
   .pricenotes h3 { margin-bottom: 1.2rem; }
   .pricenotes__list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem 2rem; margin: 0; }
@@ -83,6 +105,8 @@ import { Image } from 'astro:assets';
   .addon { background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--r); overflow: hidden; }
   .addon__img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
   .addon__body { padding: 1rem 1.1rem 1.2rem; }
+  .addon__head { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; }
+  .addon__price { color: var(--gold); font-weight: 700; font-size: .85rem; white-space: nowrap; }
   .addon__body h4 { font-family: var(--ff-body); font-weight: 700; margin-bottom: .3rem; }
   .addon__body p { color: var(--muted); font-size: .9rem; margin: 0; }
 </style>
