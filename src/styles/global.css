@@ -85,7 +85,11 @@ p { margin: 0 0 1rem; }
   margin-bottom: 1rem;
 }
 .lead { color: var(--muted); font-size: 1.12rem; max-width: 62ch; }
-.section > .wrap > .lead.center { margin-inline: auto; }
+/* Ohne margin-inline klebt der 62ch-Block links, waehrend die Ueberschrift
+   ueber die volle Breite zentriert ist. Bewusst ohne Kindselektor: die
+   Abschnitte verschachteln unterschiedlich tief (mal direkt in .wrap, mal in
+   einem zusaetzlichen .center-Container). */
+.lead.center { margin-inline: auto; }
 
 .gold-text {
   background: var(--gold-grad);
