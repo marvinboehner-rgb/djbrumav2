@@ -13,9 +13,11 @@ interface Props {
   path?: string;
   ogImage?: string;
   jsonLd?: unknown[];
+  /** Seite aus dem Index halten (Danke-Seite: soll nie in der Suche auftauchen) */
+  noindex?: boolean;
 }
 
-const { title, description, path, ogImage = '/images/og.jpg', jsonLd = [] } = Astro.props;
+const { title, description, path, ogImage = '/images/og.jpg', jsonLd = [], noindex = false } = Astro.props;
 const canonical = new URL(path ?? Astro.url.pathname, site.domain).href.replace(/\/$/, '') || site.domain;
 const ogImageAbs = new URL(ogImage, site.domain).href;
 ---
@@ -28,6 +30,7 @@ const ogImageAbs = new URL(ogImage, site.domain).href;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->

@@ -116,7 +116,8 @@ const packageValues = Object.fromEntries(packages.map((p) => [p.id, p.value]));
 
     function sendConversion() {
       if (consent !== 'granted') return;
-      if (!/\/danke\/?$/.test(location.pathname)) return;
+      // Netlify liefert /danke, beim direkten Aufruf kann auch /danke.html ankommen
+      if (!/\/danke(\.html)?\/?$/.test(location.pathname)) return;
       const raw = read(session, PENDING_KEY);
       if (!raw) return;
 

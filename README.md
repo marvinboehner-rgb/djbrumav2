@@ -40,6 +40,21 @@ Staging läuft auf <https://djbruma-v2.netlify.app>. Die Seite ist dort per
 Städteseiten entstehen aus `cities.ts` über `src/pages/hochzeits-dj/[city].astro`.
 Eine neue Stadt ist reine Datenpflege, kein neuer Code.
 
+### Serverless-Funktionen (`netlify/functions/`)
+
+| Datei | Aufgabe |
+| --- | --- |
+| `availability.js` | Liest den öffentlichen iCloud-„Belegt"-Kalender und liefert `{"busy": ["YYYY-MM-DD", …]}` für den Verfügbarkeitskalender. |
+| `submission-created.js` | Feuert bei jeder Formular-Einsendung und schickt über Resend die Bestätigung an den Kunden und die Benachrichtigung an Marvin. |
+
+`submission-created.js` braucht in Netlify die Umgebungsvariablen `RESEND_API_KEY`,
+`MAIL_FROM` und `MAIL_OWNER`. Fehlen sie, tut die Funktion nichts und das Formular
+läuft trotzdem. Die Feldnamen in `FELDER` müssen zu den `name`-Attributen in
+`Contact.astro` passen: wer dort ein Feld umbenennt, muss die Liste mitpflegen.
+
+Der Verfügbarkeitskalender (`Availability.astro`) blockiert pro Buchung Freitag bis
+Sonntag, so wie die v1. Das ist bewusst so entschieden, nicht vergessen.
+
 ## Tracking und Datenschutz
 
 Einzige Messung ist das Google-Ads-Conversion-Tracking, portiert aus der v1 mit
@@ -54,22 +69,29 @@ unveränderter Conversion-ID, damit die Historie in Google Ads nicht abreißt.
 Drittinhalte (YouTube, Spotify) laden ebenfalls erst auf Klick. Wer hier etwas
 ergänzt, muss den passenden Abschnitt in `legal.ts` mitpflegen.
 
+## Vor dem Livegang
+
+- [ ] `noindex`-Block in `netlify.toml` entfernen (siehe Warnung oben).
+- [ ] In Netlify `RESEND_API_KEY`, `MAIL_FROM` und `MAIL_OWNER` setzen, sonst
+      gehen die Auto-Mails still nicht raus.
+- [ ] Eine Testanfrage abschicken und prüfen, ob beide Mails ankommen.
+- [ ] Prüfen, ob der Verfügbarkeitskalender die echten Termine zieht
+      (`/.netlify/functions/availability` direkt aufrufen).
+
 ## Offene Punkte
 
 - **Playlists:** Nur die Peak-Phase ist gefüllt. Intro und Warm-up fehlen,
   Vorlagen stehen auskommentiert in `playlists.ts`. Erst der Kontrast zwischen
   den Phasen macht den Abschnitt überzeugend.
-- **Verfügbarkeitskalender:** Die v1 hatte einen interaktiven Monatskalender, der
-  über eine Netlify-Function einen iCloud-Kalender ausliest (`/.netlify/functions/availability`,
-  liefert `{"busy": ["YYYY-MM-DD", …]}`). In v2 fehlt er noch. Achtung: In der v1
-  sind pro Buchung Freitag bis Sonntag blockiert, dadurch erscheinen 15 von 17
-  Samstagen der Hauptsaison als belegt. Vor der Portierung klären, ob nur der
-  echte Veranstaltungstag grau werden soll.
 - **Koordinaten** in `site.ts` gegen das Google-Unternehmensprofil abgleichen (NAP-Konsistenz).
 - **Mainz** hat als einzige Stadt keine namentlichen Locations, nur Kategorien.
-- **Add-ons** sind ohne Preise ausgewiesen, der Wettbewerb beziffert sie.
-- **Netlify Forms:** Prüfen, ob die E-Mail-Benachrichtigung für Einsendungen
-  aktiv ist. Sonst landen Anfragen unbemerkt im Dashboard.
+- **Hochzeits-Schlagseite:** Die Pakete decken jetzt wieder Hochzeit, private Feier
+  und Firmenevent ab. Die Städteseiten, die FAQ und die Meta-Texte sprechen
+  weiterhin fast nur Brautpaare an. Wenn Firmenanfragen wirklich Ziel sind, fehlt
+  dafür eine eigene Seite.
+- **Kalender-Logik:** Fr–So pro Buchung bedeutet, dass in der Hauptsaison fast alle
+  Samstage belegt aussehen. Bewusst so gewollt, aber im Blick behalten, falls die
+  Anfragen einbrechen.
 
 ## Konventionen
 
