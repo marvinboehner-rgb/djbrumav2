@@ -50,6 +50,7 @@ export const site = {
 
   nav: [
     { label: 'Über mich', href: '/#ueber-mich' },
+    { label: 'Musik', href: '/#musik' },
     { label: 'Leistungen', href: '/#leistungen' },
     { label: 'Preise', href: '/#preise' },
     { label: 'Eindrücke', href: '/#eindruecke' },

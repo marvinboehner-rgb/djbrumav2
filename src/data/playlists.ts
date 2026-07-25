@@ -1,54 +1,56 @@
-// Echte Playlists aus gespielten Hochzeiten.
+// Echte Playlists, sortiert nach den Phasen aus der Set-Dramaturgie weiter oben
+// auf der Seite (Intro, Warm-up, Peak, Encore).
 //
 // Warum dieser Abschnitt: Die häufigste Sorge von Brautpaaren ist nicht der
-// Ausfall des DJs, sondern die falsche Musik. Ein 60-Minuten-Mix beantwortet das
-// schlecht, eine echte Hochzeits-Playlist gut, weil sie zeigt, wie entschieden
-// wird. Die Felder unten sind wichtiger als die Songs selbst.
-//
-// ⚠️ TODO(Marvin): Mit echten Hochzeiten füllen. Solange die Liste leer ist,
-// wird der ganze Abschnitt nicht gerendert, die Seite bleibt also unverändert.
+// Ausfall des DJs, sondern die falsche Musik. Nach Phasen getrennte Listen
+// beantworten das besser als ein einzelner Mix, weil sie zeigen, dass zum
+// Dinner etwas anderes läuft als um halb eins.
 //
 // So kommst du an die spotifyId:
 //   Playlist in Spotify öffnen -> Teilen -> Playlist-Link kopieren
-//   https://open.spotify.com/playlist/37i9dQZF1DX0XUsuxWHRQd?si=...
+//   https://open.spotify.com/playlist/7aje7YA6Oj6WIQ1C3Deqiw?si=...
 //                                     ^^^^^^^^^^^^^^^^^^^^^^ das ist die ID
 // Die Playlist muss öffentlich sein, sonst lädt der Player nicht.
-//
-// Bitte keine Klarnamen der Paare ohne deren Einverständnis. "Julia & Tim"
-// ist ok, wenn sie zugestimmt haben, sonst lieber "Hochzeit im Weingut".
 
-export interface WeddingPlaylist {
-  /** Kurzer Titel, z. B. "Scheunenhochzeit im Bremer Umland" */
+export interface Playlist {
+  /** Phase aus der Set-Dramaturgie: Intro, Warm-up, Peak oder Encore */
+  phase: string;
+  /** Wofür die Liste im Ablauf steht */
+  label: string;
+  /** Name der Playlist in Spotify */
   title: string;
-  /** Ort/Location und Jahr, z. B. "Lür-Kropp-Hof, 2025" */
-  context: string;
-  /** Gästezahl grob, z. B. "110 Gäste" */
-  guests: string;
   spotifyId: string;
-  /** Der Song zum Eröffnungstanz */
-  firstDance: string;
-  /** Was sich das Paar gewünscht hat, ein bis zwei Sätze */
-  wishes: string;
-  /** Was auf keinen Fall laufen durfte. Ehrlich benennen, das ist der Punkt. */
-  noGos: string;
-  /** Der beste spontane Gästewunsch des Abends */
-  bestRequest: string;
-  /** Optional: der Song, der den Abend gedreht hat */
-  turningPoint?: string;
+  /** Was drin ist, ehrlich beschrieben */
+  description: string;
 }
 
-export const playlists: WeddingPlaylist[] = [
-  // Beispiel für die Struktur, bitte ersetzen und dann diesen Kommentar löschen:
+export const playlists: Playlist[] = [
+  {
+    phase: 'Peak',
+    label: 'Eröffnungstanz & Party',
+    title: 'Wedding Banger',
+    spotifyId: '7aje7YA6Oj6WIQ1C3Deqiw',
+    // ⚠️ TODO(Marvin): Beschreibung gegenlesen. Ich habe sie aus der echten
+    // Titelliste abgeleitet, aber du kennst den Einsatz besser als ich.
+    description: 'Der Teil des Abends, an dem niemand mehr sitzen bleibt. Earth, Wind & Fire und Kool & The Gang stehen hier neben Sean Paul, Seeed und Macklemore, quer durch vier Jahrzehnte. Nichts aus dieser Liste läuft vor 22 Uhr.',
+  },
+
+  // ⚠️ TODO(Marvin): Für die anderen Phasen fehlen noch Playlists. Genau die
+  // machen den Unterschied, weil sie belegen, dass zum Sektempfang und zum
+  // Dinner etwas völlig anderes läuft als in der Liste oben. Vorlage:
   // {
-  //   title: 'Scheunenhochzeit im Bremer Umland',
-  //   context: 'Lür-Kropp-Hof, 2025',
-  //   guests: '110 Gäste',
-  //   spotifyId: '37i9dQZF1DX0XUsuxWHRQd',
-  //   firstDance: 'Ed Sheeran – Perfect',
-  //   wishes: 'Viel Soul und Motown zum Dinner, ab 23 Uhr durfte es deutlich härter werden.',
-  //   noGos: 'Kein Schlager, kein Ballermann. Stand so im Vertrag und wurde auch so gehalten.',
-  //   bestRequest: 'Der Opa der Braut wollte "Sultans of Swing". Hat funktioniert.',
-  //   turningPoint: 'Whitney Houston – I Wanna Dance With Somebody',
+  //   phase: 'Intro',
+  //   label: 'Freie Trauung & Sektempfang',
+  //   title: '<Name deiner Playlist>',
+  //   spotifyId: '<ID aus dem Teilen-Link>',
+  //   description: 'Leise genug, dass Gespräche möglich bleiben. …',
+  // },
+  // {
+  //   phase: 'Warm-up',
+  //   label: 'Dinner & Programmpunkte',
+  //   title: '…',
+  //   spotifyId: '…',
+  //   description: '…',
   // },
 ];
 

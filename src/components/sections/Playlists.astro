@@ -2,15 +2,15 @@
 import { playlists } from '../../data/playlists';
 import Icon from '../Icon.astro';
 ---
-<section class="section playlists" id="playlists">
+<section class="section playlists" id="musik">
   <div class="wrap">
     <div class="center">
       <p class="eyebrow">Musik</p>
       <h2>Hört rein, wie ein Abend bei mir <span class="gold-text">klingt.</span></h2>
       <p class="lead center">
-        Keine zusammengeschnittenen Mixe, sondern die echten Playlists gespielter Hochzeiten.
-        Interessanter als die Songs ist meist, was daneben steht: was sich das Paar gewünscht hat
-        und was auf keinen Fall laufen durfte.
+        Keine zusammengeschnittenen Mixe, sondern die Listen, aus denen ich wirklich spiele.
+        Getrennt nach Phasen, damit ihr seht: Zum Sektempfang läuft etwas völlig anderes
+        als um halb eins.
       </p>
     </div>
 
@@ -18,23 +18,18 @@ import Icon from '../Icon.astro';
       {playlists.map((p) => (
         <article class="pl card reveal">
           <header class="pl__head">
+            <span class="pl__phase">{p.phase}</span>
             <h3>{p.title}</h3>
-            <p class="pl__ctx">{p.context} · {p.guests}</p>
+            <p class="pl__label">{p.label}</p>
           </header>
+
+          <p class="pl__desc">{p.description}</p>
 
           <!-- Klick zum Laden: vorher geht kein Request an Spotify (§ 25 TDDDG) -->
           <button class="pl__player" data-spotify={p.spotifyId} aria-label={`Playlist "${p.title}" bei Spotify laden und anhören`}>
-            <span class="pl__play"><Icon name="play" size={32} /></span>
-            <span class="pl__hint">Playlist laden<small>Erst beim Klick wird Spotify geladen</small></span>
+            <span class="pl__play"><Icon name="play" size={30} /></span>
+            <span class="pl__hint">Playlist anhören<small>Spotify wird erst beim Klick geladen</small></span>
           </button>
-
-          <dl class="pl__facts">
-            <div><dt>Eröffnungstanz</dt><dd>{p.firstDance}</dd></div>
-            <div><dt>Wunsch des Paares</dt><dd>{p.wishes}</dd></div>
-            <div><dt>No-Gos</dt><dd>{p.noGos}</dd></div>
-            <div><dt>Bester Gästewunsch</dt><dd>{p.bestRequest}</dd></div>
-            {p.turningPoint && <div><dt>Der Song, der den Abend gedreht hat</dt><dd>{p.turningPoint}</dd></div>}
-          </dl>
         </article>
       ))}
     </div>
@@ -48,32 +43,33 @@ import Icon from '../Icon.astro';
 
 <style>
   .playlists { background: var(--bg-2); }
-  /* auto-fit + max-width: eine einzelne Playlist bleibt zentriert statt sich
-     über die volle Breite zu ziehen, zwei oder drei stehen nebeneinander */
   .pl-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 480px));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 420px));
     justify-content: center; gap: clamp(18px, 2.5vw, 28px);
     margin: clamp(28px, 4vw, 48px) 0 clamp(20px, 3vw, 32px);
   }
   .pl { display: flex; flex-direction: column; gap: 1rem; padding: clamp(18px, 2.5vw, 26px); }
-  .pl__head h3 { margin: 0; }
-  .pl__ctx { color: var(--muted-2); font-size: .88rem; margin: .25rem 0 0; }
+  .pl__phase {
+    display: inline-block; font-family: var(--ff-display); font-size: .74rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: #1a1208;
+    background: var(--gold-grad); border-radius: 999px; padding: .22rem .7rem;
+  }
+  .pl__head h3 { margin: .6rem 0 0; }
+  .pl__label { color: var(--muted-2); font-size: .86rem; margin: .2rem 0 0; }
+  .pl__desc { color: var(--muted); font-size: .95rem; margin: 0; flex: 1; }
 
   .pl__player {
-    position: relative; width: 100%; aspect-ratio: 16/7; border: 1px solid var(--line);
+    position: relative; width: 100%; border: 1px solid var(--line);
     border-radius: var(--r); background: var(--surface-2); color: var(--text);
-    display: grid; place-items: center; gap: .6rem; cursor: pointer; font: inherit;
+    display: flex; align-items: center; gap: .9rem; text-align: left;
+    padding: .9rem 1.1rem; cursor: pointer; font: inherit;
     transition: border-color .2s, background .2s;
   }
   .pl__player:hover { border-color: var(--gold); background: var(--surface); }
-  .pl__play { color: var(--gold); }
-  .pl__hint { display: grid; gap: .15rem; font-size: .92rem; font-weight: 600; }
-  .pl__hint small { font-weight: 400; font-size: .78rem; color: var(--muted-2); }
+  .pl__play { color: var(--gold); display: grid; place-items: center; flex: none; }
+  .pl__hint { display: grid; gap: .1rem; font-size: .93rem; font-weight: 600; }
+  .pl__hint small { font-weight: 400; font-size: .77rem; color: var(--muted-2); }
 
-  .pl__facts { display: grid; gap: .8rem; margin: 0; }
-  .pl__facts > div { display: grid; gap: .15rem; }
-  .pl__facts dt { font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; color: var(--gold-soft); }
-  .pl__facts dd { margin: 0; color: var(--muted); font-size: .94rem; }
   .pl__note { color: var(--muted-2); font-size: .92rem; max-width: 62ch; margin-inline: auto; }
 </style>
 
@@ -84,10 +80,10 @@ import Icon from '../Icon.astro';
       if (!id) return;
       const frame = document.createElement('iframe');
       frame.title = 'Spotify-Playlist';
-      frame.src = `https://open.spotify.com/embed/playlist/${id}?utm_source=generator`;
+      frame.src = `https://open.spotify.com/embed/playlist/${id}`;
       frame.allow = 'clipboard-write; encrypted-media; fullscreen; picture-in-picture';
       frame.loading = 'lazy';
-      frame.style.cssText = 'width:100%;aspect-ratio:16/7;border:0;border-radius:var(--r)';
+      frame.style.cssText = 'width:100%;height:352px;border:0;border-radius:12px';
       btn.replaceWith(frame);
     }, { once: true });
   });
