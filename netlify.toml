@@ -5,6 +5,15 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Serverless-Funktionen (aus der v1 übernommen):
+#   availability.js        – liest den iCloud-"Belegt"-Kalender für den Verfügbarkeitskalender
+#   submission-created.js  – schickt nach jeder Formular-Einsendung die Auto-Mails über Resend
+# submission-created braucht die Umgebungsvariablen RESEND_API_KEY, MAIL_FROM und MAIL_OWNER.
+# Fehlen sie, tut die Funktion nichts und das Formular läuft trotzdem.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # ═══════════════════════════════════════════════════════════════════════
 # ⚠️ STAGING-SCHUTZ — VOR DEM LIVEGANG AUF djbruma.de ENTFERNEN! ⚠️
 # Verhindert, dass die Vorschau-Domain (djbruma-v2.netlify.app) von Google

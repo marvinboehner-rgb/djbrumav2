@@ -1,0 +1,174 @@
+---
+// Verfügbarkeitskalender, portiert aus der v1.
+// Die belegten Tage kommen aus dem öffentlichen iCloud-"Belegt"-Kalender und werden
+// serverseitig von /.netlify/functions/availability geliefert (umgeht CORS).
+// Ein Klick auf einen freien Tag übernimmt das Datum ins Anfrageformular.
+//
+// Wie in der v1 blockiert eine Buchung Freitag bis Sonntag: Marvin ist um einen Gig
+// herum ohnehin nicht verfügbar. Die Verbreiterung passiert clientseitig, damit der
+// Kalender selbst bei unsauber gepflegten Terminen konsistent aussieht.
+interface Props {
+  /** Präpositional-Form für die Überschrift, z. B. "in Bremen" */
+  cityIn?: string;
+}
+const { cityIn } = Astro.props;
+
+const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+---
+<section class="section verfuegbarkeit" id="verfuegbarkeit">
+  <div class="wrap center">
+    <p class="eyebrow">Verfügbarkeit</p>
+    <h2>Ist euer Termin{cityIn ? ` ${cityIn}` : ''} noch <span class="gold-text">frei?</span></h2>
+    <p class="lead center">Grau heißt belegt. Tippt auf einen freien Tag, dann steht er direkt in eurer Anfrage.</p>
+
+    <div class="card cal reveal" aria-live="polite">
+      <div class="cal__bar">
+        <button class="cal__nav" type="button" data-cal-prev aria-label="Voriger Monat">‹</button>
+        <span class="cal__title" data-cal-title>…</span>
+        <button class="cal__nav" type="button" data-cal-next aria-label="Nächster Monat">›</button>
+      </div>
+      <div class="cal__weekdays">{weekdays.map((w) => <span>{w}</span>)}</div>
+      <div class="cal__grid" data-cal-grid></div>
+      <div class="cal__legend">
+        <span><i class="cal__sw cal__sw--free"></i> frei</span>
+        <span><i class="cal__sw cal__sw--busy"></i> belegt</span>
+      </div>
+      <p class="cal__note">Ohne Gewähr: Der Kalender zeigt meinen Planungsstand. Verbindlich wird ein Termin erst mit meiner Zusage.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .verfuegbarkeit { background: var(--bg-2); }
+  .cal { max-width: 620px; margin: clamp(28px, 5vw, 48px) auto 0; }
+  .cal__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
+  .cal__title { font-family: var(--ff-display); font-size: 1.25rem; }
+  .cal__nav {
+    width: 40px; height: 40px; border-radius: 50%; font-size: 1.4rem; line-height: 1;
+    background: transparent; color: var(--text); border: 1px solid var(--line); font-family: inherit;
+    transition: border-color .2s, color .2s;
+  }
+  .cal__nav:hover:not(:disabled) { border-color: var(--gold); color: var(--gold-soft); }
+  .cal__nav:disabled { opacity: .3; cursor: not-allowed; }
+
+  .cal__weekdays, .cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .cal__weekdays { margin-bottom: 6px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-2); }
+  .cal__weekdays span { text-align: center; }
+
+  .cal__day {
+    aspect-ratio: 1; display: grid; place-items: center; border-radius: 10px;
+    font-size: .95rem; font-variant-numeric: tabular-nums; border: 1px solid transparent;
+  }
+  .cal__day--empty { border: 0; }
+  .cal__day--past { color: var(--muted-2); opacity: .35; }
+  .cal__day--busy { background: var(--surface-2); color: var(--muted-2); text-decoration: line-through; }
+  .cal__day--free { background: transparent; border-color: var(--line-soft); color: var(--text); cursor: pointer; transition: border-color .18s, background .18s; }
+  .cal__day--free:hover, .cal__day--free:focus-visible { border-color: var(--gold); background: rgba(201, 163, 90, .1); }
+  .cal__day--today { box-shadow: inset 0 0 0 1px var(--gold); }
+
+  .cal__legend { display: flex; justify-content: center; gap: 1.4rem; margin-top: 1.2rem; font-size: .85rem; color: var(--muted); }
+  .cal__sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: .4rem; }
+  .cal__sw--free { border: 1px solid var(--line); }
+  .cal__sw--busy { background: var(--surface-2); }
+  .cal__note { margin: 1rem 0 0; font-size: .8rem; color: var(--muted-2); }
+
+  /* Kurz aufleuchten, wenn ein Datum aus dem Kalender uebernommen wurde */
+  :global(.field--flash input) { border-color: var(--gold) !important; box-shadow: 0 0 0 3px rgba(201, 163, 90, .18); }
+</style>
+
+<script>
+  (function () {
+    const grid = document.querySelector('[data-cal-grid]') as HTMLElement | null;
+    const titleEl = document.querySelector('[data-cal-title]') as HTMLElement | null;
+    const prevBtn = document.querySelector('[data-cal-prev]') as HTMLButtonElement | null;
+    const nextBtn = document.querySelector('[data-cal-next]') as HTMLButtonElement | null;
+    if (!grid || !titleEl || !prevBtn || !nextBtn) return;
+
+    const MONATE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+    const key = (y: number, m: number, d: number) => `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+
+    let busy = new Set<string>();
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const view = new Date(today.getFullYear(), today.getMonth(), 1);
+    const firstMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+    // Eine Buchung blockiert Fr–So (wie in der v1): zu jedem belegten Tag kommen die
+    // umliegenden Tage desselben Wochenendes dazu.
+    function toWeekend(dates: string[]) {
+      const out = new Set<string>();
+      for (const iso of dates) {
+        out.add(iso);
+        const d = new Date(iso + 'T00:00:00');
+        if (isNaN(d.getTime())) continue;
+        const wd = (d.getDay() + 6) % 7; // Montag = 0 … Sonntag = 6
+        if (wd < 4) continue;            // Mo–Do: nur der Tag selbst
+        for (let off = 4 - wd; off <= 6 - wd; off++) {
+          const x = new Date(d);
+          x.setDate(x.getDate() + off);
+          out.add(key(x.getFullYear(), x.getMonth(), x.getDate()));
+        }
+      }
+      return out;
+    }
+
+    function fillDateField(iso: string) {
+      const input = document.getElementById('date') as HTMLInputElement | null;
+      if (!input) return;
+      input.value = iso;
+      const field = input.closest('.field');
+      field?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      field?.classList.add('field--flash');
+      setTimeout(() => field?.classList.remove('field--flash'), 1600);
+    }
+
+    function render() {
+      const y = view.getFullYear(), m = view.getMonth();
+      titleEl!.textContent = `${MONATE[m]} ${y}`;
+      prevBtn!.disabled = view <= firstMonth; // nicht in die Vergangenheit blättern
+      grid!.innerHTML = '';
+
+      const lead = (new Date(y, m, 1).getDay() + 6) % 7; // Montag = 0
+      for (let i = 0; i < lead; i++) {
+        const e = document.createElement('div');
+        e.className = 'cal__day cal__day--empty';
+        grid!.appendChild(e);
+      }
+
+      const days = new Date(y, m + 1, 0).getDate();
+      for (let d = 1; d <= days; d++) {
+        const iso = key(y, m, d);
+        const date = new Date(y, m, d); date.setHours(0, 0, 0, 0);
+        const past = date < today;
+        const isBusy = busy.has(iso);
+
+        const cell = document.createElement(past || isBusy ? 'div' : 'button');
+        cell.textContent = String(d);
+        cell.className = 'cal__day';
+        if (iso === key(today.getFullYear(), today.getMonth(), today.getDate())) cell.classList.add('cal__day--today');
+
+        if (past) {
+          cell.classList.add('cal__day--past');
+          cell.setAttribute('aria-hidden', 'true');
+        } else if (isBusy) {
+          cell.classList.add('cal__day--busy');
+          cell.setAttribute('aria-label', `${d}. ${MONATE[m]} ${y}: belegt`);
+        } else {
+          cell.classList.add('cal__day--free');
+          (cell as HTMLButtonElement).type = 'button';
+          cell.setAttribute('aria-label', `${d}. ${MONATE[m]} ${y}: frei, Datum übernehmen`);
+          cell.addEventListener('click', () => fillDateField(iso));
+        }
+        grid!.appendChild(cell);
+      }
+    }
+
+    prevBtn.addEventListener('click', () => { view.setMonth(view.getMonth() - 1); render(); });
+    nextBtn.addEventListener('click', () => { view.setMonth(view.getMonth() + 1); render(); });
+
+    render(); // sofort anzeigen, Belegung kommt nach
+    fetch('/.netlify/functions/availability')
+      .then((r) => r.json())
+      .then((d) => { busy = toWeekend(d.busy || []); render(); })
+      .catch(() => { /* bei Fehler bleibt alles "frei" */ });
+  })();
+</script>
