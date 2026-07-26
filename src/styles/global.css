@@ -169,13 +169,16 @@ p { margin: 0 0 1rem; }
    teilen sich dasselbe Bild, deshalb hier global statt in beiden Komponenten. */
 @media (prefers-reduced-motion: no-preference) {
   .hero__bg, .loc-hero__bg {
-    animation: heroZoom 34s cubic-bezier(.22, .61, .36, 1) forwards;
+    /* Starkes Ease-out: der Zoom passiert überwiegend in den ersten Sekunden, danach
+       läuft er aus. Vorher lief er so gleichmäßig über 34s, dass man ihn nicht sah.
+       Start bleibt scale(1), das Bild ist beim Laden also nicht angeschnitten. */
+    animation: heroZoom 18s cubic-bezier(.16, .72, .3, 1) forwards;
     transform-origin: 50% 45%;
   }
 }
 @keyframes heroZoom {
   from { transform: scale(1); }
-  to   { transform: scale(1.04); }
+  to   { transform: scale(1.05); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
