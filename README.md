@@ -63,8 +63,11 @@ im Voraus aufgelöst.
 läuft trotzdem. Die Feldnamen in `FELDER` müssen zu den `name`-Attributen in
 `Contact.astro` passen: wer dort ein Feld umbenennt, muss die Liste mitpflegen.
 
-Der Verfügbarkeitskalender (`Availability.astro`) blockiert pro Buchung Freitag bis
-Sonntag, so wie die v1. Das ist bewusst so entschieden, nicht vergessen.
+Der Verfügbarkeitskalender (`Availability.astro`) zeigt genau die Tage, die im
+Kalender stehen, ohne Aufschlag. Die v1 hat jede Wochenendbuchung auf Fr–So
+ausgeweitet, dadurch waren rund doppelt so viele Tage blockiert wie vergeben.
+Soll ein ganzes Wochenende freibleiben, gehört es als mehrtägiger Termin in den
+Kalender.
 
 ## Tracking und Datenschutz
 
@@ -101,9 +104,9 @@ ergänzt, muss den passenden Abschnitt in `legal.ts` mitpflegen.
   und Firmenevent ab. Die Städteseiten, die FAQ und die Meta-Texte sprechen
   weiterhin fast nur Brautpaare an. Wenn Firmenanfragen wirklich Ziel sind, fehlt
   dafür eine eigene Seite.
-- **Kalender-Logik:** Fr–So pro Buchung bedeutet, dass in der Hauptsaison fast alle
-  Samstage belegt aussehen. Bewusst so gewollt, aber im Blick behalten, falls die
-  Anfragen einbrechen.
+- **Kalenderpflege:** Blockiert wird nur, was im Kalender steht. Auf- und Abbautage
+  oder ein freier Sonntag nach einer Feier müssen also selbst eingetragen werden,
+  am einfachsten als mehrtägiger Termin.
 
 ## Konventionen
 

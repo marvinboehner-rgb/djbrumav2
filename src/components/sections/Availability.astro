@@ -100,24 +100,10 @@ const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
     const view = new Date(today.getFullYear(), today.getMonth(), 1);
     const firstMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
-    // Eine Buchung blockiert Fr–So (wie in der v1): zu jedem belegten Tag kommen die
-    // umliegenden Tage desselben Wochenendes dazu.
-    function toWeekend(dates: string[]) {
-      const out = new Set<string>();
-      for (const iso of dates) {
-        out.add(iso);
-        const d = new Date(iso + 'T00:00:00');
-        if (isNaN(d.getTime())) continue;
-        const wd = (d.getDay() + 6) % 7; // Montag = 0 … Sonntag = 6
-        if (wd < 4) continue;            // Mo–Do: nur der Tag selbst
-        for (let off = 4 - wd; off <= 6 - wd; off++) {
-          const x = new Date(d);
-          x.setDate(x.getDate() + off);
-          out.add(key(x.getFullYear(), x.getMonth(), x.getDate()));
-        }
-      }
-      return out;
-    }
+    // Der Kalender zeigt genau die Tage, die im Google-Kalender stehen. Die v1 hat
+    // jede Wochenendbuchung auf Fr–So ausgeweitet; das blockierte doppelt so viele
+    // Tage wie tatsächlich vergeben. Wer ein ganzes Wochenende freihalten will,
+    // trägt es im Kalender als mehrtägigen Termin ein.
 
     function fillDateField(iso: string) {
       const input = document.getElementById('date') as HTMLInputElement | null;
@@ -176,7 +162,7 @@ const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
     render(); // sofort anzeigen, Belegung kommt nach
     fetch('/.netlify/functions/availability')
       .then((r) => r.json())
-      .then((d) => { busy = toWeekend(d.busy || []); render(); })
+      .then((d) => { busy = new Set<string>(d.busy || []); render(); })
       .catch(() => { /* bei Fehler bleibt alles "frei" */ });
   })();
 </script>
