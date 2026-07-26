@@ -44,8 +44,19 @@ Eine neue Stadt ist reine Datenpflege, kein neuer Code.
 
 | Datei | Aufgabe |
 | --- | --- |
-| `availability.cjs` | Liest den öffentlichen iCloud-„Belegt"-Kalender und liefert `{"busy": ["YYYY-MM-DD", …]}` für den Verfügbarkeitskalender. |
+| `availability.cjs` | Liest den „Belegt“-Kalender als ICS-Feed und liefert `{"busy": ["YYYY-MM-DD", …]}` für den Verfügbarkeitskalender. Feed-URL kommt aus `CALENDAR_ICS_URL`. |
 | `submission-created.cjs` | Feuert bei jeder Formular-Einsendung und schickt über Resend die Bestätigung an den Kunden und die Benachrichtigung an Marvin. |
+
+`availability.cjs` braucht `CALENDAR_ICS_URL`, die geheime iCal-Adresse des
+„Belegt“-Kalenders (Google Kalender: Einstellungen, Kalender auswählen, „Geheime
+Adresse im iCal-Format“). Die URL gehört **nicht** in den Code, wer sie hat, liest
+den Kalender mit. Fehlt sie, erscheint jeder Tag als frei.
+
+Belegte Tage werden so bestimmt: Ganztagstermine belegen den ganzen Zeitraum
+(`DTEND` ist exklusiv), Termine mit Uhrzeit nur ihren Starttag, damit ein Gig von
+18:00 bis 02:00 nicht den Folgetag mitblockiert. Abgesagte Termine und als
+„verfügbar“ markierte Zeiten zählen nicht. Serientermine werden bis drei Jahre
+im Voraus aufgelöst.
 
 `submission-created.cjs` braucht in Netlify die Umgebungsvariablen `RESEND_API_KEY`,
 `MAIL_FROM` und `MAIL_OWNER`. Fehlen sie, tut die Funktion nichts und das Formular
@@ -75,8 +86,9 @@ ergänzt, muss den passenden Abschnitt in `legal.ts` mitpflegen.
 - [ ] In Netlify `RESEND_API_KEY`, `MAIL_FROM` und `MAIL_OWNER` setzen, sonst
       gehen die Auto-Mails still nicht raus.
 - [ ] Eine Testanfrage abschicken und prüfen, ob beide Mails ankommen.
-- [ ] Prüfen, ob der Verfügbarkeitskalender die echten Termine zieht
-      (`/.netlify/functions/availability` direkt aufrufen).
+- [ ] In Netlify `CALENDAR_ICS_URL` setzen und prüfen, ob der Verfügbarkeitskalender
+      die echten Termine zieht (`/.netlify/functions/availability` direkt aufrufen).
+- [ ] Die alte iCloud-Freigabe widerrufen, ihre URL lag bis Juli 2026 im Repo.
 
 ## Offene Punkte
 
