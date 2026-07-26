@@ -169,13 +169,13 @@ p { margin: 0 0 1rem; }
    teilen sich dasselbe Bild, deshalb hier global statt in beiden Komponenten. */
 @media (prefers-reduced-motion: no-preference) {
   .hero__bg, .loc-hero__bg {
-    animation: heroZoom 28s cubic-bezier(.22, .61, .36, 1) forwards;
+    animation: heroZoom 34s cubic-bezier(.22, .61, .36, 1) forwards;
     transform-origin: 50% 45%;
   }
 }
 @keyframes heroZoom {
   from { transform: scale(1); }
-  to   { transform: scale(1.07); }
+  to   { transform: scale(1.04); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
