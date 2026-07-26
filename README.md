@@ -44,10 +44,10 @@ Eine neue Stadt ist reine Datenpflege, kein neuer Code.
 
 | Datei | Aufgabe |
 | --- | --- |
-| `availability.js` | Liest den öffentlichen iCloud-„Belegt"-Kalender und liefert `{"busy": ["YYYY-MM-DD", …]}` für den Verfügbarkeitskalender. |
-| `submission-created.js` | Feuert bei jeder Formular-Einsendung und schickt über Resend die Bestätigung an den Kunden und die Benachrichtigung an Marvin. |
+| `availability.cjs` | Liest den öffentlichen iCloud-„Belegt"-Kalender und liefert `{"busy": ["YYYY-MM-DD", …]}` für den Verfügbarkeitskalender. |
+| `submission-created.cjs` | Feuert bei jeder Formular-Einsendung und schickt über Resend die Bestätigung an den Kunden und die Benachrichtigung an Marvin. |
 
-`submission-created.js` braucht in Netlify die Umgebungsvariablen `RESEND_API_KEY`,
+`submission-created.cjs` braucht in Netlify die Umgebungsvariablen `RESEND_API_KEY`,
 `MAIL_FROM` und `MAIL_OWNER`. Fehlen sie, tut die Funktion nichts und das Formular
 läuft trotzdem. Die Feldnamen in `FELDER` müssen zu den `name`-Attributen in
 `Contact.astro` passen: wer dort ein Feld umbenennt, muss die Liste mitpflegen.

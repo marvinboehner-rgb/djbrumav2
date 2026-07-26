@@ -72,7 +72,10 @@ import { Image } from 'astro:assets';
 </section>
 
 <style>
-  .pkg-grid { margin-top: clamp(32px, 5vw, 56px); align-items: start; }
+  /* align-items: stretch (Default) statt start: sonst sind die Karten unterschiedlich
+     hoch, weil sie verschieden viele Features haben, und die Buttons stehen versetzt.
+     Zusammen mit flex:1 auf .pkg__features sitzt der Button jetzt überall unten. */
+  .pkg-grid { margin-top: clamp(32px, 5vw, 56px); }
   .pkg { position: relative; display: flex; flex-direction: column; }
   .pkg--hot { border-color: var(--gold); box-shadow: 0 20px 50px -24px rgba(201,163,90,.5); }
   .pkg__flag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold-grad); color: #1a1208; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 100px; }
