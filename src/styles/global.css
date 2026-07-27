@@ -114,6 +114,8 @@ p { margin: 0 0 1rem; }
   will-change: transform;
 }
 .btn:hover { transform: translateY(-2px); }
+/* Gedrückt fühlt sich gedrückt an */
+.btn:active { transform: translateY(0) scale(.97); }
 .btn--gold { background: var(--gold-grad); color: #1a1208; box-shadow: 0 12px 30px -10px rgba(201, 163, 90, .5); }
 .btn--ghost { background: transparent; color: var(--text); border-color: var(--line); }
 .btn--ghost:hover { border-color: var(--gold); color: var(--gold-soft); }

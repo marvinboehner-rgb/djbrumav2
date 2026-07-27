@@ -48,9 +48,12 @@ import { Image } from 'astro:assets';
 
 <style>
   .feature { max-width: 900px; margin: clamp(28px, 4vw, 48px) auto 0; }
+  /* Platzhalter mit Schimmer: solange das Lazy-Bild lädt, steht hier sonst nur ein
+     schwarzes Loch mit Play-Button */
   .feature__btn {
     position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--line-soft);
-    border-radius: var(--r-lg); overflow: hidden; cursor: pointer; background: var(--surface);
+    border-radius: var(--r-lg); overflow: hidden; cursor: pointer;
+    background: radial-gradient(80% 80% at 50% 40%, var(--surface-2), var(--surface));
     aspect-ratio: 16/9;
   }
   .feature__btn :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
@@ -81,7 +84,9 @@ import { Image } from 'astro:assets';
   .vgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.5vw, 28px); margin-top: clamp(36px, 5vw, 60px); }
   .vtile__btn {
     position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--line-soft);
-    border-radius: var(--r); overflow: hidden; cursor: pointer; background: var(--surface); aspect-ratio: 16/9;
+    border-radius: var(--r); overflow: hidden; cursor: pointer;
+    background: radial-gradient(80% 80% at 50% 40%, var(--surface-2), var(--surface));
+    aspect-ratio: 16/9;
   }
   .vtile__btn img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
   .vtile__btn:hover img { transform: scale(1.06); }

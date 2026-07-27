@@ -18,3 +18,24 @@ import { site, whatsappUrl } from '../data/site';
   </section>
 </Base>
 
+<style>
+  /* Die Seite hatte keinerlei eigene Styles: Badge und Buttons standen nackt untereinander */
+  .danke { min-height: 70vh; display: grid; place-items: center; }
+  .danke__badge {
+    width: 84px; height: 84px; margin: 0 auto 1.6rem; border-radius: 50%;
+    display: grid; place-items: center; color: #1a1208; background: var(--gold-grad);
+    box-shadow: 0 20px 50px -18px rgba(201, 163, 90, .6);
+  }
+  /* Der Haken springt rein: aus dem Absenden wird ein kleiner Moment, kein harter Cut */
+  @media (prefers-reduced-motion: no-preference) {
+    .danke__badge { animation: dankePop .5s cubic-bezier(.34, 1.56, .64, 1) both; }
+  }
+  @keyframes dankePop {
+    from { transform: scale(.6); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .danke__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: .9rem; margin-top: 2rem; }
+  .danke__contact { margin-top: 1.6rem; color: var(--muted); }
+  .danke__contact a { color: var(--gold-soft); border-bottom: 1px solid var(--line); }
+</style>
+

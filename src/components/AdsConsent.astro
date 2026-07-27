@@ -47,8 +47,15 @@ const packageValues = Object.fromEntries(packages.map((p) => [p.id, p.value]));
     position: fixed; left: clamp(16px, 3vw, 28px); bottom: clamp(16px, 3vw, 28px); z-index: 60;
     background: var(--surface); color: var(--muted-2); border: 1px solid var(--line-soft);
     border-radius: 999px; padding: .5rem .9rem; font: inherit; font-size: .78rem; cursor: pointer;
+    transition: opacity .3s, visibility .3s;
   }
   .consent-reopen:hover { color: var(--text); border-color: var(--line); }
+  /* Im Hero ausgeblendet: die Pille lag auf Mobil genau auf der Google-Bewertungszeile.
+     Sichtbar erst, wenn gescrollt wurde (data-scrolled setzt das Script unten). */
+  .consent-reopen:not([data-scrolled]) { opacity: 0; visibility: hidden; }
+  @media (max-width: 700px) {
+    .consent-reopen { font-size: .68rem; padding: .35rem .65rem; opacity: .8; }
+  }
 
   /* Solange das Banner steht, den WhatsApp-Button daruebersetzen statt verdecken */
   :global(body[data-consent-open] .wa-fab) { bottom: calc(clamp(16px, 3vw, 28px) + 128px); }
@@ -159,6 +166,16 @@ const packageValues = Object.fromEntries(packages.map((p) => [p.id, p.value]));
       closeBanner();
     });
     reopen.addEventListener('click', openBanner);
+
+    // Pille erst nach dem ersten Scroll zeigen: im Hero verdeckte sie das Google-Rating
+    const showReopen = () => {
+      if (window.scrollY > 300) {
+        reopen.setAttribute('data-scrolled', '');
+        window.removeEventListener('scroll', showReopen);
+      }
+    };
+    window.addEventListener('scroll', showReopen, { passive: true });
+    showReopen();
 
     if (consent === 'granted') { closeBanner(); loadTag(); sendConversion(); }
     else if (consent === 'denied') closeBanner();

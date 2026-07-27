@@ -1,48 +1,31 @@
 ---
-// Verfügbarkeitskalender, portiert aus der v1.
-// Die belegten Tage kommen aus dem öffentlichen iCloud-"Belegt"-Kalender und werden
-// serverseitig von /.netlify/functions/availability geliefert (umgeht CORS).
-// Ein Klick auf einen freien Tag übernimmt das Datum ins Anfrageformular.
+// Verfügbarkeitskalender als reine Karte, ohne eigene Sektion und Headline.
+// Seit dem Design-Review (27.07.2026) lebt er IN der Anfrage-Sektion (Contact.astro):
+// vorher standen Kalender und Formular als zwei Sektionen mit identischer Headline
+// untereinander. Klick auf einen freien Tag füllt das Datumsfeld im Formular daneben.
 //
-// Wie in der v1 blockiert eine Buchung Freitag bis Sonntag: Marvin ist um einen Gig
-// herum ohnehin nicht verfügbar. Die Verbreiterung passiert clientseitig, damit der
-// Kalender selbst bei unsauber gepflegten Terminen konsistent aussieht.
-interface Props {
-  /** Präpositional-Form für die Überschrift, z. B. "in Bremen" */
-  cityIn?: string;
-}
-const { cityIn } = Astro.props;
-
+// Die belegten Tage liefert /.netlify/functions/availability (ICS-Feed serverseitig,
+// Adresse aus der Netlify-Variable CALENDAR_ICS_URL). Blockiert werden genau die
+// Tage, die im Kalender stehen.
 const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 ---
-<section class="section verfuegbarkeit" id="verfuegbarkeit">
-  <div class="wrap center">
-    <p class="eyebrow">Verfügbarkeit</p>
-    <h2>Ist euer Termin{cityIn ? ` ${cityIn}` : ''} noch <span class="gold-text">frei?</span></h2>
-    <p class="lead center">Grau heißt belegt. Tippt auf einen freien Tag, dann steht er direkt in eurer Anfrage.</p>
-
-    <div class="card cal reveal" aria-live="polite">
-      <div class="cal__bar">
-        <button class="cal__nav" type="button" data-cal-prev aria-label="Voriger Monat">‹</button>
-        <span class="cal__title" data-cal-title>…</span>
-        <button class="cal__nav" type="button" data-cal-next aria-label="Nächster Monat">›</button>
-      </div>
-      <div class="cal__weekdays">{weekdays.map((w) => <span>{w}</span>)}</div>
-      <div class="cal__grid" data-cal-grid></div>
-      <div class="cal__legend">
-        <span><i class="cal__sw cal__sw--free"></i> frei</span>
-        <span><i class="cal__sw cal__sw--busy"></i> belegt</span>
-      </div>
-      <p class="cal__note">Ohne Gewähr: Der Kalender zeigt meinen Planungsstand. Verbindlich wird ein Termin erst mit meiner Zusage.</p>
-    </div>
+<div class="card cal" aria-live="polite">
+  <div class="cal__bar">
+    <button class="cal__nav" type="button" data-cal-prev aria-label="Voriger Monat">‹</button>
+    <span class="cal__title" data-cal-title>…</span>
+    <button class="cal__nav" type="button" data-cal-next aria-label="Nächster Monat">›</button>
   </div>
-</section>
+  <div class="cal__weekdays">{weekdays.map((w) => <span>{w}</span>)}</div>
+  <div class="cal__grid" data-cal-grid></div>
+  <div class="cal__legend">
+    <span><i class="cal__sw cal__sw--free"></i> frei – antippen übernimmt das Datum</span>
+    <span><i class="cal__sw cal__sw--busy"></i> belegt</span>
+  </div>
+  <p class="cal__note">Ohne Gewähr: Der Kalender zeigt meinen Planungsstand. Verbindlich wird ein Termin erst mit meiner Zusage.</p>
+</div>
 
 <style>
-  .verfuegbarkeit { background: var(--bg-2); }
-  /* Quadratische Zellen: die Kartenbreite bestimmt direkt die Höhe des Kalenders.
-     Über ~480px wird das Raster unnötig wuchtig. */
-  .cal { max-width: 480px; margin: clamp(28px, 5vw, 48px) auto 0; }
+  .cal { max-width: 480px; }
   .cal__bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
   .cal__title { font-family: var(--ff-display); font-size: 1.25rem; }
   .cal__nav {
@@ -74,10 +57,13 @@ const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
   .cal__grid :global(.cal__day--free:focus-visible) { border-color: var(--gold); background: rgba(201, 163, 90, .1); }
   .cal__grid :global(.cal__day--today) { box-shadow: inset 0 0 0 1px var(--gold); }
 
-  .cal__legend { display: flex; justify-content: center; gap: 1.4rem; margin-top: 1.2rem; font-size: .85rem; color: var(--muted); }
-  .cal__sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: .4rem; }
-  .cal__sw--free { border: 1px solid var(--line); }
-  .cal__sw--busy { background: var(--surface-2); }
+  /* Legende: erklärt das Kerninteraktionsmuster und muss auf einen Blick sitzen.
+     Vorher waren die Swatches auf dem dunklen Grund praktisch unsichtbar. */
+  .cal__legend { display: grid; gap: .45rem; margin-top: 1.2rem; font-size: .85rem; color: var(--muted); }
+  .cal__sw { display: inline-grid; place-items: center; width: 15px; height: 15px; border-radius: 4px; vertical-align: -2px; margin-right: .45rem; }
+  .cal__sw--free { border: 1.5px solid var(--gold); opacity: .75; }
+  .cal__sw--busy { background: var(--surface-2); border: 1px solid var(--line-soft); position: relative; }
+  .cal__sw--busy::after { content: ''; width: 9px; height: 1.5px; background: var(--muted-2); }
   .cal__note { margin: 1rem 0 0; font-size: .8rem; color: var(--muted-2); }
 
   /* Kurz aufleuchten, wenn ein Datum aus dem Kalender uebernommen wurde */
@@ -100,7 +86,7 @@ const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
     const view = new Date(today.getFullYear(), today.getMonth(), 1);
     const firstMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
-    // Der Kalender zeigt genau die Tage, die im Google-Kalender stehen. Die v1 hat
+    // Der Kalender zeigt genau die Tage, die im Kalender-Feed stehen. Die v1 hat
     // jede Wochenendbuchung auf Fr–So ausgeweitet; das blockierte doppelt so viele
     // Tage wie tatsächlich vergeben. Wer ein ganzes Wochenende freihalten will,
     // trägt es im Kalender als mehrtägigen Termin ein.
@@ -162,7 +148,7 @@ const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
     render(); // sofort anzeigen, Belegung kommt nach
     fetch('/.netlify/functions/availability')
       .then((r) => r.json())
-      .then((d) => { busy = new Set<string>(d.busy || []); render(); })
+      .then((d) => { busy = new Set(d.busy || []); render(); })
       .catch(() => { /* bei Fehler bleibt alles "frei" */ });
   })();
 </script>

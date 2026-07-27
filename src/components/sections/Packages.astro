@@ -59,8 +59,12 @@ import { Image } from 'astro:assets';
      hoch, weil sie verschieden viele Features haben, und die Buttons stehen versetzt.
      Zusammen mit flex:1 auf .pkg__features sitzt der Button jetzt überall unten. */
   .pkg-grid { margin-top: clamp(32px, 5vw, 56px); }
-  .pkg { position: relative; display: flex; flex-direction: column; }
+  /* Hover-Lift: die Karten sollen sich physisch anfühlen, nicht wie Fläche */
+  .pkg { position: relative; display: flex; flex-direction: column; transition: transform .25s ease, box-shadow .25s ease; }
+  .pkg:hover { transform: translateY(-4px); box-shadow: 0 28px 60px -28px rgba(0,0,0,.85); }
   .pkg--hot { border-color: var(--gold); box-shadow: 0 20px 50px -24px rgba(201,163,90,.5); }
+  .pkg--hot:hover { box-shadow: 0 30px 64px -26px rgba(201,163,90,.55); }
+  @media (prefers-reduced-motion: reduce) { .pkg, .pkg:hover { transform: none; transition: none; } }
   .pkg__flag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold-grad); color: #1a1208; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 100px; }
   .pkg__img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: var(--r); margin-bottom: 1.1rem; }
   /* Zielgruppe zuerst: die Frage "welches Paket ist meins" soll die Karte sofort beantworten */

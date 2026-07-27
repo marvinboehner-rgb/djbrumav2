@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import Contact from '../../components/sections/Contact.astro';
-import Availability from '../../components/sections/Availability.astro';
 import Testimonials from '../../components/sections/Testimonials.astro';
 import Stats from '../../components/sections/Stats.astro';
 import { site, whatsappUrl, ratingLabel } from '../../data/site';
@@ -151,8 +150,6 @@ const localFaqs = city.destFaqs ?? city.cityFaqs ?? faqs.slice(0, 4);
   <Testimonials />
   <Stats />
 
-  <Availability cityIn={city.inCity} />
-
   <!-- Formular direkt auf der Stadtseite: Lead bleibt im Kontext, Stadt ist vorausgefüllt -->
   <Contact city={city.name} cityIn={city.inCity} />
 </Base>
@@ -177,7 +174,9 @@ const localFaqs = city.destFaqs ?? city.cityFaqs ?? faqs.slice(0, 4);
   .loc-body { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
   .loc-body p { color: var(--muted); }
   .loc-venues-h { margin-top: 1.8rem; }
-  .loc-venues { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: .7rem; }
+  /* Zwei Spalten: elf Locations untereinander kosten sonst eine halbe Bildschirmseite Scroll */
+  .loc-venues { list-style: none; padding: 0; margin: 1rem 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem 1.5rem; }
+  @media (max-width: 560px) { .loc-venues { grid-template-columns: 1fr; } }
   .loc-venues li { display: flex; align-items: center; gap: .6rem; }
   .loc-venues :global(svg) { color: var(--gold); flex: none; }
   .loc-venues-note { font-size: .95rem; }

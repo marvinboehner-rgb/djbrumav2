@@ -26,6 +26,7 @@ import { Image } from 'astro:assets';
   .shots__grid :global(img) {
     width: 100%; border-radius: var(--r); margin-bottom: clamp(12px, 2vw, 20px);
     border: 1px solid var(--line-soft);
+    background: var(--surface-2); /* Platzhalter, solange das Lazy-Bild lädt */
   }
   @media (max-width: 760px) { .shots__grid { columns: 2; } }
   @media (max-width: 460px) { .shots__grid { columns: 1; } }

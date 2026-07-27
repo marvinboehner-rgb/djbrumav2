@@ -1,6 +1,12 @@
 ---
 import { playlists } from '../../data/playlists';
+import { setPhases } from '../../data/content';
 import Icon from '../Icon.astro';
+
+// Phasen-Chips über den Karten: gefüllte Phasen gold, offene gedimmt mit "folgt".
+// Macht aus "da fehlt was" ein "da kommt was", solange nur Peak gefüllt ist.
+const filled = new Set(playlists.map((p) => p.phase));
+const chips = setPhases.map((s) => ({ phase: s.phase, done: filled.has(s.phase) }));
 ---
 <section class="section playlists" id="musik">
   <div class="wrap">
@@ -12,6 +18,14 @@ import Icon from '../Icon.astro';
         Getrennt nach Phasen, damit ihr seht: Zum Sektempfang läuft etwas völlig anderes
         als um halb eins.
       </p>
+    </div>
+
+    <div class="pl-phases reveal" role="list" aria-label="Set-Phasen">
+      {chips.map((c) => (
+        <span class={`pl-chip${c.done ? ' pl-chip--done' : ''}`} role="listitem">
+          {c.phase}{!c.done && <small> · folgt</small>}
+        </span>
+      ))}
     </div>
 
     <div class="pl-grid">
@@ -43,6 +57,17 @@ import Icon from '../Icon.astro';
 
 <style>
   .playlists { background: var(--bg-2); }
+  .pl-phases {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem;
+    margin-top: clamp(24px, 3vw, 36px);
+  }
+  .pl-chip {
+    font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    padding: .4rem .95rem; border-radius: 999px;
+    color: var(--muted-2); border: 1px solid var(--line-soft);
+  }
+  .pl-chip small { font-size: .68rem; letter-spacing: .08em; text-transform: none; }
+  .pl-chip--done { color: #1a1208; background: var(--gold-grad); border-color: transparent; }
   .pl-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 420px));
     justify-content: center; gap: clamp(18px, 2.5vw, 28px);
