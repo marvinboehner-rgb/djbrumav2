@@ -56,6 +56,7 @@ export const site = {
     { label: 'Eindrücke', href: '/#eindruecke' },
     { label: 'Referenzen', href: '/#referenzen' },
     { label: 'FAQ', href: '/#faq' },
+    { label: 'Verfügbarkeit', href: '/#verfuegbarkeit' },
   ],
 } as const;
 
