@@ -1,12 +1,19 @@
 ---
+// Layout nach dem Vorbild der v1 (Entscheidung Marvin, 26.07.2026): hohes 4:5-Bild
+// links mit Gold-Badge "aktiv in Bremen & Frankfurt", Text rechts.
+// Die Texte bleiben die entschwurbelten aus der v2, nur Rahmen und Bild sind v1.
 import Icon from '../Icon.astro';
 import { Image } from 'astro:assets';
-import portraitImage from '../../assets/images/portrait.jpg';
+import aboutImage from '../../assets/images/gal-1.jpg';
 ---
 <section class="section" id="ueber-mich">
   <div class="wrap about">
     <div class="about__media reveal">
-      <Image src={portraitImage} alt="DJ Bruma, Marvin am DJ-Pult" widths={[320, 480, 720]} sizes="(max-width: 760px) min(100vw - 40px, 380px), 38vw" format="webp" quality={78} loading="lazy" />
+      <Image src={aboutImage} alt="DJ Bruma, Marvin am DJ-Pult" widths={[420, 640, 900]} sizes="(max-width: 760px) min(100vw - 40px, 440px), 40vw" format="webp" quality={78} loading="lazy" />
+      <div class="about__badge">
+        <span class="about__badge-line">aktiv in</span>
+        <span class="about__badge-big">Bremen &amp; Frankfurt</span>
+      </div>
     </div>
     <div class="about__text reveal">
       <p class="eyebrow">Das bin ich, Marvin</p>
@@ -34,13 +41,28 @@ import portraitImage from '../../assets/images/portrait.jpg';
 </section>
 
 <style>
-  .about { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
-  .about__media img { border-radius: var(--r-lg); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .about { display: grid; grid-template-columns: .85fr 1fr; gap: clamp(2rem, 6vw, 5.5rem); align-items: center; }
+  /* 4:5 wie in der v1: das Bild steht als hohe Tafel neben dem Text, nicht als Kachel */
+  .about__media { position: relative; aspect-ratio: 4/5; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .about__media :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 60% center; transition: transform .8s cubic-bezier(.2, .7, .2, 1); }
+  .about__media:hover :global(img) { transform: scale(1.04); }
+  .about__badge {
+    position: absolute; right: 14px; bottom: 20px; background: var(--gold); color: #1a1410;
+    padding: .9rem 1.4rem; border-radius: 10px; text-align: center; line-height: 1;
+    box-shadow: 0 18px 40px -14px rgba(0, 0, 0, .7);
+  }
+  .about__badge-line { display: block; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; opacity: .8; }
+  .about__badge-big { display: block; font-family: var(--ff-display); font-size: 1.4rem; font-weight: 600; margin-top: 4px; }
   /* Untertitel: eigene Stufe zwischen Ueberschrift und Fliesstext, sonst liest
      er sich wie ein weiterer Absatz */
   .about__text .lead { font-size: clamp(1.16rem, 1.5vw, 1.3rem); color: var(--text); opacity: .9; margin-top: .8rem; line-height: 1.45; }
   .about__points { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: .8rem; }
   .about__points li { display: flex; align-items: center; gap: .7rem; }
   .about__points :global(svg) { color: var(--gold); flex: none; }
-  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } .about__media { max-width: 380px; } }
+  @media (max-width: 760px) {
+    .about { grid-template-columns: 1fr; }
+    .about__media { max-width: 440px; }
+    .about__badge { right: 8px; bottom: 10px; padding: .7rem 1.1rem; }
+    .about__badge-big { font-size: 1.15rem; }
+  }
 </style>

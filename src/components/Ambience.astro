@@ -1,0 +1,88 @@
+---
+// Seitenweite Ambiente-Effekte (Wunsch Marvin, 26.07.2026):
+//   1. Goldstaub: schwebende Partikel, 1:1 aus der v1 portiert (script.js/styles.css).
+//   2. Pulsierender Goldrand um den Viewport. Den gab es in der v1 NICHT — der
+//      "Rahmen", den Marvin dort gesehen hat, war die Claude-Chrome-Erweiterung.
+//      Hier als bewusst dezenter Neubau: schmaler Verlaufsrand, der langsam atmet.
+// Beides ist reine Deko: pointer-events none, aria-hidden, und bei
+// prefers-reduced-motion (Systemeinstellung "Bewegung reduzieren") komplett aus.
+---
+<div class="frame" aria-hidden="true"></div>
+<div class="frame-glow" aria-hidden="true"></div>
+
+<style>
+  .frame {
+    position: fixed; inset: 0; z-index: 210; pointer-events: none;
+    border-radius: 0;
+    /* Verlaufsrand statt Volltonlinie: in den Ecken präsent, an den Kanten fast weg */
+    padding: 1px;
+    background:
+      linear-gradient(135deg, rgba(201,163,90,.5), rgba(201,163,90,.06) 30%, rgba(201,163,90,.06) 70%, rgba(201,163,90,.5)) border-box;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: .55;
+  }
+  /* Weicher Schein nach innen: die 1px-Linie allein ist auf großen Displays kaum
+     sichtbar. Eigenes Element, weil die Maske der .frame jeden Schatten mitkappen
+     würde. Atmet gegenphasig mit derselben Kurve. */
+  .frame-glow {
+    position: fixed; inset: 0; z-index: 209; pointer-events: none;
+    box-shadow: inset 0 0 90px -50px rgba(201, 163, 90, .55);
+    opacity: .6;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .frame { animation: frameBreathe 7s ease-in-out infinite; }
+    .frame-glow { animation: frameBreathe 7s ease-in-out infinite; }
+  }
+  @keyframes frameBreathe {
+    0%, 100% { opacity: .35; }
+    50%      { opacity: .7; }
+  }
+
+  /* Goldstaub-Partikel (aus der v1). Die <i>-Elemente entstehen per JS und brauchen
+     deshalb :global(), sonst greift Astros Scoped-CSS nicht (gleiche Falle wie beim
+     Kalender). */
+  :global(.dust) {
+    position: fixed; inset: 0;
+    z-index: 4; pointer-events: none; overflow: hidden;
+  }
+  :global(.dust i) {
+    position: absolute; display: block; border-radius: 50%;
+    background: radial-gradient(circle, rgba(216,189,134,.85), rgba(216,189,134,0) 70%);
+    box-shadow: 0 0 6px rgba(216,189,134,.45);
+    opacity: 0;
+    animation: dustFloat var(--dur) linear var(--delay) infinite;
+  }
+  @keyframes dustFloat {
+    0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+    12%  { opacity: var(--op); }
+    85%  { opacity: var(--op); }
+    100% { transform: translate3d(var(--dx), -48vh, 0); opacity: 0; }
+  }
+</style>
+
+<script>
+  // Goldstaub: schwebende Partikel über der ganzen Seite (aus der v1 übernommen)
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const host = document.createElement('div');
+    host.className = 'dust';
+    host.setAttribute('aria-hidden', 'true');
+    const count = window.innerWidth < 768 ? 10 : 18; // mobil sparsamer
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('i');
+      const size = (2 + Math.random() * 3.5).toFixed(1);
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = (Math.random() * 100).toFixed(1) + '%';
+      p.style.top = (12 + Math.random() * 88).toFixed(1) + '%';
+      p.style.setProperty('--dur', (16 + Math.random() * 16).toFixed(1) + 's');
+      p.style.setProperty('--delay', (-Math.random() * 32).toFixed(1) + 's');
+      p.style.setProperty('--dx', (Math.random() * 120 - 60).toFixed(0) + 'px');
+      p.style.setProperty('--op', (0.22 + Math.random() * 0.3).toFixed(2));
+      host.appendChild(p);
+    }
+    document.body.appendChild(host);
+  }
+</script>
