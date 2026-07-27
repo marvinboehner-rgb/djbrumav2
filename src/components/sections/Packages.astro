@@ -12,11 +12,11 @@ import { Image } from 'astro:assets';
     </div>
 
     <div class="grid grid-3 pkg-grid">
-      {packages.map((p, i) => (
+      {packages.map((p) => (
         <article class={`card pkg reveal${p.highlighted ? ' pkg--hot' : ''}`}>
           {p.highlighted && <span class="pkg__flag">Beliebteste Wahl</span>}
           <Image class="pkg__img" src={p.image} alt="" widths={[320, 480, 720]} sizes="(max-width: 760px) 100vw, 33vw" format="webp" quality={76} loading="lazy" />
-          <span class="pkg__track">Track {String(i + 1).padStart(2, '0')} · {p.audience}</span>
+          <span class="pkg__audience">{p.audience}</span>
           <h3>{p.name}</h3>
           <div class="pkg__price gold-text">{p.price}</div>
           <p class="pkg__tag">{p.tagline}</p>
@@ -80,8 +80,8 @@ import { Image } from 'astro:assets';
   .pkg--hot { border-color: var(--gold); box-shadow: 0 20px 50px -24px rgba(201,163,90,.5); }
   .pkg__flag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold-grad); color: #1a1208; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .35rem .9rem; border-radius: 100px; }
   .pkg__img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: var(--r); margin-bottom: 1.1rem; }
-  /* Setlist-Metapher: Paketnamen sind Songs → Track-Nummern tragen echte Bedeutung */
-  .pkg__track { font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
+  /* Zielgruppe zuerst: die Frage "welches Paket ist meins" soll die Karte sofort beantworten */
+  .pkg__audience { font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
   .pkg__price { font-family: var(--ff-display); font-size: 1.9rem; font-weight: 600; }
   .pkg__tag { color: var(--muted); margin: .2rem 0 1rem; }
   .pkg__features { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: .6rem; flex: 1; }
