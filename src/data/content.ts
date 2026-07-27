@@ -2,10 +2,7 @@
 import priceBarn from '../assets/images/price-barn.jpg';
 import priceLoud from '../assets/images/price-loud.jpg';
 import priceSky from '../assets/images/price-sky.jpg';
-import addonFotobox from '../assets/images/addon-fotobox.jpg';
-import addonTrauung from '../assets/images/addon-trauung.jpg';
-import addonAmbiente from '../assets/images/addon-ambiente.jpg';
-import addonBierzelt from '../assets/images/addon-bierzelt.jpg';
+import videoThumb from '../assets/images/video-thumb.jpg';
 import gallery1 from '../assets/images/gal-1.jpg';
 import gallery2 from '../assets/images/gal-2.jpg';
 import gallery3 from '../assets/images/gal-3.jpg';
@@ -56,8 +53,8 @@ export const packages = [
     id: 'loud',
     name: "Let's get loud",
     audience: 'Hochzeit',
-    price: 'ab 1.400 €',
-    value: 1400,
+    price: 'ab 1.200 €',
+    value: 1200,
 
     image: priceLoud,
     tagline: 'Der Allrounder für die klassische Hochzeit',
@@ -89,13 +86,9 @@ export const packagesInclude = [
   'Ersatz-Player, Kabel & Mikrofon dabei',
 ];
 
-// Preise aus der v1 übernommen (Stand 2026-07).
-export const addons = [
-  { name: 'Fotobox', price: 'ab 259 €', image: addonFotobox, text: 'Großer 21-Zoll-Screen, kinderleichte Bedienung, unbegrenzt Fotos. Alle Bilder per USB-Stick und passwortgeschützter Online-Galerie.' },
-  { name: 'Freie Trauung', price: 'ab 100 €', image: addonTrauung, text: 'Zusatz-Lautsprecher und Funkmikro für die Zeremonie, inklusive technischer Begleitung von Live-Gesang und Musik. Auf- und Abbau übernehme ich.' },
-  { name: 'Ambientebeleuchtung', price: 'ab 150 €', image: addonAmbiente, text: '8 LED-Akku-Spots setzen Wände und Elemente warm in Szene, ganz ohne Kabelsalat. Farbe nach Wunsch. Im großen Paket bereits enthalten.' },
-  { name: 'Bierzeltgarnitur', price: 'auf Anfrage', image: addonBierzelt, text: 'Klassische Garnituren mit Tischen und Bänken plus elegante Stehtische. Wetterfeste Sitz- und Stehmöglichkeiten für drinnen und draußen.' },
-];
+// Zusatzoptionen (Fotobox, Freie Trauung, Ambientebeleuchtung, Bierzeltgarnitur)
+// bewusst entfernt (26.07.2026, Entscheidung Marvin). Die Bilder dazu liegen noch
+// im Repo, falls der Abschnitt zurückkommen soll.
 
 // Preis-Klarheit: die Fragen, die Brautpaare sonst per Mail stellen (Stand 2026-07)
 export const priceNotes = [
@@ -149,7 +142,23 @@ export const gallery = [
   gallery4, gallery5, gallery6,
 ];
 
-// YouTube-Videos (echte IDs aus der bestehenden Site)
+// Video-Sektion nach dem Vorbild der v1: ein großes Hauptvideo, darunter sechs
+// Gig-Logs als Kacheln. Die Titel sind der eigentliche Punkt, ohne sie sind es
+// nur austauschbare Vorschaubilder.
+export const featuredVideo = {
+  id: 'tgujXrBPad8',
+  start: 7, // erste Sekunden sind Vorlauf
+  thumb: videoThumb,
+  alt: 'DJ Bruma beim Live-Mitschnitt eines Hochzeits-Gigs bei Frankfurt',
+  caption: 'Live erleben: ein Hochzeits-Gig bei Frankfurt',
+};
+
+// Thumbnails liegen unter public/images/yt/<id>.jpg
 export const videos = [
-  'I_xEZ1UAY24', 'szUK5Oyuelw', 'gOSDOxrBiGY',
+  { id: 'K1c21IPscyE', title: 'Traumhafte Hochzeit im Gewächshaus – Frankfurt', alt: 'Hochzeit im Gewächshaus bei Frankfurt' },
+  { id: 'lzDjIEZvGFo', title: '450 Leute eskalieren – Abiball Bremen, 20.000 €-Setup', alt: 'Abiball in Bremen mit großem DJ-Setup' },
+  { id: 'gOSDOxrBiGY', title: 'Hochzeit in Bremen – Retro 80er/90er Vibes', alt: 'Retro-Hochzeit in Bremen' },
+  { id: 'szUK5Oyuelw', title: 'Himmelfahrt Oldenburg – große Outdoor-Party', alt: 'Outdoor-Party an Himmelfahrt in Oldenburg' },
+  { id: 'I_xEZ1UAY24', title: 'Mein erster Gig Log – Hochzeit mit 12.000 €-Setup', alt: 'Erster Gig Log auf einer Hochzeit' },
+  { id: '_h_imJV7wxQ', title: 'Yearmix – Future House Live-Set', alt: 'Live DJ-Set Future House' },
 ];

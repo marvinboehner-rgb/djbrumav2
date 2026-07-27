@@ -1,5 +1,5 @@
 ---
-import { packages, packagesInclude, addons, priceNotes } from '../../data/content';
+import { packages, packagesInclude, priceNotes } from '../../data/content';
 import Icon from '../Icon.astro';
 import { Image } from 'astro:assets';
 ---
@@ -51,23 +51,6 @@ import { Image } from 'astro:assets';
       </dl>
     </div>
 
-    <div class="addons">
-      <h3 class="center">Zusatzoptionen zu den Paketen</h3>
-      <div class="grid grid-4 addon-grid">
-        {addons.map((a) => (
-          <article class="addon reveal">
-            <Image class="addon__img" src={a.image} alt="" widths={[240, 360, 520]} sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 25vw" format="webp" quality={74} loading="lazy" />
-            <div class="addon__body">
-              <div class="addon__head">
-                <h4>{a.name}</h4>
-                <span class="addon__price">{a.price}</span>
-              </div>
-              <p>{a.text}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
   </div>
 </section>
 
@@ -102,14 +85,4 @@ import { Image } from 'astro:assets';
   .pricenote dt { color: var(--gold); font-weight: 700; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: .35rem; }
   .pricenote dd { margin: 0; color: var(--muted); font-size: .96rem; }
   @media (max-width: 700px) { .pricenotes__list { grid-template-columns: 1fr; } }
-
-  .addons { margin-top: clamp(48px, 6vw, 72px); }
-  .addon-grid { margin-top: 1.6rem; }
-  .addon { background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--r); overflow: hidden; }
-  .addon__img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
-  .addon__body { padding: 1rem 1.1rem 1.2rem; }
-  .addon__head { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; }
-  .addon__price { color: var(--gold); font-weight: 700; font-size: .85rem; white-space: nowrap; }
-  .addon__body h4 { font-family: var(--ff-body); font-weight: 700; margin-bottom: .3rem; }
-  .addon__body p { color: var(--muted); font-size: .9rem; margin: 0; }
 </style>

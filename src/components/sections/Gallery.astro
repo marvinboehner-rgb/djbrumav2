@@ -1,5 +1,9 @@
 ---
-import { gallery, videos } from '../../data/content';
+// Video-Sektion nach dem Vorbild der v1: ein großes Hauptvideo mit Bildunterschrift
+// und YouTube-Link, darunter sechs Gig-Logs als betitelte Kacheln.
+// Die Fotos stehen bewusst in einer eigenen Sektion (Shots.astro), nicht hier dazwischen.
+import { featuredVideo, videos } from '../../data/content';
+import { site } from '../../data/site';
 import Icon from '../Icon.astro';
 import { Image } from 'astro:assets';
 ---
@@ -8,47 +12,107 @@ import { Image } from 'astro:assets';
     <div class="center">
       <p class="eyebrow">Eindrücke</p>
       <h2>Momente von <span class="gold-text">echten Events.</span></h2>
+      <p class="lead center">Echte Gig-Logs von Hochzeiten, Abibällen und Partys. Schaut rein.</p>
     </div>
 
-    <!-- Video-Vorschau (echte YouTube-Videos, click-to-load = performant) -->
-    <div class="videos reveal">
-      {videos.map((id) => (
-        <button class="video" data-yt={id} aria-label="Video abspielen">
-          <img src={`/images/yt/${id}.jpg`} alt="Video-Vorschau von einem Event" width="480" height="270" loading="lazy" />
-          <span class="video__play"><Icon name="play" size={40} /></span>
-        </button>
+    <!-- Hauptvideo. YouTube lädt erst auf Klick, vorher geht kein Request an Google. -->
+    <div class="feature reveal">
+      <button class="feature__btn" type="button" data-yt={featuredVideo.id} data-start={featuredVideo.start} aria-label={`Video abspielen: ${featuredVideo.caption}`}>
+        <Image src={featuredVideo.thumb} alt={featuredVideo.alt} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 900px" format="webp" quality={78} loading="lazy" />
+        <span class="feature__play"><Icon name="play-fill" size={34} /></span>
+      </button>
+      <div class="feature__bar">
+        <p class="feature__caption"><Icon name="headphones" size={18} /> {featuredVideo.caption}</p>
+        <a class="feature__link" href={site.social.youtube} target="_blank" rel="noopener">Mehr Videos auf YouTube <Icon name="arrow" size={16} /></a>
+      </div>
+    </div>
+
+    <div class="vgrid">
+      {videos.map((v) => (
+        <div class="vtile reveal">
+          <button class="vtile__btn" type="button" data-yt={v.id} aria-label={`Video abspielen: ${v.title}`}>
+            <img src={`/images/yt/${v.id}.jpg`} alt={v.alt} width="480" height="270" loading="lazy" />
+            <span class="vtile__play"><Icon name="play-fill" size={22} /></span>
+          </button>
+          <p class="vtile__title">{v.title}</p>
+        </div>
       ))}
     </div>
 
-    <div class="masonry">
-      {gallery.map((src, i) => (
-        <Image class="reveal" src={src} alt={`Eindruck von einem DJ-Bruma-Event ${i + 1}`} widths={[320, 480, 720]} sizes="(max-width: 460px) 100vw, (max-width: 760px) 50vw, 33vw" format="webp" quality={76} loading="lazy" />
-      ))}
-    </div>
+    <a class="ig-cta reveal" href={site.social.instagram} target="_blank" rel="noopener">
+      <Icon name="instagram" size={22} />
+      <span>Noch mehr Eindrücke? Folge mir auf Instagram <strong>@dj.bruma</strong></span>
+    </a>
   </div>
 </section>
 
 <style>
-  .videos { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2vw, 20px); margin: clamp(28px, 4vw, 48px) 0; }
-  .video { position: relative; border: 0; padding: 0; cursor: pointer; border-radius: var(--r); overflow: hidden; aspect-ratio: 16/9; background: var(--surface); }
-  .video img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
-  .video:hover img { transform: scale(1.06); }
-  .video__play { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; background: rgba(12,10,8,.25); }
-  .video__play :global(svg) { filter: drop-shadow(0 4px 12px rgba(0,0,0,.6)); }
-  .masonry { columns: 3; column-gap: clamp(12px, 2vw, 20px); }
-  .masonry img { width: 100%; border-radius: var(--r); margin-bottom: clamp(12px, 2vw, 20px); border: 1px solid var(--line-soft); }
-  @media (max-width: 760px) { .videos { grid-template-columns: 1fr; } .masonry { columns: 2; } }
-  @media (max-width: 460px) { .masonry { columns: 1; } }
+  .feature { max-width: 900px; margin: clamp(28px, 4vw, 48px) auto 0; }
+  .feature__btn {
+    position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--line-soft);
+    border-radius: var(--r-lg); overflow: hidden; cursor: pointer; background: var(--surface);
+    aspect-ratio: 16/9;
+  }
+  .feature__btn :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .feature__btn:hover :global(img) { transform: scale(1.03); }
+  .feature__play {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    color: #1a1208; background: rgba(12, 10, 8, .2);
+  }
+  /* content-box ist Pflicht: das SVG hat feste width/height, mit dem global gesetzten
+     border-box würde das Padding den Icon-Inhalt auf null quetschen und es bliebe
+     nur ein leerer goldener Kreis übrig. */
+  .feature__play :global(svg) {
+    box-sizing: content-box;
+    background: var(--gold-grad); border-radius: 50%; padding: 20px 18px 20px 22px;
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .8);
+    transition: transform .25s ease;
+  }
+  .feature__btn:hover .feature__play :global(svg) { transform: scale(1.08); }
+  .feature__bar {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    gap: .8rem; margin-top: 1rem;
+  }
+  .feature__caption { display: inline-flex; align-items: center; gap: .5rem; margin: 0; color: var(--muted); }
+  .feature__caption :global(svg) { color: var(--gold); flex: none; }
+  .feature__link { display: inline-flex; align-items: center; gap: .4rem; color: var(--gold-soft); border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+  .feature__link:hover { color: var(--gold); }
+
+  .vgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.5vw, 28px); margin-top: clamp(36px, 5vw, 60px); }
+  .vtile__btn {
+    position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--line-soft);
+    border-radius: var(--r); overflow: hidden; cursor: pointer; background: var(--surface); aspect-ratio: 16/9;
+  }
+  .vtile__btn img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  .vtile__btn:hover img { transform: scale(1.06); }
+  .vtile__play { position: absolute; inset: 0; display: grid; place-items: center; color: #1a1208; }
+  .vtile__play :global(svg) { box-sizing: content-box; background: var(--gold-grad); border-radius: 50%; padding: 14px 12px 14px 16px; box-shadow: 0 10px 26px -8px rgba(0,0,0,.8); transition: transform .25s ease; }
+  .vtile__btn:hover .vtile__play :global(svg) { transform: scale(1.1); }
+  .vtile__title { margin: .8rem 0 0; font-size: .95rem; color: var(--muted); }
+
+  .ig-cta {
+    display: inline-flex; align-items: center; gap: .8rem; margin-top: clamp(32px, 4vw, 48px);
+    padding: .9rem 1.4rem; border: 1px solid var(--line); border-radius: 100px;
+    color: var(--muted); transition: color .2s, border-color .2s;
+  }
+  .ig-cta:hover { color: var(--text); border-color: var(--gold); }
+  .ig-cta :global(svg) { color: var(--gold); flex: none; }
+  .ig-cta strong { color: var(--gold-soft); }
+
+  @media (max-width: 860px) { .vgrid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .vgrid { grid-template-columns: 1fr; } }
 </style>
 
 <script>
-  // YouTube erst bei Klick laden (kein Third-Party-Ballast beim ersten Render)
-  document.querySelectorAll('.video').forEach((btn) => {
+  // YouTube erst bei Klick laden: vorher geht kein Request an Google raus,
+  // das deckt sich mit der Aussage in der Datenschutzerklärung.
+  document.querySelectorAll('[data-yt]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-yt');
+      const start = btn.getAttribute('data-start');
       const iframe = document.createElement('iframe');
-      iframe.title = 'YouTube-Video: Eindrücke von einem DJ-Bruma-Event';
-      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = 'YouTube-Video von DJ Bruma';
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0${start ? `&start=${start}` : ''}`;
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.allowFullscreen = true;
       iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';

@@ -28,7 +28,7 @@ const FELDER = [
 // Google-Ads-Tracking den Wert zuordnen kann. In der Mail soll der Klarname stehen.
 const PAKET_NAMEN = {
   jagger: "Moves Like Jagger (ab 1.000 €)",
-  loud: "Let's get loud (ab 1.400 €)",
+  loud: "Let's get loud (ab 1.200 €)",
   sky: "A Sky Full Of Stars (ab 1.800 €)",
 };
 

@@ -30,7 +30,7 @@ Staging läuft auf <https://djbruma-v2.netlify.app>. Die Seite ist dort per
 | Pfad | Inhalt |
 | --- | --- |
 | `src/data/site.ts` | Kontaktdaten, Kennzahlen, Navigation |
-| `src/data/content.ts` | Leistungen, Pakete, Add-ons, FAQ, Referenzen |
+| `src/data/content.ts` | Leistungen, Pakete, Videos, FAQ, Referenzen |
 | `src/data/cities.ts` | Städte- und Destination-Seiten samt Locations und FAQs |
 | `src/data/playlists.ts` | Spotify-Playlists nach Set-Phase |
 | `src/data/ads.ts` | Google-Ads-Conversion-Tracking |
@@ -77,7 +77,7 @@ unveränderter Conversion-ID, damit die Historie in Google Ads nicht abreißt.
 - Vor der Einwilligung wird **kein** Google-Skript geladen, nicht nur kein Cookie gesetzt.
 - Consent Mode startet auf `denied`, Werbepersonalisierung bleibt auch danach aus.
 - Die Conversion feuert auf `/danke` und trägt den gewählten Paketwert
-  (1000/1400/1800 €), damit Google auf Anfragewert statt Anfragezahl optimiert.
+  (1000/1200/1800 €), damit Google auf Anfragewert statt Anfragezahl optimiert.
 - `transaction_id` verhindert Doppelzählung beim Neuladen.
 
 Drittinhalte (YouTube, Spotify) laden ebenfalls erst auf Klick. Wer hier etwas

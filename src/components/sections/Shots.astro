@@ -1,0 +1,32 @@
+---
+// Fotos als eigener Abschnitt, getrennt von den Videos (Entscheidung Marvin, 26.07.2026).
+// Vorher lagen sie als Masonry direkt unter den Video-Kacheln und liefen dort optisch mit.
+import { gallery } from '../../data/content';
+import { Image } from 'astro:assets';
+---
+<section class="section shots" id="bilder">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">Bilder</p>
+      <h2>Wie das <span class="gold-text">aussieht.</span></h2>
+      <p class="lead center">Aufbauten und Momente von echten Feiern, quer durch Locations und Jahreszeiten.</p>
+    </div>
+
+    <div class="shots__grid">
+      {gallery.map((src, i) => (
+        <Image class="reveal" src={src} alt={`Eindruck von einem DJ-Bruma-Event ${i + 1}`} widths={[320, 480, 720]} sizes="(max-width: 460px) 100vw, (max-width: 760px) 50vw, 33vw" format="webp" quality={76} loading="lazy" />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .shots { background: var(--bg-2); }
+  .shots__grid { columns: 3; column-gap: clamp(12px, 2vw, 20px); margin-top: clamp(28px, 4vw, 48px); }
+  .shots__grid :global(img) {
+    width: 100%; border-radius: var(--r); margin-bottom: clamp(12px, 2vw, 20px);
+    border: 1px solid var(--line-soft);
+  }
+  @media (max-width: 760px) { .shots__grid { columns: 2; } }
+  @media (max-width: 460px) { .shots__grid { columns: 1; } }
+</style>
