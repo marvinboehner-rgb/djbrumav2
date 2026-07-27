@@ -52,7 +52,7 @@ export const cities: City[] = [
       { q: 'Was kostet ein Hochzeits-DJ in Frankfurt?', a: 'Meine Pakete für Hochzeiten und Events starten bei 1.000 €. Spielzeit, Gästezahl, Location und gewünschte Zusatztechnik bestimmen das passende Paket. Nach dem kostenlosen Vorgespräch bekommt ihr einen Festpreis, in dem jeder Posten einzeln steht.' },
       { q: 'Ist die Anfahrt innerhalb Frankfurts inklusive?', a: 'Ja. Frankfurt liegt im direkten Einsatzgebiet rund um meinen Standort in Bad Vilbel und damit innerhalb des inkludierten 50-km-Radius. Die Anfahrt und alle weiteren Posten stehen einzeln in eurem Angebot.' },
       { q: 'Kannst du internationale Gäste musikalisch abholen?', a: 'Ja. Gerade in Frankfurt treffen oft Gäste aus verschiedenen Ländern und Generationen zusammen. Wünsche und No-Gos klären wir vorher. Am Abend mische ich internationale Partytracks, Classics und eure Favoriten so, dass niemand das Gefühl hat, nur für die anderen dazusitzen.' },
-      { q: 'Welche Technik eignet sich für Rooftops und Locations am Main?', a: 'Rooftops und Schiffe haben ihre Eigenheiten: begrenzter Strom, enge Aufbaufenster, oft strengere Lautstärke-Grenzen. Das kläre ich vorher mit der Location und stelle die Anlage danach zusammen, Backup-Technik immer inklusive.' },
+      { q: 'Welche Technik eignet sich für Rooftops und Locations am Main?', a: 'Rooftops und Schiffe haben ihre Eigenheiten: begrenzter Strom, enge Aufbaufenster, oft strengere Lautstärke-Grenzen. Das kläre ich vorher mit der Location und stelle die Anlage danach zusammen, Ersatz für Player, Kabel und Mikro immer dabei.' },
     ],
   },
   {
@@ -100,14 +100,14 @@ export const cities: City[] = [
     local: 'Eine Hochzeit in der Toskana plant ihr über Monate. Spätestens nach dem dritten Telefonat auf Englisch versteht man, warum viele Paare wenigstens einen Dienstleister aus Deutschland dabeihaben wollen. Bei mir laufen Vorgespräch, Vertrag und Ausfall-Garantie so, wie ihr es von zu Hause kennt. Und mein Equipment fährt im Van mit, statt vor Ort gemietet zu werden.',
     venues: ['Weingüter im Chianti', 'Historische Villen & Borghi', 'Landgüter (Agriturismi)', 'Freie Trauungen im Olivenhain'],
     logistics: [
-      { title: 'Anreise & Equipment', text: 'Ich fahre mit dem Van und der kompletten Anlage nach Italien, Backup-Technik inklusive. Kein Verleih vor Ort, keine Überraschung am Anreisetag.' },
+      { title: 'Anreise & Equipment', text: 'Ich fahre mit dem Van und der kompletten Anlage nach Italien, Ersatzteile für Player, Kabel und Mikro inklusive. Kein Verleih vor Ort, keine Überraschung am Anreisetag.' },
       { title: 'Planung auf Deutsch', text: 'Vorgespräch per Video-Call, Vertrag und Ausfall-Garantie nach deutschem Recht. Ihr plant eure Auslandshochzeit in eurer Sprache.' },
       { title: 'Location-Abstimmung', text: 'Strom, Aufbauzeiten, Open-Air-Regeln: Ich stimme mich vorab direkt mit eurer Villa oder eurem Weingut ab.' },
       { title: 'Transparente Reisepauschale', text: 'Anreise und Übernachtung stehen als eigene Pauschale im Angebot. Ihr wisst vorher, was der Weg kostet.' },
     ],
     destFaqs: [
       { q: 'Was kostet ein DJ aus Deutschland für unsere Toskana-Hochzeit?', a: 'Ihr bucht eines meiner regulären Pakete (ab 1.000 €) plus eine Reisepauschale für Anreise und Übernachtung. Beides steht getrennt im Angebot, damit ihr Honorar und Weg auseinanderhalten könnt.' },
-      { q: 'Wie kommt die Technik nach Italien?', a: 'Im Van, komplett aus einer Hand: Sound, Licht, Mikrofone und Backup-Technik reisen mit mir. Ihr müsst nichts vor Ort organisieren und habt keine Verleih-Risiken.' },
+      { q: 'Wie kommt die Technik nach Italien?', a: 'Im Van, komplett aus einer Hand: Sound, Licht, Mikrofone und Ersatz für die kritischen Kleinteile reisen mit mir. Ihr müsst nichts vor Ort organisieren und habt keine Verleih-Risiken.' },
       { q: 'Wie früh sollten wir buchen?', a: 'Für Destination Weddings sind 12 bis 18 Monate Vorlauf realistisch. Die schönen Villen und Weingüter sind früh weg, und die Anreise will auch geplant sein.' },
       { q: 'Warum ein DJ aus Deutschland statt vor Ort?', a: 'Weil ihr in eurer Sprache planen könnt, der Vertrag deutschem Recht folgt und ich weiß, was bei euren Gästen läuft, von Oma bis Trauzeugin. Für internationale Gäste ist trotzdem gesorgt.' },
     ],
@@ -145,7 +145,7 @@ export const cities: City[] = [
     local: 'Vom Rhein-Main-Gebiet sind es gut vier Stunden an den See, und mein kompletter Bestand fährt im Van mit. Weingut über dem Ufer, historischer Saal in Konstanz, Zeltfeier mit Alpenblick: Am See wird viel draußen gefeiert, und draußen verhält sich Sound anders als in jedem Saal. Damit plane ich von vornherein. Feiern jenseits der Grenze in Österreich oder der Schweiz sind kein Problem.',
     venues: ['Weingüter mit Seeblick', 'Locations in Konstanz, Meersburg & Lindau', 'Historische Säle & Schlossgärten', 'Freie Trauungen am Ufer'],
     logistics: [
-      { title: 'Kurze Anreise, volles Setup', text: 'Aus dem Rhein-Main-Gebiet komme ich mit Van und kompletter Anlage, Backup-Technik inklusive.' },
+      { title: 'Kurze Anreise, volles Setup', text: 'Aus dem Rhein-Main-Gebiet komme ich mit Van und kompletter Anlage, Ersatz für Player, Kabel und Mikro inklusive.' },
       { title: 'Grenznah flexibel', text: 'Auch Vorarlberg, St. Gallen oder Thurgau: Grenznahe Locations in Österreich und der Schweiz begleite ich gerne.' },
       { title: 'Anfahrt nach Kilometern', text: 'Kein pauschaler Auslands- oder Fernaufschlag. Ich rechne 0,30 € pro Kilometer für die einfache Strecke ab Frankfurt, an den Bodensee sind das rund 105 €.' },
     ],
@@ -153,7 +153,7 @@ export const cities: City[] = [
       { q: 'Was kostet ein DJ aus dem Rhein-Main-Gebiet am Bodensee?', a: 'Ihr bucht eines meiner regulären Pakete (ab 1.000 €) plus Anfahrt: 0,30 € pro Kilometer für die einfache Strecke ab Frankfurt, an den Bodensee also rund 105 €. Eine Übernachtung weise ich separat aus, falls sie sinnvoll ist.' },
       { q: 'Spielst du auch in Österreich oder der Schweiz?', a: 'Ja, rund um den See spiele ich auch in Bregenz oder im Thurgau. Die Anreise ist dieselbe, und abgerechnet wird sie genauso.' },
       { q: 'Wie früh sollten wir buchen?', a: 'Die guten Sommertermine am See sind schnell weg. Neun bis zwölf Monate Vorlauf sind ideal, kurzfristig lohnt trotzdem die Anfrage.' },
-      { q: 'Bringst du dein komplettes Equipment mit?', a: 'Ja, alles kommt im Van mit: Sound, Licht, Funkmikrofone und Backup-Technik. Eure Location muss nur Strom stellen, den Rest kläre ich vorher mit dem Team vor Ort.' },
+      { q: 'Bringst du dein komplettes Equipment mit?', a: 'Ja, alles kommt im Van mit: Sound, Licht, Funkmikrofone und Ersatz für die kritischen Kleinteile. Eure Location muss nur Strom stellen, den Rest kläre ich vorher mit dem Team vor Ort.' },
     ],
   },
 ];

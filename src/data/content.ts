@@ -14,7 +14,7 @@ import gallery5 from '../assets/images/gal-5.jpg';
 import gallery6 from '../assets/images/gal-6.jpg';
 
 export const services = [
-  { icon: 'shield', title: 'Zuverlässig & professionell', text: 'Pünktlich da, vorbereitet und mit Ersatz für alles im Kofferraum. Dein Abend läuft.' },
+  { icon: 'shield', title: 'Zuverlässig & professionell', text: 'Pünktlich da, vorbereitet, und die störanfälligen Teile liegen ein zweites Mal im Kofferraum.' },
   { icon: 'speaker', title: 'Hochwertiger Sound', text: 'Sattes, klares Klangbild. Für die Scheune genauso wie für den Ballsaal.' },
   { icon: 'light', title: 'Erstklassige Lichttechnik', text: 'Warmes Licht zum Dinner, richtige Show, sobald getanzt wird.' },
   { icon: 'mic', title: 'Funk-Mikrofon für Ansprachen', text: 'Liegt bereit für Reden, Spiele und alles Spontane.' },
@@ -28,7 +28,7 @@ export const guarantee = {
   text: 'Sollte ich durch Krankheit oder Notfall wirklich einmal ausfallen, sorge ich über mein DJ-Netzwerk für gleichwertigen Ersatz, damit deine Feier auf keinen Fall ohne Musik dasteht.',
   points: [
     'Fester Backup-DJ im Netzwerk',
-    'Ersatz-Technik immer dabei',
+    'Ersatz-Player, Kabel & Mikro dabei',
     'Schriftliche Zusage im Vertrag',
   ],
 };
@@ -86,7 +86,7 @@ export const packagesInclude = [
   'Sennheiser Funkmikrofon',
   'Auf- & Abbau (ca. 1,5–2 Std. vorher)',
   'Kostenloses Vorgespräch per Video-Call',
-  'Ersatz-Technik für alles Kritische',
+  'Ersatz-Player, Kabel & Mikrofon dabei',
 ];
 
 // Preise aus der v1 übernommen (Stand 2026-07).
