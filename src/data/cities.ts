@@ -97,11 +97,11 @@ export const cities: City[] = [
     region: 'Toskana & Mittelitalien',
     destination: true,
     intro: 'Zypressen, warmes Abendlicht, eure Musik: Als DJ aus Deutschland komme ich mit in die Toskana, mit eigener Technik im Van und Planung auf Deutsch.',
-    local: 'Eine Hochzeit in der Toskana plant ihr über Monate. Spätestens nach dem dritten Telefonat auf Englisch versteht man, warum viele Paare wenigstens einen Dienstleister aus Deutschland dabeihaben wollen. Bei mir laufen Vorgespräch, Vertrag und Ausfall-Garantie so, wie ihr es von zu Hause kennt. Und mein Equipment fährt im Van mit, statt vor Ort gemietet zu werden.',
+    local: 'Eine Hochzeit in der Toskana plant ihr über Monate. Spätestens nach dem dritten Telefonat auf Englisch versteht man, warum viele Paare wenigstens einen Dienstleister aus Deutschland dabeihaben wollen. Bei mir laufen Vorgespräch, Vertrag und alle Absprachen so, wie ihr es von zu Hause kennt. Und mein Equipment fährt im Van mit, statt vor Ort gemietet zu werden.',
     venues: ['Weingüter im Chianti', 'Historische Villen & Borghi', 'Landgüter (Agriturismi)', 'Freie Trauungen im Olivenhain'],
     logistics: [
       { title: 'Anreise & Equipment', text: 'Ich fahre mit dem Van und der kompletten Anlage nach Italien, Ersatzteile für Player, Kabel und Mikro inklusive. Kein Verleih vor Ort, keine Überraschung am Anreisetag.' },
-      { title: 'Planung auf Deutsch', text: 'Vorgespräch per Video-Call, Vertrag und Ausfall-Garantie nach deutschem Recht. Ihr plant eure Auslandshochzeit in eurer Sprache.' },
+      { title: 'Planung auf Deutsch', text: 'Vorgespräch per Video-Call und Vertrag nach deutschem Recht. Ihr plant eure Auslandshochzeit in eurer Sprache.' },
       { title: 'Location-Abstimmung', text: 'Strom, Aufbauzeiten, Open-Air-Regeln: Ich stimme mich vorab direkt mit eurer Villa oder eurem Weingut ab.' },
       { title: 'Transparente Reisepauschale', text: 'Anreise und Übernachtung stehen als eigene Pauschale im Angebot. Ihr wisst vorher, was der Weg kostet.' },
     ],
@@ -124,7 +124,7 @@ export const cities: City[] = [
     logistics: [
       { title: 'Anreise & Technik', text: 'Mein Equipment fliegt mit, Sound und Licht kommen von festen Partnern auf der Insel. Nichts, was am Flughafen liegen bleiben kann.' },
       { title: 'Lärmschutz eingeplant', text: 'Viele Fincas haben Auflagen ab 22 oder 24 Uhr. Ich kenne die Spielregeln und plane euren Abend so, dass der Höhepunkt sitzt, bevor es leiser werden muss.' },
-      { title: 'Planung auf Deutsch', text: 'Vorgespräch per Video-Call, Vertrag und Ausfall-Garantie nach deutschem Recht. Eure Inselhochzeit, geplant in eurer Sprache.' },
+      { title: 'Planung auf Deutsch', text: 'Vorgespräch per Video-Call und Vertrag nach deutschem Recht. Eure Inselhochzeit, geplant in eurer Sprache.' },
       { title: 'Transparente Reisepauschale', text: 'Flug und Übernachtung stehen als eigene Pauschale im Angebot. Ihr wisst vorher, was der Weg kostet.' },
     ],
     destFaqs: [

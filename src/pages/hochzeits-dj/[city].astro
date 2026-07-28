@@ -21,7 +21,7 @@ const path = `/hochzeits-dj/${city.slug}`;
 
 const forName = city.forName ?? city.name;
 const title = `Hochzeits-DJ ${city.name} – DJ Bruma | ${ratingLabel()} ★ bei Google`;
-const description = `Hochzeits- & Event-DJ ${city.inCity}. Eigene Technik, Festpreise ab 1.000 €, Ausfall-Garantie im Vertrag. Verfügbarkeit kostenlos prüfen.`;
+const description = `Hochzeits- & Event-DJ ${city.inCity}. Eigene Technik, Festpreise ab 1.000 €, Ersatz-Technik immer dabei. Verfügbarkeit kostenlos prüfen.`;
 
 // Service-Schema pro Stadt + Bezug zum LocalBusiness
 const serviceSchema = {
@@ -91,7 +91,7 @@ const localFaqs = city.destFaqs ?? city.cityFaqs ?? faqs.slice(0, 4);
           <li><span>Ab-Preis</span><strong>{packages[0].price}{city.destination ? ' + Reise' : ''}</strong></li>
           <li><span>Antwortzeit</span><strong>1–2 Tage</strong></li>
           <li><span>Vorgespräch</span><strong>kostenlos</strong></li>
-          <li><span>Ausfall-Garantie</span><strong>inklusive</strong></li>
+          <li><span>Ersatz-Technik</span><strong>immer dabei</strong></li>
         </ul>
         <a class="btn btn--gold" href="#anfrage">Jetzt anfragen</a>
         <a class="btn btn--ghost" href={`tel:${site.contact.phoneIntl}`}><Icon name="phone" size={16} /> {site.contact.phone}</a>
