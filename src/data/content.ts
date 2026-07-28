@@ -3,6 +3,12 @@ import priceBarn from '../assets/images/price-barn.jpg';
 import priceLoud from '../assets/images/price-loud.jpg';
 import priceSky from '../assets/images/price-sky.jpg';
 import videoThumb from '../assets/images/video-thumb.jpg';
+import portraitImage from '../assets/images/portrait.jpg';
+import featSound from '../assets/images/feat-sound.jpg';
+import featLicht from '../assets/images/feat-licht.jpg';
+import featMikro from '../assets/images/feat-mikro.jpg';
+import featMusik from '../assets/images/feat-musik.jpg';
+import featVorgespraech from '../assets/images/feat-vorgespraech.jpg';
 import gallery1 from '../assets/images/gal-1.jpg';
 import gallery2 from '../assets/images/gal-2.jpg';
 import gallery3 from '../assets/images/gal-3.jpg';
@@ -10,13 +16,15 @@ import gallery4 from '../assets/images/gal-4.jpg';
 import gallery5 from '../assets/images/gal-5.jpg';
 import gallery6 from '../assets/images/gal-6.jpg';
 
+// Bilder aus der v1 zurückgeholt (28.07.2026): echte Fotos von Marvins Gigs und
+// Equipment statt reiner Icon-Karten.
 export const services = [
-  { icon: 'shield', title: 'Zuverlässig & professionell', text: 'Pünktlich da, vorbereitet, und die störanfälligen Teile liegen ein zweites Mal im Kofferraum.' },
-  { icon: 'speaker', title: 'Hochwertiger Sound', text: 'Sattes, klares Klangbild. Für die Scheune genauso wie für den Ballsaal.' },
-  { icon: 'light', title: 'Erstklassige Lichttechnik', text: 'Warmes Licht zum Dinner, richtige Show, sobald getanzt wird.' },
-  { icon: 'mic', title: 'Funk-Mikrofon für Ansprachen', text: 'Liegt bereit für Reden, Spiele und alles Spontane.' },
-  { icon: 'music', title: 'Große Musikauswahl', text: 'Charts, Classics, Schlager, Latin. Deine Wunschlieder klären wir vorher.' },
-  { icon: 'chat', title: 'Kostenloses Vorgespräch', text: 'Wir gehen deinen Ablauf per Video-Call durch. Kostet nichts, verpflichtet zu nichts.' },
+  { icon: 'shield', image: portraitImage, alt: 'Marvin moderiert mit Mikrofon auf einer Feier', title: 'Zuverlässig & professionell', text: 'Pünktlich da, vorbereitet, und die störanfälligen Teile liegen ein zweites Mal im Kofferraum.' },
+  { icon: 'speaker', image: featSound, alt: 'Electro-Voice-Lautsprecher in Nahaufnahme', title: 'Hochwertiger Sound', text: 'Sattes, klares Klangbild. Für die Scheune genauso wie für den Ballsaal.' },
+  { icon: 'light', image: featLicht, alt: 'DJ-Pult mit warmem Ambientelicht in einer Holz-Location', title: 'Erstklassige Lichttechnik', text: 'Warmes Licht zum Dinner, richtige Show, sobald getanzt wird.' },
+  { icon: 'mic', image: featMikro, alt: 'Funkmikrofon im Bühnenlicht', title: 'Funk-Mikrofon für Ansprachen', text: 'Liegt bereit für Reden, Spiele und alles Spontane.' },
+  { icon: 'music', image: featMusik, alt: 'Plattensammlung quer durch die Genres', title: 'Große Musikauswahl', text: 'Charts, Classics, Schlager, Latin. Deine Wunschlieder klären wir vorher.' },
+  { icon: 'chat', image: featVorgespraech, alt: 'Handschlag zweier Menschen im Freien', title: 'Kostenloses Vorgespräch', text: 'Wir gehen deinen Ablauf per Video-Call durch. Kostet nichts, verpflichtet zu nichts.' },
 ];
 
 // Backup-Garantie, direkt aus der Wettbewerbsanalyse (größter Angst-Abbau)

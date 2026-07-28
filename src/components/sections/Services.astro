@@ -1,6 +1,7 @@
 ---
 import { services, guarantee } from '../../data/content';
 import Icon from '../Icon.astro';
+import { Image } from 'astro:assets';
 ---
 <section class="section" id="leistungen">
   <div class="wrap">
@@ -12,10 +13,17 @@ import Icon from '../Icon.astro';
 
     <div class="grid grid-3 svc-grid">
       {services.map((s) => (
-        <article class="card svc reveal">
-          <div class="svc__icon"><Icon name={s.icon} size={26} /></div>
-          <h3>{s.title}</h3>
-          <p>{s.text}</p>
+        <article class="svc reveal">
+          <div class="svc__media">
+            <Image src={s.image} alt={s.alt} widths={[320, 480, 720]} sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 33vw" format="webp" quality={76} loading="lazy" />
+          </div>
+          <div class="svc__body">
+            <!-- Icon-Chip auf der Bild-Text-Naht: haelt die Icon-Sprache der Seite,
+                 verankert das Foto in der Karte -->
+            <div class="svc__icon"><Icon name={s.icon} size={22} /></div>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
         </article>
       ))}
     </div>
@@ -36,9 +44,34 @@ import Icon from '../Icon.astro';
 
 <style>
   .svc-grid { margin-top: clamp(32px, 5vw, 56px); }
-  .svc__icon { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; color: var(--gold); background: rgba(201,163,90,.12); border: 1px solid var(--line); margin-bottom: 1rem; }
+
+  /* Bildkarten (aus der v1 zurueckgeholt): Foto oben, Icon-Chip auf der Naht.
+     Der Verlauf unten am Bild zieht die unterschiedlich warmen Fotos in die
+     Palette der Seite, statt sie als Fremdkoerper stehen zu lassen. */
+  .svc {
+    background: linear-gradient(180deg, var(--surface), var(--bg-2));
+    border: 1px solid var(--line-soft); border-radius: var(--r-lg); overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .svc:hover { transform: translateY(-4px); border-color: var(--line); box-shadow: 0 26px 56px -26px rgba(0, 0, 0, .85); }
+  .svc__media { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--surface-2); }
+  .svc__media :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+  .svc:hover .svc__media :global(img) { transform: scale(1.05); }
+  .svc__media::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(12, 10, 8, .08), transparent 40%, rgba(18, 16, 12, .55) 100%);
+    pointer-events: none;
+  }
+  .svc__body { position: relative; padding: 0 clamp(18px, 2.5vw, 26px) clamp(20px, 2.5vw, 26px); }
+  .svc__icon {
+    width: 48px; height: 48px; border-radius: 13px; display: grid; place-items: center;
+    color: var(--gold); background: var(--surface-2); border: 1px solid var(--line);
+    margin: -24px 0 .9rem; /* halb aufs Bild gesetzt */
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .8);
+  }
   .svc h3 { margin-bottom: .4rem; }
   .svc p { color: var(--muted); margin: 0; }
+  @media (prefers-reduced-motion: reduce) { .svc, .svc:hover { transform: none; transition: none; } }
   .guarantee { margin-top: clamp(24px, 3vw, 36px); display: grid; grid-template-columns: auto 1fr; gap: clamp(18px, 3vw, 32px); align-items: center; background: linear-gradient(135deg, rgba(201,163,90,.10), var(--surface)); }
   .guarantee__badge { width: 66px; height: 66px; border-radius: 50%; display: grid; place-items: center; color: #1a1208; background: var(--gold-grad); flex: none; }
   .guarantee h3 { margin-bottom: .4rem; }
