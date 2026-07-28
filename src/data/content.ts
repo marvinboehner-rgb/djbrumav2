@@ -19,14 +19,15 @@ export const services = [
   { icon: 'chat', title: 'Kostenloses Vorgespräch', text: 'Wir gehen deinen Ablauf per Video-Call durch. Kostet nichts, verpflichtet zu nichts.' },
 ];
 
-// Backup-Garantie, direkt aus der Wettbewerbsanalyse (größter Angst-Abbau)
+// Kein Garantie-Versprechen mehr: ein Ersatz-DJ am selben Datum lässt sich nicht
+// zusichern, darum steht hier der ehrliche Ablauf statt einer 100-%-Zusage.
 export const guarantee = {
-  title: 'Deine Ausfall-Garantie',
-  text: 'Sollte ich durch Krankheit oder Notfall wirklich einmal ausfallen, sorge ich über mein DJ-Netzwerk für gleichwertigen Ersatz, damit deine Feier auf keinen Fall ohne Musik dasteht.',
+  title: 'Mein Plan B für den Notfall',
+  text: 'Sollte ich durch Krankheit oder Notfall wirklich einmal ausfallen, frage ich sofort mein Netzwerk an DJ-Kollegen für euch an. Eine 100-%-Garantie verspreche ich euch nicht — die spielen selbst Gigs, und ich verspreche nichts, was ich nicht halten kann. Aber ihr erfahrt es ohne Umweg, und ich telefoniere, bis eine Lösung steht.',
   points: [
-    'Fester Backup-DJ im Netzwerk',
-    'Ersatz-Player, Kabel & Mikro dabei',
-    'Schriftliche Zusage im Vertrag',
+    'Viele Ersatzkontakte im DJ-Netzwerk',
+    'Ersatz-Player, Kabel & Mikro immer dabei',
+    'Sofortige, ehrliche Kommunikation',
   ],
 };
 
@@ -111,7 +112,7 @@ export const faqs = [
   { q: 'Können wir den Abend spontan verlängern?', a: 'Klar. Wenn die Tanzfläche noch voll ist, hört man nicht einfach auf. Jede weitere Stunde kostet 100 €. Ihr könnt sie vorab einplanen oder spontan am Abend entscheiden, solange die Location mitspielt.' },
   { q: 'Welche Musik spielst du und was nicht?', a: 'Charts, Classics, Latin, Schlager, im Grunde alles, was bei euch funktioniert. Vorab legen wir Wunschlieder und No-Gos fest: Was auf eurer Verbotsliste steht, läuft nicht, egal wer danach fragt.' },
   { q: 'Kann ich mir Musik wünschen?', a: 'Unbedingt. Vorab stimmen wir Wunschlieder, No-Gos und den groben Ablauf ab. Am Abend nehme ich auch spontane Wünsche der Gäste entgegen, mit Fingerspitzengefühl: Der Flow auf der Tanzfläche hat immer Priorität.' },
-  { q: 'Was passiert, wenn du krank wirst?', a: 'Dafür gibt es meine Ausfall-Garantie: Über mein DJ-Netzwerk sorge ich für gleichwertigen Ersatz. Das steht schriftlich im Vertrag, eure Feier läuft auf jeden Fall.' },
+  { q: 'Was passiert, wenn du krank wirst?', a: 'Ehrliche Antwort: Eine 100-%-Garantie für einen Ersatz-DJ gibt euch niemand seriös, denn auch Kollegen spielen an eurem Datum eigene Gigs. Was ich habe: viele Ersatzkontakte in meinem DJ-Netzwerk, die ich im Notfall sofort für euch anfrage — und ihr erfahrt ohne Umweg Bescheid. Bei der Technik gilt: Alles Kritische ist doppelt dabei.' },
   { q: 'Und wenn die Technik ausfällt?', a: 'Die kritischen Teile habe ich doppelt dabei: Ersatz-Player, Kabel und Mikrofon liegen griffbereit im Auto. Ein Technik-Ausfall bedeutet bei mir eine kurze Unterbrechung, kein Ende der Party.' },
   { q: 'Begleitest du auch Trauung und Sektempfang?', a: 'Sehr gerne. Für freie Trauungen bringe ich dezente Beschallung und Funkmikrofone mit, beim Sektempfang sorge ich für entspannte Hintergrundmusik, so zieht sich die Musik wie ein roter Faden durch euren ganzen Tag.' },
   { q: 'Moderierst du auch?', a: 'So viel oder so wenig ihr möchtet: Ich kündige Programmpunkte wie Eröffnungstanz oder Reden charmant an, dränge mich aber nie in den Vordergrund. Euer Tag, eure Bühne: Ich halte den Rahmen.' },

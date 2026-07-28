@@ -19,7 +19,7 @@ const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
   <div class="wrap center">
     <p class="eyebrow">Verfügbarkeit</p>
     <h2>Ist euer Termin{cityIn ? ` ${cityIn}` : ''} noch <span class="gold-text">frei?</span></h2>
-    <p class="lead center">Grau heißt belegt. Tippt auf einen freien Tag, dann steht er direkt in eurer Anfrage.</p>
+    <p class="lead center">Grau heißt belegt. Tippt auf einen freien Tag, dann steht er direkt im Formular. Ich melde mich innerhalb von 1 bis 2 Tagen, auch wenn der Termin schon weg ist.</p>
 
     <div class="card cal reveal" aria-live="polite">
       <div class="cal__bar">
@@ -30,7 +30,7 @@ const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
       <div class="cal__weekdays">{weekdays.map((w) => <span>{w}</span>)}</div>
       <div class="cal__grid" data-cal-grid></div>
       <div class="cal__legend">
-        <span><i class="cal__sw cal__sw--free"></i> frei</span>
+        <span><i class="cal__sw cal__sw--free"></i> frei – antippen übernimmt das Datum</span>
         <span><i class="cal__sw cal__sw--busy"></i> belegt</span>
       </div>
       <p class="cal__note">Ohne Gewähr: Der Kalender zeigt meinen Planungsstand. Verbindlich wird ein Termin erst mit meiner Zusage.</p>
