@@ -19,11 +19,9 @@ npm run build   # nach dist/
 npx netlify deploy --prod --dir=dist
 ```
 
-Staging läuft auf <https://djbruma-v2.netlify.app>. Die Seite ist dort per
-`X-Robots-Tag: noindex` gegen Indexierung geschützt.
-
-> **Vor dem Livegang auf djbruma.de:** Den `noindex`-Block in `netlify.toml`
-> entfernen. Bleibt er stehen, wird die Domain aus dem Google-Index geworfen.
+Staging lief auf <https://djbruma-v2.netlify.app>. Seit dem 28.07.2026 ist der
+`noindex`-Schutz aus `netlify.toml` entfernt — dieser Stand gehört auf die
+Hauptdomain. Nicht mehr aufs Staging deployen (Duplicate-Content-Risiko).
 
 ## Aufbau
 
@@ -83,15 +81,25 @@ unveränderter Conversion-ID, damit die Historie in Google Ads nicht abreißt.
 Drittinhalte (YouTube, Spotify) laden ebenfalls erst auf Klick. Wer hier etwas
 ergänzt, muss den passenden Abschnitt in `legal.ts` mitpflegen.
 
-## Vor dem Livegang
+## Livegang (Stand 28.07.2026)
 
-- [ ] `noindex`-Block in `netlify.toml` entfernen (siehe Warnung oben).
-- [ ] In Netlify `RESEND_API_KEY`, `MAIL_FROM` und `MAIL_OWNER` setzen, sonst
-      gehen die Auto-Mails still nicht raus.
-- [ ] Eine Testanfrage abschicken und prüfen, ob beide Mails ankommen.
-- [ ] In Netlify `CALENDAR_ICS_URL` setzen und prüfen, ob der Verfügbarkeitskalender
-      die echten Termine zieht (`/.netlify/functions/availability` direkt aufrufen).
+Der Weg: v2 wird auf die ALTE Netlify-Site (`djbruma`, hängt an djbruma.de) deployt,
+kein Domain-Umzug. Vorteile: Domain/SSL bleiben, die beiden Netlify-Formular-
+Benachrichtigungen der Site bleiben, Rollback = alter Deploy per Klick im Dashboard.
+
+- [x] `noindex`-Block aus `netlify.toml` entfernt (28.07.). ⚠️ Ab jetzt NICHT mehr
+      auf die Staging-Site (djbruma-v2) deployen, sonst wird sie indexierbar.
+- [x] `CALENDAR_ICS_URL` auf der alten Site gesetzt (28.07., von der Staging-Site kopiert).
+- [ ] Deploy auf die alte Site:
+      `npm run build && npx netlify deploy --prod --dir=dist --functions=netlify/functions --site=fc990f68-5966-4c22-a8c4-7bdba7d7453d`
+- [ ] Testanfrage abschicken und prüfen, dass die Netlify-Benachrichtigung ankommt.
+- [ ] Kalender live prüfen: `djbruma.de/.netlify/functions/availability` muss die
+      echten Termine liefern.
+- [ ] Google Ads: finale URLs der Kampagne einmal von Tom prüfen lassen.
 - [ ] Die alte iCloud-Freigabe widerrufen, ihre URL lag bis Juli 2026 im Repo.
+- [ ] Optional (Upgrade ggü. v1): `RESEND_API_KEY`, `MAIL_FROM`, `MAIL_OWNER` setzen —
+      aktiviert erstmals die Kundenbestätigungs-Mail. Auf der v1 hat das nie
+      funktioniert, die Variablen waren dort nie gesetzt.
 
 ## Offene Punkte
 

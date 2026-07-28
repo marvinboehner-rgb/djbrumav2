@@ -14,17 +14,10 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
-# ═══════════════════════════════════════════════════════════════════════
-# ⚠️ STAGING-SCHUTZ — VOR DEM LIVEGANG AUF djbruma.de ENTFERNEN! ⚠️
-# Verhindert, dass die Vorschau-Domain (djbruma-v2.netlify.app) von Google
-# indexiert wird und als Duplicate Content mit djbruma.de konkurriert.
-# Bleibt dieser Block beim Prod-Deploy bestehen, wird die Seite DEINDEXIERT.
-# ═══════════════════════════════════════════════════════════════════════
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-
+# noindex-Staging-Schutz entfernt (28.07.2026): dieser Stand ist für den Livegang
+# auf djbruma.de bestimmt. ⚠️ NICHT mehr auf die Staging-Site (djbruma-v2.netlify.app)
+# deployen — sie wäre sonst indexierbar und konkurriert als Duplicate Content mit
+# der Hauptdomain. Staging nach dem Livegang stilllegen oder pausieren.
 [[headers]]
   for = "/*"
   [headers.values]
